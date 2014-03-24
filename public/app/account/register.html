@@ -1,0 +1,130 @@
+<section class="content-20 v-center bg-midnight-blue" ng-hide="User.isAuthenticated">
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Registrate como usuario de Woben y comienza a disfrutar de sus ventajas</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="signup-form">
+                        <wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors"></wo-errors>
+                        <form name="registerForm" class="clearfix" ng-submit="register()" novalidate>
+                            <div class="form-group" ng-class="{'has-error': registerForm.userName.$invalid && registerForm.userName.$dirty}">
+                                <label>Elije un nombre de usuario</label>
+                                <input name="userName" type="text" class="form-control" placeholder="usuario" ng-model="userName" required />
+                                <span class="help-block" ng-show="registerForm.userName.$error.required && registerForm.userName.$dirty">Campo obligatorio</span>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': registerForm.email.$invalid && registerForm.email.$dirty}">
+                                <label>Cual es tu email?</label>
+                                <input name="email" type="email" class="form-control" placeholder="email" ng-model="email" required />
+                                <span class="help-block" ng-show="registerForm.email.$error.required && registerForm.email.$dirty">Campo obligatorio</span>
+                                <span class="help-block" ng-show="registerForm.email.$error.email && registerForm.email.$dirty">El email no es correcto</span>
+                            </div>
+                            <div class="clearfix">
+                                <div class="form-group pull-left" ng-class="{'has-error': registerForm.password.$invalid && registerForm.password.$dirty}">
+                                    <label>Password</label>
+                                    <input name="password" type="password" class="form-control" placeholder="Password" ng-model="password" required />
+                                    <span class="help-block" ng-show="registerForm.password.$error.required && registerForm.password.$dirty">Campo obligatorio</span>
+                                </div>
+                                <div class="form-group pull-right"  ng-class="{'has-error': registerForm.confirmPassword.$invalid && registerForm.confirmPassword.$dirty}">
+                                    <label>Confirma tu password</label>
+                                    <input name="confirmPassword" type="password" class="form-control" placeholder="Confirma el password" ng-model="confirmPassword" required />
+                                    <span class="help-block" ng-show="registerForm.confirmPassword.$error.required && registerForm.confirmPassword.$dirty">Campo obligatorio</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-huge btn-info" ng-disabled="!registerForm.$valid || disabled">Registrate</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-sm-offset-1 features">
+                    <big>The most important part of the Startup Design Framework is the samples</big>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h6>Easy to use</h6>
+                            To get started, you select the desired sample and build on the basis of its entire website.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h6>Variety of designs</h6>
+                            Responsive web design is a web design approach aimed at crafting sites to provide.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-30" ng-show="User.isAuthenticated">
+    <div class="container">
+        <div class="row features">
+            <div class="col-sm-3 box-1">
+                <div class="description-top">
+                    <h6>Easy to use</h6>
+                    To get started, you select the desired sample and base the entire website on it.
+                    <img src="../../common-files/img/content/arrow-tl@2x.png" width="61" height="97" alt="">
+                </div>
+                <div class="img">
+                    <img src="../../common-files/img/content/screen-1-bw@2x.png" width="220" height="391" alt="">
+                    <img src="../../common-files/img/content/screen-1@2x.png" width="220" height="391" alt="">
+                </div>
+                <div class="description-bottom">
+                    <h6>Variety of designs</h6>
+                    Without iconic symbolsreally finish your work - for clearly understand.
+                    <img src="../../common-files/img/content/arrow-bl@2x.png" width="97" height="110" alt="">
+                </div>
+            </div>
+            <div class="col-sm-3 box-2">
+                <div class="description-top">
+                    <h6>Easy to use</h6>
+                    To get started, you select the desired sample and base the entire website on it.
+                    <img src="../../common-files/img/content/arrow-tl@2x.png" width="61" height="97" alt="">
+                </div>
+                <div class="img">
+                    <img src="../../common-files/img/content/screen-2-bw@2x.png" width="220" height="391" alt="">
+                    <img src="../../common-files/img/content/screen-2@2xc-30.png" width="220" height="391" alt="">
+                </div>
+                <div class="description-bottom">
+                    <h6>Variety of designs</h6>
+                    Responsive web design is a web design approach aimed to provide crafting sites.
+                    <img src="../../common-files/img/content/arrow-br@2x.png" width="97" height="110" alt="">
+                </div>
+            </div>
+            <div class="col-sm-3 box-3">
+                <div class="description-top">
+                    <h6>Easy to use</h6>
+                    To get started, you select the desired sample and base the entire website on it.
+                    <img src="../../common-files/img/content/arrow-tr@2x.png" width="61" height="97" alt="">
+                </div>
+                <div class="img">
+                    <img src="../../common-files/img/content/screen-3-bw@2x.png" width="220" height="391" alt="">
+                    <img src="../../common-files/img/content/screen-3@2x.png" width="220" height="391" alt="">
+                </div>
+                <div class="description-bottom">
+                    <h6>Variety of designs</h6>
+                    Responsive web design is a web design approach aimed to provide crafting sites.
+                    <img src="../../common-files/img/content/arrow-bl@2x.png" width="97" height="110" alt="">
+                </div>
+            </div>
+            <div class="col-sm-3 box-4">
+                <div class="description-top">
+                    <h6>Quick Navigation</h6>
+                    Without iconic symbolsreally finish your work - for clearly understand.
+                    <img src="../../common-files/img/content/arrow-tr@2x.png" width="61" height="97" alt="">
+                </div>
+                <div class="img">
+                    <img src="../../common-files/img/content/screen-4-bw@2x.png" width="220" height="391" alt="">
+                    <img src="../../common-files/img/content/screen-4@2x.png" width="220" height="391" alt="">
+                </div>
+                <div class="description-bottom">
+                    <h6>Variety of designs</h6>
+                    Responsive web design is a web design approach aimed to provide crafting sites.
+                    <img src="../../common-files/img/content/arrow-br@2x.png" width="97" height="110" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
