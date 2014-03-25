@@ -14,10 +14,9 @@ Woben.factory('accountService', function($http, $q, $window, $rootScope, $state)
         var user =  new User(userData);
         if (persistent && token) {
             $window.localStorage.setItem("token", token);
-        } else {
-            if (token) {
-                $window.sessionStorage.setItem("token", token);
-            }
+        }
+        if (token) {
+            $window.sessionStorage.setItem("token", token);
         }
         return user;
     }

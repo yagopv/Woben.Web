@@ -55,7 +55,7 @@
                                 <li ng-class="{'active' : $state.includes('register')}" ng-show="!User.isAuthenticated">
                                     <a href="javascript:;" ui-sref="register">Register</a>
                                 </li>
-                                <li ng-class="{'active' : $state.includes('dashboard')}" ng-show="User.isAuthenticated && User.roles.indexOf('Dashboard') != -1">
+                                <li ng-class="{'active' : $state.includes('dashboard')}" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
                                     <a href="javascript:;" ui-sref="dashboard">Dashboard</a>
                                 </li>
                             </ul>
