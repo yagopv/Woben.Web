@@ -1,4 +1,4 @@
-Woben.directive('woCheckbox', function() {
+WobenCommon.directive('woCheckbox', function() {
     return {
         link : function(scope, element, attrs) {
             var $checkbox = $(element).find('[data-toggle=checkbox]');

@@ -1,4 +1,4 @@
-Woben.factory('authInterceptor', function ($rootScope, $q, $window) {
+WobenCommon.factory('authInterceptor', function ($rootScope, $q, $window) {
         return {
             request: function (config) {
                 config.headers = config.headers || {};

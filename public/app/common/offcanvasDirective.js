@@ -1,4 +1,4 @@
-Woben.directive('woOffcanvas', function() {
+WobenCommon.directive('woOffcanvas', function() {
     return {
         restrict: 'E',
         replace : true,
@@ -40,7 +40,7 @@ Woben.directive('woOffcanvas', function() {
     }
 });
 
-Woben.directive('woOffcanvasMenu', function() {
+WobenCommon.directive('woOffcanvasMenu', function() {
     return {
         restrict: 'E',
         replace : true,
@@ -49,7 +49,7 @@ Woben.directive('woOffcanvasMenu', function() {
     };
 });
 
-Woben.directive('woOffcanvasMain', function() {
+WobenCommon.directive('woOffcanvasMain', function() {
     return {
         restrict: 'E',
         replace : true,
@@ -62,7 +62,7 @@ Woben.directive('woOffcanvasMain', function() {
     };
 });
 
-Woben.directive('woOffcanvasAdditional', function() {
+WobenCommon.directive('woOffcanvasAdditional', function() {
     return {
         restrict: 'E',
         replace : true,

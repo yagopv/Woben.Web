@@ -1,0 +1,1 @@
+var WobenAccount = angular.module('WobenAccount',['ui.router']);

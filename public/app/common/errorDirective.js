@@ -1,4 +1,4 @@
-Woben.directive('woErrors', function() {
+WobenCommon.directive('woErrors', function() {
     return {
         restrict: 'E',
         replace : true,

@@ -1,4 +1,4 @@
-Woben.factory('errorService', function() {
+WobenCommon.factory('errorService', function() {
 
     return {
 

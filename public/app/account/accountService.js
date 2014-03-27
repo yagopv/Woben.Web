@@ -1,4 +1,4 @@
-Woben.factory('accountService', function($http, $q, $window, $rootScope, $state) {
+WobenAccount.factory('accountService', function($http, $q, $window, $rootScope, $state) {
 
     var baseUrl = "https://woben.azurewebsites.net";
 

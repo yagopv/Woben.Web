@@ -1,4 +1,4 @@
-Woben.controller('LoginController', function($scope, $http, accountService, $state, errorService) {
+WobenAccount.controller('LoginController', function($scope, $http, accountService, $state, errorService) {
         $scope.login = function() {
             $scope.disabled = true;
             accountService.login({
