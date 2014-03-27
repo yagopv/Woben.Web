@@ -21,8 +21,8 @@
     <link rel="stylesheet" href="/lib/startup/ui-kit/ui-kit-price/css/style.css">
     <link rel="stylesheet" href="/lib/startup/ui-kit/ui-kit-projects/css/style.css">
 
-    <link rel="stylesheet" href="/lib/offcanvas/offcanvas.css">
     <link rel="stylesheet" href="/lib/startup/app.css">
+
 </head>
 
 <body>
@@ -57,7 +57,7 @@
                                     <a href="javascript:;" ui-sref="register">Register</a>
                                 </li>
                                 <li ng-class="{'active' : $state.includes('dashboard')}" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
-                                    <a href="javascript:;" ui-sref="dashboard">Dashboard</a>
+                                    <a href="/dashboard" target="_self">Dashboard</a>
                                 </li>
                             </ul>
                         </div>
@@ -120,7 +120,7 @@
     <script type="text/javascript" src="/lib/angular/angular-ui-router.js"></script>
 
     <!-- Angular components -->
-    <script type="text/javascript" src="/app/app.js"></script>
+    <script type="text/javascript" src="/app/index.js"></script>
     <script type="text/javascript" src="/app/home/headerController.js"></script>
     <script type="text/javascript" src="/app/home/homeController.js"></script>
     <script type="text/javascript" src="/app/products/productsController.js"></script>

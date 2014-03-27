@@ -7,6 +7,10 @@ var request = require('request');
 
 var app = express();
 
+exports.dashboard = function(req, res){
+    res.render('dashboard', { title: 'Woben - Dashboard' });
+}
+
 exports.test = function(req, res){
     res.render('index', { title: 'Woben' });
 }

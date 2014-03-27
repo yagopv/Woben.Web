@@ -3,7 +3,7 @@
 //*********************//
 
 var express = require('express')
-    , routes = require('./routes')
+    , routes = require('./routes/routes')
     , http = require('http')
     , path = require('path');
 
@@ -53,8 +53,12 @@ if (app.get('env') === 'production') {
 //*********//
 
 if ('development' == app.get('env')) {
+    app.get('/dashboard', routes.dashboard);
+    app.get('/dashboard/*', routes.dashboard);
     app.get('*', routes.test);
 } else {
+    app.get('/dashboard', routes.dashboard);
+    app.get('/dashboard/*', routes.dashboard);
     app.get('*', routes.index);
 }
 
