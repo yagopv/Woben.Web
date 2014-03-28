@@ -62,12 +62,12 @@ Woben
         $stateProvider
             .state('home', {
                 url: "/",
-                templateUrl: "app/home/home.html",
+                templateUrl: "app/templates/home/home.html",
                 controller : "HomeController"
             })
             .state('products', {
                 url: "/products",
-                templateUrl: "app/products/products.html",
+                templateUrl: "app/templates/products/products.html",
                 controller:    'ProductsController',
                 resolve: {
                     User: function($state, $stateParams, $q, accountService) {
@@ -82,53 +82,9 @@ Woben
                     }
                 }
             })
-            .state('login', {
-                url: "/login",
-                templateUrl: "app/account/login.html",
-                controller:    'LoginController'
-            })
-            .state('register', {
-                url: "/register",
-                templateUrl: "app/account/register.html",
-                controller:    'RegisterController'
-            })
-            .state('manage', {
-                url: "/manage",
-                templateUrl: "app/account/manage.html",
-                controller:    'ManageController',
-                resolve: {
-                    User: function($state, $stateParams, $q, accountService) {
-                        return accountService.isUserInRole(["User"]).then(
-                            function(data) {
-                                return data;
-                            },
-                            function(error) {
-                                $state.go('login');
-                            }
-                        );
-                    }
-                }
-            })
-            .state('dashboard', {
-                url: "/dashboard",
-                templateUrl: "app/admin/dashboard.html",
-                controller:    'DashboardController',
-                resolve: {
-                    User: function($state, $stateParams, $q, accountService) {
-                        return accountService.isUserInRole(["Administrator"]).then(
-                            function(data) {
-                               return data;
-                            },
-                            function(error) {
-                                $state.go('login');
-                            }
-                        );
-                    }
-                }
-            })
             .state('notfound', {
                 url: "/404",
-                templateUrl: "app/common/404.html"
+                templateUrl: "app/templates/common/404.html"
             });
 
         $urlRouterProvider.otherwise("/404");

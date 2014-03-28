@@ -30,6 +30,6 @@ WobenCommon.directive('woCheckbox', function() {
             value : '@',
             ngModel : "="
         },
-        templateUrl: '/app/common/checkboxDirective.html'
+        templateUrl: 'app/templates/common/checkboxDirective.html'
     };
 });

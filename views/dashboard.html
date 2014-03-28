@@ -14,11 +14,106 @@
 </head>
 
 <body>
-    <p>Hello dashboard</p>
+    <header>
+        <nav class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+              <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand" href="#"><span class="fui-flat"></span></a>
+          </div>
+          <div class="collapse navbar-collapse" id="navbar-collapse-01">
+            <ul class="nav navbar-nav">			      
+              <li class="active"><a href="#fakelink">Products</a></li>
+              <li><a href="#fakelink">Features</a></li>
+            </ul> 		      
+            <form class="navbar-form navbar-right" action="#" role="search">
+              <div class="form-group">
+                <div class="input-group">
+                  <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn"><span class="fui-search"></span></button>
+                  </span>            
+                </div>
+              </div>	             
+            </form>
+          </div><!-- /.navbar-collapse -->
+        </nav><!-- /navbar -->        
+    </header>
+
+    <wo-offcanvas active-transitions="true">
+
+        <wo-offcanvas-menu>
+            Menu
+        </wo-offcanvas-menu>
+        
+        <wo-offcanvas-main>
+        
+            <div ui-view autoscroll="false"></div>
+
+        </wo-offcanvas-main>
+        
+        <wo-offcanvas-additional>
+            Additional
+        </wo-offcanvas-additional>
+        
+    </wo-offcanvas>
+
+    
+
+    <footer>
+        <div class="bottom-menu bottom-menu-inverse">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-2 navbar-brand">
+                    <a href="#fakelink" class="fui-flat"></a>
+                  </div>
+        
+                  <div class="col-md-8">
+                    <ul class="bottom-links">
+                      <li><a href="#fakelink">About Us</a></li>
+                      <li><a href="#fakelink">Store</a></li>
+                      <li class="active"><a href="#fakelink">Jobs</a></li>
+                      <li><a href="#fakelink">Privacy</a></li>
+                      <li><a href="#fakelink">Terms</a></li>
+                      <li><a href="#fakelink">Follow Us</a></li>
+                      <li><a href="#fakelink">Support</a></li>
+                      <li><a href="#fakelink">Links</a></li>
+                    </ul>
+                  </div>
+        
+                  <div class="col-md-2">
+                    <ul class="bottom-icons">
+                      <li><a href="#fakelink" class="fui-pinterest"></a></li>
+                      <li><a href="#fakelink" class="fui-facebook"></a></li>
+                      <li><a href="#fakelink" class="fui-twitter"></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>        
+    </footer>
 
     <!-- Angular -->
     <script type="text/javascript" src="/lib/angular/angular.js"></script>
     <script type="text/javascript" src="/lib/angular/angular-ui-router.js"></script>
+
+    <!-- Common module -->
+    <script type="text/javascript" src="/app/common/init.js"></script>
+    <script type="text/javascript" src="/app/common/checkboxDirective.js"></script>
+    <script type="text/javascript" src="/app/common/errorDirective.js"></script>
+    <script type="text/javascript" src="/app/common/authInterceptor.js"></script>
+    <script type="text/javascript" src="/app/common/errorService.js"></script>
+    <script type="text/javascript" src="/app/common/offcanvasDirective.js"></script>
+
+    <!-- Account module -->
+    <script type="text/javascript" src="/app/account/init.js"></script>
+    <script type="text/javascript" src="/app/account/accountService.js"></script>
+    <script type="text/javascript" src="/app/account/loginController.js"></script>
+
+    <!-- Dashboard module -->
+    <script type="text/javascript" src="/app/dashboard/init.js"></script>
+    <script type="text/javascript" src="/app/dashboard/dashboardController.js"></script>
 
     <!-- Angular components -->
     <script type="text/javascript" src="/app/dashboard.js"></script>

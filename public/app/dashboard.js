@@ -1,4 +1,4 @@
-var Woben = angular.module('Woben',['WobenAccount', 'WobenCommon', 'ui.router']);
+var Woben = angular.module('Woben',['WobenAccount', 'WobenCommon', 'WobenDashboard', 'ui.router']);
 
 Woben.config(function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
@@ -59,19 +59,15 @@ Woben.config(function ($httpProvider) {
     })
     .config(function($stateProvider, $urlRouterProvider, $locationProvider){
         $stateProvider
-            .state('dashboard', {
-                url: "/",
-                templateUrl: "app/dashboard/dashboard.html",
-                controller : "DashboardController"
-            })
             .state('notfound', {
                 url: "/404",
-                templateUrl: "app/common/404.html"
+                templateUrl: "app/templates/common/404.html"
             });
 
         $urlRouterProvider.otherwise("/404");
 
         $locationProvider.html5Mode(true);
+
     }).run(function(accountService) {
         accountService.initializeAuth();
 });
