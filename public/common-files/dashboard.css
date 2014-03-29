@@ -7,11 +7,16 @@ header {
 }
 
 .st-offcanvas-main {
-    padding-bottom : 32em;
+    padding-bottom : 30em !important;
 }
 
 span.icons {
     top : 5px !important;
+}
+
+#dashboard-menu {
+    width : 70%;
+    margin: 0 auto;
 }
 
 #dashboard-menu li {

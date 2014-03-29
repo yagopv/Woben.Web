@@ -54,7 +54,7 @@
   margin-left: -100%;
   float: left;
   z-index: 2;
-  padding : 3% 0 0 2%;
+  padding-top : 3%;
 }
 
 .st-offcanvas .st-offcanvas-main {
@@ -94,6 +94,10 @@
 .st-offcanvas.activeadditional > .st-offcanvas-additional {
   margin-left: 0;
   width: 70%;
+}
+
+.st-offcanvas .buttonsContainer {
+    min-height : 2em;
 }
 
 .showmenubutton {
@@ -166,5 +170,9 @@
   
   .st-offcanvas.no-additional > .st-offcanvas-main {
     width: 85%;
-  }  
+  }
+
+    .st-offcanvas .buttonsContainer {
+        display : none;
+    }
 }

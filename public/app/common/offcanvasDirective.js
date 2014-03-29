@@ -82,8 +82,10 @@ WobenCommon.directive('woOffcanvasMain', function($window) {
         transclude : true,
         require : "^woOffcanvas",
         template: '<div class="st-offcanvas-main">' +
-                        '<a href="javascript:;" class="showmenubutton" ng-show="visibleMenu" ng-click="toggleMenu()"><span class="fui-list"></span></a>' +
-                        '<a href="javascript:;" class="showadditionalbutton" ng-show="visibleAdditional" ng-click="toggleAdditional()"><span class="fui-list"></span></a>' +
+                        '<div class="buttonsContainer">' +
+                            '<a href="javascript:;" class="showmenubutton" ng-show="visibleMenu" ng-click="toggleMenu()"><span class="fui-list"></span></a>' +
+                            '<a href="javascript:;" class="showadditionalbutton" ng-show="visibleAdditional" ng-click="toggleAdditional()"><span class="fui-list"></span></a>' +
+                        '</div>' +
                         '<div ng-transclude></div>' +
                   '</div>',
         controller : function($scope) {
@@ -115,7 +117,6 @@ WobenCommon.directive('woOffcanvasMain', function($window) {
                         $scope.visibleAdditional = false;
                     }
                 }
-                $scope.$apply();
             }
 
             checkButtonsVisibility();

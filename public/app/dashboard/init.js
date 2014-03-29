@@ -3,7 +3,7 @@ var WobenDashboard = angular.module('WobenDashboard',['ui.router']);
 WobenDashboard.config(function($stateProvider){
         $stateProvider
             .state('dashboard', {
-                url: "/dashboard/home",
+                url: "/dashboard",
                 controller:  "DashboardController",
                 templateUrl: "/app/templates/dashboard/index.html",
                 resolve: {
