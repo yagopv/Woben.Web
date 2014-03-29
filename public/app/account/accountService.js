@@ -1,6 +1,4 @@
-WobenAccount.factory('accountService', function($http, $q, $window, $rootScope) {
-
-    var baseUrl = "https://woben.azurewebsites.net";
+WobenAccount.factory('accountService', function($http, $q, $window, $rootScope, authEndPoint) {
 
     var User = function(userData) {
         this.userName = userData.userName;
@@ -29,7 +27,7 @@ WobenAccount.factory('accountService', function($http, $q, $window, $rootScope) 
                 self = this;
             $http({
                 method: 'POST',
-                url: baseUrl + '/token',
+                url: authEndPoint + '/token',
                 data : data
             }).success(function(data, status, headers, config) {
                 data.roles = data.roles.split(",");
@@ -46,7 +44,7 @@ WobenAccount.factory('accountService', function($http, $q, $window, $rootScope) 
             var deferred = $q.defer();
             $http({
                 method : "POST",
-                url : baseUrl + "/api/account/logout"
+                url : authEndPoint + "/api/account/logout"
             }).success(function(data, status, headers, config) {
                 $window.localStorage.clear("token");
                 $window.sessionStorage.clear("token");
@@ -63,7 +61,7 @@ WobenAccount.factory('accountService', function($http, $q, $window, $rootScope) 
                 self = this;
             $http({
                 method: 'POST',
-                url: baseUrl + '/api/account/register',
+                url: authEndPoint + '/api/account/register',
                 data : data
             }).success(function(data, status, headers, config) {
                     deferred.resolve(data);
@@ -78,7 +76,7 @@ WobenAccount.factory('accountService', function($http, $q, $window, $rootScope) 
                 self = this;
             $http({
                 method: 'GET',
-                url: baseUrl + '/api/account/userinfo'
+                url: authEndPoint + '/api/account/userinfo'
             }).success(function(data, status, headers, config) {
                     self.User = setUserObject(data, $window.sessionStorage.token, false);
                     $rootScope.$broadcast("woben:authenticated");

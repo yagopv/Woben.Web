@@ -30,3 +30,5 @@ WobenAccount.config(function($stateProvider){
                 }
             });
         });
+
+WobenAccount.constant("authEndPoint", "https://woben.azurewebsites.net");
