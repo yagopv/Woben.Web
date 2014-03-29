@@ -62,12 +62,12 @@ Woben
         $stateProvider
             .state('home', {
                 url: "/",
-                templateUrl: "app/templates/home/home.html",
+                templateUrl: "/app/templates/home/home.html",
                 controller : "HomeController"
             })
             .state('products', {
                 url: "/products",
-                templateUrl: "app/templates/products/products.html",
+                templateUrl: "/app/templates/products/products.html",
                 controller:    'ProductsController',
                 resolve: {
                     User: function($state, $stateParams, $q, accountService) {
@@ -84,7 +84,7 @@ Woben
             })
             .state('notfound', {
                 url: "/404",
-                templateUrl: "app/templates/common/404.html"
+                templateUrl: "/app/templates/common/404.html"
             });
 
         $urlRouterProvider.otherwise("/404");

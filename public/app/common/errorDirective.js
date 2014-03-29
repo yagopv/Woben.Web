@@ -6,6 +6,6 @@ WobenCommon.directive('woErrors', function() {
             errors : "=",
             title : "@"
         },
-        templateUrl: 'app/templates/common/errorDirective.html'
+        templateUrl: '/app/templates/common/errorDirective.html'
     };
 });

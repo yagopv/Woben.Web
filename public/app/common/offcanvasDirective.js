@@ -1,4 +1,4 @@
-WobenCommon.directive('woOffcanvas', function() {
+WobenCommon.directive('woOffcanvas', function($window) {
     return {
         restrict: 'E',
         replace : true,
@@ -8,34 +8,60 @@ WobenCommon.directive('woOffcanvas', function() {
           noAdditional : "@",
           noMenu : "@"
         },
-        template: '<div class="st-offcanvas" ng-transclude></div>',
-        controller: function($scope) {
-            //this.addChild = function() { 
+        controller : function($scope) {
+            $scope.windowWidth = $window.innerWidth;
+            $scope.activeMenu = false;
+            $scope.activeAdditional = false;
 
-            //};
+            this.toggleMenu = function() {
+                if ($scope.windowWidth < 768) {
+                    $scope.activeMenu = !$scope.activeMenu;
+                } else {
+                    if ($scope.windowWidth >= 768 && $scope.windowWidth < 978) {
+                        $scope.activeMenu = false;
+                    } else {
+                        $scope.activeMenu = false;
+                        $scope.activeAdditional = false;
+                    }
+                }
+            };
+            this.toggleAdditional = function() {
+                if ($scope.windowWidth < 768) {
+                    $scope.activeAdditional = !$scope.activeAdditional;
+                } else {
+                    if ($scope.windowWidth >= 768 && $scope.windowWidth < 978) {
+                        $scope.activeAdditional = !$scope.activeAdditional;
+                    } else {
+                        $scope.activeMenu = false;
+                        $scope.activeAdditional = false;
+                    }
+                }
+            };
+            $scope.getWidth = function() {
+                return $window.innerWidth;
+            };
+
+            $scope.$watch($scope.getWidth, function(newValue, oldValue) {
+                $scope.windowWidth = newValue;
+            });
+
+            window.onresize = function(){
+                $scope.$apply();
+            }
         },
-        link: function(scope, element, attrs, parentController) {
+        template: '<div class="st-offcanvas" ng-class="{activemenu : activeMenu, activeadditional : activeAdditional }" ng-transclude></div>',
+        link: function(scope, element, attrs, $window) {
             if (scope.activeTransitions == "true") {
-                angular.element(element).addClass("active-transitions");
+                element.addClass("active-transitions");
             }
             
             if (scope.noAdditional == "true") {
-                angular.element(element).addClass("no-additional");
+                element.addClass("no-additional");
             }
             
             if (scope.noMenu == "true") {
-                angular.element(element).addClass("no-menu");
+                element.addClass("no-menu");
             }
-            
-            this.activeAdditional = function() {
-                angular.element(element).addClass("active-additional");
-                angular.element(element).removeClass("active-menu");
-            }
-            
-            this.activeMenu = function() {
-                angular.element(element).addClass("active-menu");
-                angular.element(element).removeClass("active-additional");
-            }            
         }
     }
 });
@@ -49,16 +75,55 @@ WobenCommon.directive('woOffcanvasMenu', function() {
     };
 });
 
-WobenCommon.directive('woOffcanvasMain', function() {
+WobenCommon.directive('woOffcanvasMain', function($window) {
     return {
         restrict: 'E',
         replace : true,
         transclude : true,
-        require: '^woOffcanvas',
-        template: '<div class="st-offcanvas-main"><a href="#" class="showmenubutton"></a><a href="#" class="showadditionalbutton"></a><div ng-transclude></div></div>',
-        link: function(scope, elem, attrs, parentController) {
-            
-        }        
+        require : "^woOffcanvas",
+        template: '<div class="st-offcanvas-main">' +
+                        '<a href="javascript:;" class="showmenubutton" ng-show="visibleMenu" ng-click="toggleMenu()"><span class="fui-list"></span></a>' +
+                        '<a href="javascript:;" class="showadditionalbutton" ng-show="visibleAdditional" ng-click="toggleAdditional()"><span class="fui-list"></span></a>' +
+                        '<div ng-transclude></div>' +
+                  '</div>',
+        controller : function($scope) {
+            $scope.windowWidth = $window.innerWidth;
+
+            $scope.getWidth = function() {
+                return $window.innerWidth;
+            };
+
+            $scope.$watch($scope.getWidth, function(newValue, oldValue) {
+                $scope.windowWidth = newValue;
+            });
+
+            window.onresize = function(){
+                $scope.$apply();
+                checkButtonsVisibility();
+            }
+
+            var checkButtonsVisibility = function() {
+                if ($scope.windowWidth < 768) {
+                    $scope.visibleMenu = true;
+                    $scope.visibleAdditional = true;
+                } else {
+                    if ($scope.windowWidth >= 768 && $scope.windowWidth < 978) {
+                        $scope.visibleMenu = false;
+                        $scope.visibleAdditional = true;
+                    } else {
+                        $scope.visibleMenu = false;
+                        $scope.visibleAdditional = false;
+                    }
+                }
+                $scope.$apply();
+            }
+
+            checkButtonsVisibility();
+        },
+        link: function($scope, element, attrs, offcanvas) {
+            $scope.toggleMenu = offcanvas.toggleMenu;
+            $scope.toggleAdditional = offcanvas.toggleAdditional;
+        }
     };
 });
 
@@ -67,6 +132,7 @@ WobenCommon.directive('woOffcanvasAdditional', function() {
         restrict: 'E',
         replace : true,
         transclude : true,
+        require: '^woOffcanvas',
         template: '<div  class="st-offcanvas-additional" ng-transclude></div>'
     };
 });

@@ -7,11 +7,10 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  margin: 0;
 }
-
 .st-offcanvas .st-offcanvas-main {
   background: #ffffff;
+  padding : 3%;
 }
 
 .st-offcanvas .st-offcanvas-main:before,
@@ -28,13 +27,11 @@
 }
 
 .st-offcanvas .st-offcanvas-main:before {
-  box-shadow: 0 0 70px rgba(0, 0, 0, 0.4) inset;
-  background: #cccccc;
+  background: #e5e9ea;
 }
 
 .st-offcanvas .st-offcanvas-main:after {
-  box-shadow: 0 0 70px rgba(0, 0, 0, 0.4) inset;
-  background: #cccccc;
+  background: #e5e9ea;
   left: 100%;
 }
 
@@ -57,6 +54,7 @@
   margin-left: -100%;
   float: left;
   z-index: 2;
+  padding : 3% 0 0 2%;
 }
 
 .st-offcanvas .st-offcanvas-main {
@@ -72,30 +70,40 @@
   z-index: 2;
 }
 
-.st-offcanvas.active-menu > .st-offcanvas-menu {
+.st-offcanvas.activemenu > .st-offcanvas-menu {
   margin-left: 0;
   width: 70%;
 }
 
-.st-offcanvas.active-menu > .st-offcanvas-main {
+.st-offcanvas.activemenu > .st-offcanvas-main {
   margin-right: -170%;
 }
 
-.st-offcanvas.active-menu > .st-offcanvas-additional {
+.st-offcanvas.activemenu > .st-offcanvas-additional {
   margin-left: 100%;
 }
 
-.st-offcanvas.active-additional > .st-offcanvas-menu {
+.st-offcanvas.activeadditional > .st-offcanvas-menu {
   margin-left: -100%;
 }
 
-.st-offcanvas.active-additional > .st-offcanvas-main {
+.st-offcanvas.activeadditional > .st-offcanvas-main {
   margin-left: -70%;
 }
 
-.st-offcanvas.active-additional > .st-offcanvas-additional {
+.st-offcanvas.activeadditional > .st-offcanvas-additional {
   margin-left: 0;
   width: 70%;
+}
+
+.showmenubutton {
+    float : left;
+    font-size : 1.2em;
+}
+
+.showadditionalbutton {
+    float : right;
+    font-size : 1.2em;
 }
 
 @media all and (min-width: 768px) {
@@ -114,16 +122,16 @@
     width: 30%;
   }
   
-  .st-offcanvas.active-additional > .st-offcanvas-menu {
+  .st-offcanvas.activeadditional > .st-offcanvas-menu {
     margin-left: -100%;
   }
   
-  .st-offcanvas.active-additional > .st-offcanvas-main {
+  .st-offcanvas.activeadditional > .st-offcanvas-main {
     margin-left: 0;
     width: 70%;
   }
   
-  .st-offcanvas.active-additional > .st-offcanvas-additional {
+  .st-offcanvas.activeadditional > .st-offcanvas-additional {
     margin-right: -70%;
     width: 30%;
   }
@@ -137,26 +145,26 @@
 @media all and (min-width: 978px) {
     
   .st-offcanvas .st-offcanvas-menu {
-    width: 25%;
+    width: 15%;
     margin-left: 0;
     float: left;
   }
   
   .st-offcanvas .st-offcanvas-main {
-    width: 50%;
+    width: 70%;
   }
   
   .st-offcanvas .st-offcanvas-additional {
-    width: 25%;
+    width: 15%;
     margin-right: 0;
     float: right;
   }
 
   .st-offcanvas.no-menu > .st-offcanvas-main {
-    width: 75%;
+    width: 85%;
   }
   
   .st-offcanvas.no-additional > .st-offcanvas-main {
-    width: 75%;
+    width: 85%;
   }  
 }

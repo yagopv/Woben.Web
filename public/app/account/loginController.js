@@ -1,5 +1,5 @@
 WobenAccount.controller('LoginController', function($scope, $http, accountService, $state, errorService) {
-        $scope.login = function() {
+        $scope.login = function(stateToGo) {
             $scope.disabled = true;
             accountService.login({
                 userName : $scope.userName,
@@ -9,6 +9,9 @@ WobenAccount.controller('LoginController', function($scope, $http, accountServic
                 function(data) {
                     $scope.User = accountService.User;
                     $scope.disabled = false;
+                    if (stateToGo) {
+                        $state.go(stateToGo);
+                    }
                 },function(error) {
                     $scope.modelErrors = errorService.handleAuthenticationErrors(error);
                     $scope.disabled = false;

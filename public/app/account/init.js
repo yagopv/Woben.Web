@@ -4,17 +4,17 @@ WobenAccount.config(function($stateProvider){
         $stateProvider
             .state('login', {
                 url: "/login",
-                templateUrl: "app/templates/account/login.html",
+                templateUrl: "/app/templates/account/login.html",
                 controller:    'LoginController'
             })
             .state('register', {
                 url: "/register",
-                templateUrl: "app/templates/account/register.html",
+                templateUrl: "/app/templates/account/register.html",
                 controller:    'RegisterController'
             })
             .state('manage', {
                 url: "/manage",
-                templateUrl: "app/templates/account/manage.html",
+                templateUrl: "/app/templates/account/manage.html",
                 controller:    'ManageController',
                 resolve: {
                     User: function($state, $stateParams, $q, accountService) {

@@ -3,9 +3,9 @@ var WobenDashboard = angular.module('WobenDashboard',['ui.router']);
 WobenDashboard.config(function($stateProvider){
         $stateProvider
             .state('dashboard', {
-                url: "/dashboard",
-                templateUrl: "app/templates/dashboard/dashboard.html",
+                url: "/dashboard/home",
                 controller:  "DashboardController",
+                templateUrl: "/app/templates/dashboard/index.html",
                 resolve: {
                     User: function($state, $stateParams, $q, accountService) {
                         return accountService.isUserInRole(["Administrator"]).then(
@@ -13,15 +13,15 @@ WobenDashboard.config(function($stateProvider){
                                return data;
                             },
                             function(error) {
-                                $state.go('dashboard.login');
+                                $state.go('signin');
                             }
                         );
                     }
                 }
             })
-            .state('dashboard.login', {
-                url: "/login",
+            .state('signin', {
+                url: "/dashboard/signin",
                 controller:  "LoginController",
-                templateUrl: "app/templates/dashboard/dashboard.login.html",
+                templateUrl: "/app/templates/dashboard/signin.html"
             });
         });
