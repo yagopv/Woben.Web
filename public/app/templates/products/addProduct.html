@@ -4,6 +4,9 @@
             <div id="addProduct">
                 <wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors"></wo-errors>
                 <form name="addProductForm" ng-submit="addProduct()" novalidate>
+                    <div class="form-group">
+                        <wo-file-input ng-model="imageUrl" select-text="Selecciona una imagen" update-text="Modifica la imagen" delete-text="Borrar la imagen"></wo-file-input>
+                    </div>                
                     <div class="form-group" ng-class="{'has-error': addProductForm.title.$invalid && addProductForm.title.$dirty}">
                         <label>Nombre del producto</label>
                         <input name="title" type="text" class="form-control" placeholder="Nombre" ng-model="title" required />
@@ -15,7 +18,13 @@
                         <span class="help-block" ng-show="addProductForm.description.$error.required && addProductForm.description.$dirty">Campo obligatorio</span>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-huge btn-info" ng-disabled="!addProductForm.$valid || disabled">Registrate</button>
+                        <wo-checkbox ng-model="isPublished" label="¿Es el producto público?" value="false"></wo-checkbox>
+                    </div>
+                    <div class="form-group">
+                        <wo-select ng-model="selectedCategory" title="Selecciona una categoría" options="categories" value="id" description="name"></wo-select>
+                    </div>                        
+                    <div class="form-group">
+                        <button class="btn btn-huge btn-info" ng-disabled="!addProductForm.$valid || disabled">Añadir producto</button>
                     </div>
                 </form>
             </div>

@@ -110,6 +110,21 @@
         </div>
     </footer>
 
+    <!-- jQuery. Before angular for jQLite substitution -->
+    <script type="text/javascript" src="/lib/startup/flat-ui/js/jquery-1.8.3.min.js"></script>
+
+    <!-- Flat UI -->
+    <script type="text/javascript" src="/lib/startup/flat-ui/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="/lib/startup/flat-ui/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/lib/startup/flat-ui/js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="/lib/startup/flat-ui/js/bootstrap-switch.js"></script>
+    <script type="text/javascript" src="/lib/startup/flat-ui/js/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="/lib/startup/flat-ui/js/flatui-checkbox.js"></script>
+    <script type="text/javascript" src="/lib/startup/flat-ui/js/flatui-radio.js"></script>
+    <script type="text/javascript" src="/lib/startup/flat-ui/js/flatui-fileinput.js"></script>    
+    <script type="text/javascript" src="/lib/startup/flat-ui/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="/lib/startup/flat-ui/js/jquery.placeholder.js"></script>
+
     <!-- Angular -->
     <script type="text/javascript" src="/lib/angular/angular.js"></script>
     <script type="text/javascript" src="/lib/angular/angular-ui-router.js"></script>
@@ -121,7 +136,9 @@
     <script type="text/javascript" src="/app/common/authInterceptor.js"></script>
     <script type="text/javascript" src="/app/common/errorService.js"></script>
     <script type="text/javascript" src="/app/common/offcanvasDirective.js"></script>
-
+    <script type="text/javascript" src="/app/common/fileInputDirective.js"></script>
+    <script type="text/javascript" src="/app/common/selectDirective.js"></script>
+    
     <!-- Account module -->
     <script type="text/javascript" src="/app/account/init.js"></script>
     <script type="text/javascript" src="/app/account/accountService.js"></script>
@@ -130,24 +147,16 @@
     <!-- Dashboard module -->
     <script type="text/javascript" src="/app/dashboard/init.js"></script>
     <script type="text/javascript" src="/app/dashboard/dashboardController.js"></script>
-    <script type="text/javascript" src="/app/dashboard/product/productService.js"></script>
-    <script type="text/javascript" src="/app/dashboard/product/productListController.js"></script>
-    <script type="text/javascript" src="/app/dashboard/product/addProductController.js"></script>
+    
+    <!-- Products module -->
+    <script type="text/javascript" src="/app/products/init.js"></script>
+    <script type="text/javascript" src="/app/products/productService.js"></script>
+    <script type="text/javascript" src="/app/products/categoryService.js"></script>
+    <script type="text/javascript" src="/app/products/productListController.js"></script>
+    <script type="text/javascript" src="/app/products/addProductController.js"></script>
 
     <!-- Angular components -->
     <script type="text/javascript" src="/app/dashboard.js"></script>
-
-    <!-- Flat UI -->
-    <script type="text/javascript" src="/lib/startup/flat-ui/js/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="/lib/startup/flat-ui/js/jquery-ui-1.10.3.custom.min.js"></script>
-    <script type="text/javascript" src="/lib/startup/flat-ui/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/lib/startup/flat-ui/js/bootstrap-select.js"></script>
-    <script type="text/javascript" src="/lib/startup/flat-ui/js/bootstrap-switch.js"></script>
-    <script type="text/javascript" src="/lib/startup/flat-ui/js/jquery.ui.touch-punch.min.js"></script>
-    <script type="text/javascript" src="/lib/startup/flat-ui/js/flatui-checkbox.js"></script>
-    <script type="text/javascript" src="/lib/startup/flat-ui/js/flatui-radio.js"></script>
-    <script type="text/javascript" src="/lib/startup/flat-ui/js/jquery.tagsinput.js"></script>
-    <script type="text/javascript" src="/lib/startup/flat-ui/js/jquery.placeholder.js"></script>
 
 </body>
 

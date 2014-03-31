@@ -26,6 +26,30 @@ WobenCommon.factory('errorService', function() {
                message : data.error,
                errors : new Array(data.error_description)
            }
+        },
+        
+        handleODataErrors : function(data) {
+            var odataError = data["odata.error"],
+                errors = [];
+                
+            if (!odataError) {
+                return
+            }
+            
+            if (odataError.innererror) {
+                var arrayErrors = odataError.innererror.message.split(".");
+                for (var i = 0; i < arrayErrors.length; i++) {
+                    if (arrayErrors[i].indexOf(":") != -1) {
+                        errors.push(arrayErrors[i].split(":")[1]);
+                    }
+                    
+                }
+            }
+            
+            return {
+                 message : odataError.message.value,
+                 errors : errors
+            }
         }
     }
 });

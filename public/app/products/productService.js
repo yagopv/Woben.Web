@@ -1,4 +1,4 @@
-WobenDashboard.factory('productService', function($http, $q, productEndPoint) {
+WobenProducts.factory('productService', function($http, $q, productEndPoint) {
 
     return {
         getById : function(productId) {
