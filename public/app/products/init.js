@@ -1,4 +1,4 @@
-var WobenProducts = angular.module('WobenProducts',['ui.router']);
+var WobenProducts = angular.module('WobenProducts',['ui.router', 'ngDialog']);
 
 WobenProducts.config(function($stateProvider) {
     $stateProvider
