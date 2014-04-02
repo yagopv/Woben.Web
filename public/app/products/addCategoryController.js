@@ -2,7 +2,7 @@ WobenProducts.controller('AddCategoryController', function($scope, categoryServi
 
     $scope.addCategory = function() {
         $scope.disabled = true;
-        categoryService.add({ name : $scope.title, 
+        categoryService.add({ name : $scope.name,
                               description : $scope.description
                            }).then(
             function(data) {

@@ -55,7 +55,7 @@ Woben.config(function ($httpProvider) {
             };
 
             return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
-        }];*/
+        }];
     })
     .config(function($stateProvider, $urlRouterProvider, $locationProvider){
         $stateProvider
