@@ -1,0 +1,24 @@
+<section class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="addCategory">
+                <wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors"></wo-errors>
+                <form name="addCategoryForm" ng-submit="addCategory()" novalidate>
+                    <div class="form-group" ng-class="{'has-error': addCategoryForm.name.$invalid && addCategoryForm.name.$dirty}">
+                        <label>Nombre</label>
+                        <input name="name" type="text" class="form-control" placeholder="Nombre" ng-model="name" required />
+                        <span class="help-block" ng-show="addCategoryForm.name.$error.required && addCategoryForm.name.$dirty">Campo obligatorio</span>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error': addCategoryForm.description.$invalid && addCategoryForm.description.$dirty}">
+                        <label>Descripción</label>
+                        <textarea name="description" class="form-control" placeholder="Descripcion" ng-model="description" required></textarea>
+                        <span class="help-block" ng-show="addCategoryForm.description.$error.required && addCategoryForm.description.$dirty">Campo obligatorio</span>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-huge btn-info" ng-disabled="!addCategoryForm.$valid || disabled">Añadir Categoría</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

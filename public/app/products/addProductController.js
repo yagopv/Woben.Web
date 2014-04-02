@@ -25,7 +25,11 @@ WobenProducts.controller('AddProductController', function($scope, productService
         });
     
     $scope.addCategoryDialog = function() {
-       ngDialog.open({ template: '/app/templates/common/404.html' });
+       ngDialog.open({ 
+            template: "/app/templates/products/addCategory.html",
+            controller : "AddCategoryController",
+            scope: $scope
+       });
     }
 
     $scope.disabled = false;
@@ -34,11 +38,10 @@ WobenProducts.controller('AddProductController', function($scope, productService
 
     $scope.html = "";
 
-    $scope.$watch("markdown", function(newValue, oldValue) {
-        if (newValue) {
-            var html =   marked(newValue);
-            $scope.trustedHtml = $sce.trustAsHtml(html);
-        }
-    });
+    $scope.previewHtml = false;
 
+    $scope.togglePreview = function() {
+        $scope.trustedHtml = $sce.trustAsHtml(marked($scope.markdown ? $scope.markdown : ""));
+        $scope.previewHtml = !$scope.previewHtml;
+    }
 });

@@ -4,9 +4,16 @@
             <div id="addProduct">
                 <wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors"></wo-errors>
                 <form name="addProductForm" ng-submit="addProduct()" novalidate>
+                    <!--
                     <div class="form-group">
                         <wo-file-input ng-model="imageUrl" select-text="Selecciona una imagen" update-text="Modifica la imagen" delete-text="Borrar la imagen"></wo-file-input>
                     </div>                
+                    -->
+                    <div class="form-group" ng-class="{'has-error': addProductForm.title.$invalid && addProductForm.title.$dirty}">
+                        <label>Imagen del producto</label>
+                        <input name="imageUrl" type="text" class="form-control" placeholder="Imagen" ng-model="imageUrl" required />
+                        <span class="help-block" ng-show="addProductForm.imageUrl.$error.required && addProductForm.imageUrl.$dirty">Campo obligatorio</span>
+                    </div>                    
                     <div class="form-group" ng-class="{'has-error': addProductForm.title.$invalid && addProductForm.title.$dirty}">
                         <label>Nombre del producto</label>
                         <input name="title" type="text" class="form-control" placeholder="Nombre" ng-model="title" required />
@@ -21,21 +28,23 @@
                         <wo-checkbox ng-model="isPublished" label="¿Es el producto público?" value="false"></wo-checkbox>
                     </div>
                     <div class="form-group row">
-                        <div class="col-xs-10">
+                        <div class="col-xs-9">
                             <wo-select ng-model="selectedCategory" title="Selecciona una categoría" options="categories" value="id" description="name"></wo-select>    
                         </div>
-                        <div class="col-xs-2">
-                            <a class="btn btn-primary" ng-click="addCategoryDialog()"><span class="fui-plus"></span></a>    
+                        <div class="col-xs-3">
+                            <a class="btn btn-primary" ng-click="addCategoryDialog()"><span class="fui-plus"></span><span class="hidden-sm">Nueva Categoría</span></a>    
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <textarea name="markdown" class="form-control" placeholder="Texto del producto" ng-model="markdown"></textarea>
-                            </div>
-                            <div class="col-md-6" ng-bind-html="trustedHtml"></div>
-                        </div>
+                    <div class="form-group" ng-hide="previewHtml">
+                        <a href="javascript:;" class="btn btn-primary" ng-click="togglePreview()">Vista preliminar</a>
+                        <hr/>
+                        <textarea name="markdown" class="form-control" placeholder="Texto del producto" ng-model="markdown"></textarea>                    
                     </div>
+                    <div class="form-group" ng-show="previewHtml">
+                        <a href="javascript:;" class="btn btn-primary" ng-click="togglePreview()">Editar</a>
+                        <hr/>
+                        <div ng-bind-html="trustedHtml" ng-bind-html="trustedHtml"></div>                    
+                    </div>                    
                     <div class="form-group">
                         <button class="btn btn-huge btn-info" ng-disabled="!addProductForm.$valid || disabled">Añadir producto</button>
                     </div>
