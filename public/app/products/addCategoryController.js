@@ -7,6 +7,8 @@ WobenProducts.controller('AddCategoryController', function($scope, categoryServi
                            }).then(
             function(data) {
                 $scope.disabled = false;
+                $scope.categories.push(data);
+                $scope.closeThisDialog();
             },
             function(error) {
                 $scope.modelErrors = errorService.handleODataErrors(error);

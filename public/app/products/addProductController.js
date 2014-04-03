@@ -2,10 +2,13 @@ WobenProducts.controller('AddProductController', function($scope, productService
 
     $scope.addProduct = function() {
         $scope.disabled = true;
-        productService.add({ title : $scope.title, 
+        productService.add({ name : $scope.name, 
                              description : $scope.description,
                              isPublished : $scope.isPublished,
-                             imageUrl : $scope.imageUrl
+                             imageUrl : $scope.imageUrl,
+                             markdown : $scope.markdown,
+                             html : marked($scope.markdown ? $scope.markdown : ""),
+                             categoryId : $scope.selectedCategory
                            }).then(
             function(data) {
                 $scope.disabled = false;

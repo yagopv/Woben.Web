@@ -9,15 +9,15 @@
                         <wo-file-input ng-model="imageUrl" select-text="Selecciona una imagen" update-text="Modifica la imagen" delete-text="Borrar la imagen"></wo-file-input>
                     </div>                
                     -->
-                    <div class="form-group" ng-class="{'has-error': addProductForm.title.$invalid && addProductForm.title.$dirty}">
+                    <div class="form-group" ng-class="{'has-error': addProductForm.imageUrl.$invalid && addProductForm.imageUrl.$dirty}">
                         <label>Imagen del producto</label>
                         <input name="imageUrl" type="text" class="form-control" placeholder="Imagen" ng-model="imageUrl" required />
                         <span class="help-block" ng-show="addProductForm.imageUrl.$error.required && addProductForm.imageUrl.$dirty">Campo obligatorio</span>
                     </div>                    
-                    <div class="form-group" ng-class="{'has-error': addProductForm.title.$invalid && addProductForm.title.$dirty}">
+                    <div class="form-group" ng-class="{'has-error': addProductForm.name.$invalid && addProductForm.name.$dirty}">
                         <label>Nombre del producto</label>
-                        <input name="title" type="text" class="form-control" placeholder="Nombre" ng-model="title" required />
-                        <span class="help-block" ng-show="addProductForm.title.$error.required && addProductForm.title.$dirty">Campo obligatorio</span>
+                        <input name="name" type="text" class="form-control" placeholder="Nombre" ng-model="name" required />
+                        <span class="help-block" ng-show="addProductForm.name.$error.required && addProductForm.name.$dirty">Campo obligatorio</span>
                     </div>
                     <div class="form-group" ng-class="{'has-error': addProductForm.description.$invalid && addProductForm.description.$dirty}">
                         <label>Descripción del producto</label>
@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-xs-9">
-                                <wo-select ng-model="selectedCategory" title="Selecciona una categoría" options="categories" value="id" description="name"></wo-select>
+                                <wo-select ng-model="selectedCategory" title="Selecciona una categoría" options="categories" value="categoryId" description="name"></wo-select>
                             </div>
                             <div class="col-xs-3">
                                 <a class="btn btn-primary" ng-click="addCategoryDialog()"><span class="fui-plus"></span><span class="hidden-sm">Nueva Categoría</span></a>
