@@ -2,6 +2,7 @@ var Woben = angular.module('Woben',['WobenAccount', 'WobenCommon', 'WobenDashboa
 
 Woben.config(function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
+        $httpProvider.interceptors.push('oDataInterceptor');
 
         // Use x-www-form-urlencoded Content-Type
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
@@ -55,7 +56,7 @@ Woben.config(function ($httpProvider) {
             };
 
             return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
-        }];*/
+        }];
     })
     .config(function($stateProvider, $urlRouterProvider, $locationProvider){
         $stateProvider
