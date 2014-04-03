@@ -1,6 +1,20 @@
 WobenProducts.factory('productService', function($http, $q, productEndPoint) {
 
     return {
+        getAll : function(productId) {
+            var deferred = $q.defer(),
+                self = this;
+            $http({
+                method: 'GET',
+                url: productEndPoint + '/Product'
+            }).success(function(data, status, headers, config) {
+                deferred.resolve(data);
+            }).error(function(error) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
+        },
+
         getById : function(productId) {
             var deferred = $q.defer(),
                 self = this;
@@ -43,6 +57,20 @@ WobenProducts.factory('productService', function($http, $q, productEndPoint) {
                 deferred.reject(error);
             });
             return deferred.promise;
-        }        
+        },
+
+        delete : function(productId) {
+            var deferred = $q.defer(),
+                self = this;
+            $http({
+                method: 'DELETE',
+                url: productEndPoint + '/Product(' + productId + ')'
+            }).success(function(data, status, headers, config) {
+                deferred.resolve(data);
+            }).error(function(error) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
+        }
     }
 });
