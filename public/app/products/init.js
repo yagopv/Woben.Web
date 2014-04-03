@@ -57,7 +57,24 @@ WobenProducts.config(function($stateProvider) {
                         );
                     }
                 }
-            });
+            })
+            .state('updateProduct', {
+                url: "/dashboard/product/update/:productId",
+                controller:  "UpdateProductController",
+                templateUrl: "/app/templates/products/updateProduct.html",
+                resolve: {
+                    User: function($state, $stateParams, $q, accountService) {
+                        return accountService.isUserInRole(["Administrator"]).then(
+                            function(data) {
+                                return data;
+                            },
+                            function(error) {
+                                $state.go('signin');
+                            }
+                        );
+                    }
+                }
+            });            
         });
         
 WobenProducts.value("productEndPoint", "https://woben.azurewebsites.net/odata");

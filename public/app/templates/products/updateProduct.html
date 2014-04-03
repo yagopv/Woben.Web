@@ -3,26 +3,26 @@
         <div class="col-sm-12">
             <div id="addProduct">
                 <wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors"></wo-errors>
-                <form name="addProductForm" ng-submit="addProduct()" novalidate>
+                <form name="updateProductForm" ng-submit="updateProduct()" novalidate>
                     <!--
                     <div class="form-group">
                         <wo-file-input ng-model="imageUrl" select-text="Selecciona una imagen" update-text="Modifica la imagen" delete-text="Borrar la imagen"></wo-file-input>
                     </div>                
                     -->
-                    <div class="form-group" ng-class="{'has-error': addProductForm.imageUrl.$invalid && addProductForm.imageUrl.$dirty}">
+                    <div class="form-group" ng-class="{'has-error': updateProductForm.imageUrl.$invalid && updateProductForm.imageUrl.$dirty}">
                         <label>Imagen del producto</label>
                         <input name="imageUrl" type="text" class="form-control" placeholder="Imagen" ng-model="product.imageUrl" required />
-                        <span class="help-block" ng-show="addProductForm.imageUrl.$error.required && addProductForm.imageUrl.$dirty">Campo obligatorio</span>
+                        <span class="help-block" ng-show="updateProductForm.imageUrl.$error.required && updateProductForm.imageUrl.$dirty">Campo obligatorio</span>
                     </div>                    
-                    <div class="form-group" ng-class="{'has-error': addProductForm.name.$invalid && addProductForm.name.$dirty}">
+                    <div class="form-group" ng-class="{'has-error': updateProductForm.name.$invalid && updateProductForm.name.$dirty}">
                         <label>Nombre del producto</label>
                         <input name="name" type="text" class="form-control" placeholder="Nombre" ng-model="product.name" required />
-                        <span class="help-block" ng-show="addProductForm.name.$error.required && addProductForm.name.$dirty">Campo obligatorio</span>
+                        <span class="help-block" ng-show="updateProductForm.name.$error.required && updateProductForm.name.$dirty">Campo obligatorio</span>
                     </div>
-                    <div class="form-group" ng-class="{'has-error': addProductForm.description.$invalid && addProductForm.description.$dirty}">
+                    <div class="form-group" ng-class="{'has-error': updateProductForm.description.$invalid && updateProductForm.description.$dirty}">
                         <label>Descripción del producto</label>
                         <textarea name="description" class="form-control" placeholder="Descripcion" ng-model="product.description" required></textarea>
-                        <span class="help-block" ng-show="addProductForm.description.$error.required && addProductForm.description.$dirty">Campo obligatorio</span>
+                        <span class="help-block" ng-show="updateProductForm.description.$error.required && updateProductForm.description.$dirty">Campo obligatorio</span>
                     </div>
                     <div class="form-group">
                         <wo-checkbox ng-model="product.isPublished" label="¿Es el producto público?" value="false"></wo-checkbox>
@@ -48,7 +48,7 @@
                         <div ng-bind-html="trustedHtml" ng-bind-html="trustedHtml"></div>                    
                     </div>                    
                     <div class="form-group">
-                        <button class="btn btn-huge btn-info" ng-disabled="!addProductForm.$valid || disabled">Añadir producto</button>
+                        <button class="btn btn-huge btn-info" ng-disabled="!updateProductForm.$valid || disabled">Añadir producto</button>
                     </div>
                 </form>
             </div>

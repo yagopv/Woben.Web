@@ -1,9 +1,9 @@
-WobenProducts.controller('AddProductController', function($scope, productService, errorService, categoryService, ngDialog, $sce) {
+WobenProducts.controller('UpdateProductController', function($scope, productService, errorService, categoryService, ngDialog, $sce, $stateParams) {
 
-    $scope.addProduct = function() {
+    $scope.updateProduct = function() {
         $scope.disabled = true;
         $scope.product.html = marked($scope.product.markdown);
-        productService.add($scope.product).then(
+        productService.update($scope.product).then(
             function(data) {
                 $scope.disabled = false;
             },
@@ -21,6 +21,14 @@ WobenProducts.controller('AddProductController', function($scope, productService
           $scope.modelErrors = errorService.handleODataErrors(error);  
         });
     
+    productService.getById($stateParams.productId).then(
+        function(data) {
+            $scope.product = data;
+        },
+        function(error) {
+          $scope.modelErrors = errorService.handleODataErrors(error);  
+        });        
+
     $scope.addCategoryDialog = function() {
        ngDialog.open({ 
             template: "/app/templates/products/addCategory.html",
@@ -30,8 +38,6 @@ WobenProducts.controller('AddProductController', function($scope, productService
     }
 
     $scope.disabled = false;
-    
-    $scope.categoryId = null;
 
     $scope.previewHtml = false;
 

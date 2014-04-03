@@ -15,19 +15,34 @@ WobenProducts.factory('productService', function($http, $q, productEndPoint) {
             return deferred.promise;
         },
 
-        add : function(data) {
+        add : function(product) {
             var deferred = $q.defer(),
                 self = this;
             $http({
                 method: 'POST',
                 url: productEndPoint + '/Product',
-                data : data
+                data : product
             }).success(function(data, status, headers, config) {
                 deferred.resolve(data);
             }).error(function(error) {
                 deferred.reject(error);
             });
             return deferred.promise;
-        }
+        },
+        
+        update : function(product) {
+            var deferred = $q.defer(),
+                self = this;
+            $http({
+                method: 'PUT',
+                url: productEndPoint + '/Product(' + product.productId + ')',
+                data : product
+            }).success(function(data, status, headers, config) {
+                deferred.resolve(data);
+            }).error(function(error) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
+        }        
     }
 });

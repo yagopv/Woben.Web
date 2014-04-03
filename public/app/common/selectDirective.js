@@ -10,7 +10,7 @@ WobenCommon.directive('woSelect', function() {
             value : "@",
             description : "@",
             options : "=",
-            ngModel : "=selectedCategory"
+            ngModel : "="
         },
         templateUrl: '/app/templates/common/selectDirective.html'
     };
