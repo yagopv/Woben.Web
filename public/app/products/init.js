@@ -27,7 +27,7 @@ WobenProducts.config(function($stateProvider) {
             .state('productList', {
                 url: "/dashboard/product/index",
                 controller:  "IndexController",
-                templateUrl: "/app/templates/products/index.html",
+                templateUrl: "/app/templates/products/productList.html",
                 resolve: {
                     User: function($state, $stateParams, $q, accountService) {
                         return accountService.isUserInRole(["Administrator"]).then(

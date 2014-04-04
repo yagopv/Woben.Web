@@ -82,7 +82,7 @@ WobenCommon.directive('woOffcanvasMain', function($window) {
         transclude : true,
         require : "^woOffcanvas",
         template: '<div class="st-offcanvas-main">' +
-                        '<div class="buttonsContainer">' +
+                        '<div class="container-fluid buttonsContainer">' +
                             '<a href="javascript:;" class="showmenubutton" ng-show="visibleMenu" ng-click="toggleMenu()"><span class="fui-list"></span></a>' +
                             '<a href="javascript:;" class="showadditionalbutton" ng-show="visibleAdditional" ng-click="toggleAdditional()"><span class="fui-list"></span></a>' +
                         '</div>' +

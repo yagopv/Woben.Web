@@ -1,12 +1,13 @@
-WobenProducts.factory('productService', function($http, $q, productEndPoint) {
+WobenProducts.factory('productService', function($http, $q, $cacheFactory, productEndPoint) {
 
     return {
-        getAll : function(productId) {
+        getAll : function() {
             var deferred = $q.defer(),
                 self = this;
             $http({
                 method: 'GET',
-                url: productEndPoint + '/Product'
+                url: productEndPoint + '/Product',
+                cache : true
             }).success(function(data, status, headers, config) {
                 deferred.resolve(data);
             }).error(function(error) {
@@ -31,12 +32,14 @@ WobenProducts.factory('productService', function($http, $q, productEndPoint) {
 
         add : function(product) {
             var deferred = $q.defer(),
-                self = this;
+                self = this,
+                url = productEndPoint + '/Product';
             $http({
                 method: 'POST',
-                url: productEndPoint + '/Product',
+                url: url,
                 data : product
             }).success(function(data, status, headers, config) {
+                $cacheFactory.get("$http").remove(url);
                 deferred.resolve(data);
             }).error(function(error) {
                 deferred.reject(error);
@@ -46,12 +49,14 @@ WobenProducts.factory('productService', function($http, $q, productEndPoint) {
         
         update : function(product) {
             var deferred = $q.defer(),
-                self = this;
+                self = this,
+                url = productEndPoint + '/Product(' + product.productId + ')'
             $http({
                 method: 'PUT',
-                url: productEndPoint + '/Product(' + product.productId + ')',
+                url: url,
                 data : product
             }).success(function(data, status, headers, config) {
+                $cacheFactory.get("$http").remove(url);
                 deferred.resolve(data);
             }).error(function(error) {
                 deferred.reject(error);
