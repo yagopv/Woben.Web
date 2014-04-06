@@ -3,11 +3,25 @@ header {
 }
 
 .st-offcanvas {
-    margin-top : -30px;
+    margin-top : 50px;
 }
 
 .st-offcanvas-main {
     padding-bottom : 30em !important;
+}
+
+#loader {
+    position: fixed;
+    right: 75px;
+    z-index: 9999;
+    top: 10px;
+    display : none;
+}
+
+@media all and (min-width : 768px) {
+    #loader {
+        right: 250px;
+    }
 }
 
 #signin span.icons {
@@ -33,4 +47,8 @@ header {
 
 #signin form {
     margin-top : 3em;
+}
+
+.dropdown-menu {
+    min-height : 100px !important;
 }

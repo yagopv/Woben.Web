@@ -3,6 +3,7 @@ var Woben = angular.module('Woben',['WobenAccount', 'WobenCommon', 'WobenDashboa
 Woben.config(function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
         $httpProvider.interceptors.push('oDataInterceptor');
+        $httpProvider.interceptors.push('loaderInterceptor');
 
         // Use x-www-form-urlencoded Content-Type
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';

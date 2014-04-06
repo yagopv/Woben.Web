@@ -1,4 +1,4 @@
-WobenProducts.controller('UpdateProductController', function($scope, productService, errorService, categoryService, ngDialog, $sce, $stateParams) {
+WobenProducts.controller('UpdateProductController', function($scope, productService, errorService, categoryService, ngDialog, $sce, $stateParams,$q) {
 
     $scope.updateProduct = function() {
         $scope.disabled = true;
@@ -13,21 +13,15 @@ WobenProducts.controller('UpdateProductController', function($scope, productServ
             });
     }
 
-    categoryService.getAll().then(
-        function(data) {
-            $scope.categories = data;
-        },
-        function(error) { 
-          $scope.modelErrors = errorService.handleODataErrors(error);  
-        });
-    
-    productService.getById($stateParams.productId).then(
-        function(data) {
-            $scope.product = data;
-        },
-        function(error) {
-          $scope.modelErrors = errorService.handleODataErrors(error);  
-        });        
+    $q.all([ productService.getById($stateParams.productId), categoryService.getAll()])
+        .then(
+            function(data) {
+                $scope.product = data[0];
+                $scope.categories = data[1];
+            },
+            function(error) {
+                $scope.modelErrors = errorService.handleODataErrors(error);
+            });
 
     $scope.addCategoryDialog = function() {
        ngDialog.open({ 

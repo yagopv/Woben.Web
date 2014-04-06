@@ -14,6 +14,7 @@ WobenProducts.controller("IndexController", function($scope, $filter, productSer
             function(data) {
                 var index = $scope.products.indexOf(product);
                 $scope.products.splice(index,1);
+                $scope.search();
                 $scope.selectedProduct = null;
             },
             function(error) {

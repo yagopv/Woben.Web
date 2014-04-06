@@ -33,7 +33,7 @@
                                 <wo-select ng-model="product.categoryId" title="Selecciona una categoría" options="categories" value="categoryId" description="name"></wo-select>
                             </div>
                             <div class="col-xs-3">
-                                <a class="btn btn-primary" ng-click="addCategoryDialog()"><span class="fui-plus"></span><span class="hidden-sm">Nueva Categoría</span></a>
+                                <a class="btn btn-primary btn-block" ng-click="addCategoryDialog()"><span class="fui-plus"></span><span class="hidden-sm">   Nueva Categoría</span></a>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                         <div ng-bind-html="trustedHtml" ng-bind-html="trustedHtml"></div>                    
                     </div>                    
                     <div class="form-group">
-                        <button class="btn btn-huge btn-info" ng-disabled="!updateProductForm.$valid || disabled">Añadir producto</button>
+                        <button class="btn btn-huge btn-info" ng-disabled="!updateProductForm.$valid || disabled">Actualizar</button>
                     </div>
                 </form>
             </div>

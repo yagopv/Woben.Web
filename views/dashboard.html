@@ -23,11 +23,12 @@
 
     <div id="page-wrapper" class="st-sticky-wrap">
         <header>
-            <nav class="navbar  navbar-inverse" role="navigation">
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
                         <span class="sr-only">Toggle navigation</span>
                     </button>
+
                     <a class="navbar-brand" ui-sref="dashboard">Woben</a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse-01">
@@ -39,9 +40,9 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
-                      <span class="input-group-btn">
-                        <button type="submit" class="btn"><span class="fui-search"></span></button>
-                      </span>
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn"><span class="fui-search"></span></button>
+                                </span>
                             </div>
                         </div>
                     </form>
@@ -113,6 +114,8 @@
         </div>
     </footer>
 
+    <wo-loader></wo-loader>
+
     <!-- jQuery. Before angular for jQLite substitution -->
     <script type="text/javascript" src="/lib/startup/flat-ui/js/jquery-1.8.3.min.js"></script>
 
@@ -143,10 +146,13 @@
     <script type="text/javascript" src="/app/common/errorDirective.js"></script>
     <script type="text/javascript" src="/app/common/authInterceptor.js"></script>
     <script type="text/javascript" src="/app/common/oDataInterceptor.js"></script>
+    <script type="text/javascript" src="/app/common/loaderInterceptor.js"></script>
     <script type="text/javascript" src="/app/common/errorService.js"></script>
     <script type="text/javascript" src="/app/common/offcanvasDirective.js"></script>
     <script type="text/javascript" src="/app/common/fileInputDirective.js"></script>
     <script type="text/javascript" src="/app/common/selectDirective.js"></script>
+    <script type="text/javascript" src="/app/common/loaderInterceptor.js"></script>
+    <script type="text/javascript" src="/app/common/loaderDirective.js"></script>
     
     <!-- Account module -->
     <script type="text/javascript" src="/app/account/init.js"></script>
