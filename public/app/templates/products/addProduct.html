@@ -4,14 +4,12 @@
             <div id="addProduct">
                 <wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors"></wo-errors>
                 <form name="addProductForm" ng-submit="addProduct()" novalidate>
-                    <!--
                     <div class="form-group">
-                        <wo-file-input ng-model="imageUrl" select-text="Selecciona una imagen" update-text="Modifica la imagen" delete-text="Borrar la imagen"></wo-file-input>
-                    </div>                
-                    -->
+                        <wo-file-upload ng-model="product.imageUrl" select-text="Selecciona una imagen" update-text="Modifica la imagen" delete-text="Borrar la imagen"></wo-file-upload>
+                    </div>
                     <div class="form-group" ng-class="{'has-error': addProductForm.imageUrl.$invalid && addProductForm.imageUrl.$dirty}">
-                        <label>Imagen del producto</label>
-                        <input name="imageUrl" type="text" class="form-control" placeholder="Imagen" ng-model="product.imageUrl" required />
+                        <img ng-src="{{ product.imageUrl }}" />
+                        <input name="imageUrl" type="hidden" class="form-control" ng-model="product.imageUrl" required />
                         <span class="help-block" ng-show="addProductForm.imageUrl.$error.required && addProductForm.imageUrl.$dirty">Campo obligatorio</span>
                     </div>                    
                     <div class="form-group" ng-class="{'has-error': addProductForm.name.$invalid && addProductForm.name.$dirty}">
@@ -21,7 +19,7 @@
                     </div>
                     <div class="form-group" ng-class="{'has-error': addProductForm.description.$invalid && addProductForm.description.$dirty}">
                         <label>Descripción del producto</label>
-                        <textarea name="description" class="form-control" placeholder="Descripcion" ng-model="product.description" required></textarea>
+                        <textarea name="description" class="form-control" placeholder="Descripcion" ng-model="product.description" required rows="5"></textarea>
                         <span class="help-block" ng-show="addProductForm.description.$error.required && addProductForm.description.$dirty">Campo obligatorio</span>
                     </div>
                     <div class="form-group">
@@ -40,7 +38,7 @@
                     <div class="form-group" ng-hide="previewHtml">
                         <a href="javascript:;" class="btn btn-primary" ng-click="togglePreview()">Vista preliminar</a>
                         <hr/>
-                        <textarea name="markdown" class="form-control" placeholder="Texto del producto" ng-model="product.markdown"></textarea>                    
+                        <textarea name="markdown" class="form-control" placeholder="Texto del producto" ng-model="product.markdown" rows="20"></textarea>
                     </div>
                     <div class="form-group" ng-show="previewHtml">
                         <a href="javascript:;" class="btn btn-primary" ng-click="togglePreview()">Editar</a>

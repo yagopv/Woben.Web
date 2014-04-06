@@ -4,11 +4,6 @@
             <div id="addProduct">
                 <wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors"></wo-errors>
                 <form name="updateProductForm" ng-submit="updateProduct()" novalidate>
-                    <!--
-                    <div class="form-group">
-                        <wo-file-input ng-model="imageUrl" select-text="Selecciona una imagen" update-text="Modifica la imagen" delete-text="Borrar la imagen"></wo-file-input>
-                    </div>                
-                    -->
                     <div class="form-group" ng-class="{'has-error': updateProductForm.imageUrl.$invalid && updateProductForm.imageUrl.$dirty}">
                         <label>Imagen del producto</label>
                         <input name="imageUrl" type="text" class="form-control" placeholder="Imagen" ng-model="product.imageUrl" required />
@@ -21,7 +16,7 @@
                     </div>
                     <div class="form-group" ng-class="{'has-error': updateProductForm.description.$invalid && updateProductForm.description.$dirty}">
                         <label>Descripción del producto</label>
-                        <textarea name="description" class="form-control" placeholder="Descripcion" ng-model="product.description" required></textarea>
+                        <textarea name="description" class="form-control" placeholder="Descripcion" ng-model="product.description" required rows="5"></textarea>
                         <span class="help-block" ng-show="updateProductForm.description.$error.required && updateProductForm.description.$dirty">Campo obligatorio</span>
                     </div>
                     <div class="form-group">
@@ -33,14 +28,14 @@
                                 <wo-select ng-model="product.categoryId" title="Selecciona una categoría" options="categories" value="categoryId" description="name"></wo-select>
                             </div>
                             <div class="col-xs-3">
-                                <a class="btn btn-primary btn-block" ng-click="addCategoryDialog()"><span class="fui-plus"></span><span class="hidden-sm">   Nueva Categoría</span></a>
+                                <a class="btn btn-primary btn-block" ng-click="addCategoryDialog()"><span class="fui-plus"></span><span class="hidden-xs hidden-sm hidden-md">   Nueva Categoría</span></a>
                             </div>
                         </div>
                     </div>
                     <div class="form-group" ng-hide="previewHtml">
                         <a href="javascript:;" class="btn btn-primary" ng-click="togglePreview()">Vista preliminar</a>
                         <hr/>
-                        <textarea name="markdown" class="form-control" placeholder="Texto del producto" ng-model="product.markdown"></textarea>                    
+                        <textarea name="markdown" class="form-control" placeholder="Texto del producto" ng-model="product.markdown" rows="20"></textarea>
                     </div>
                     <div class="form-group" ng-show="previewHtml">
                         <a href="javascript:;" class="btn btn-primary" ng-click="togglePreview()">Editar</a>

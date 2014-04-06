@@ -18,7 +18,7 @@ WobenAccount.config(function($stateProvider){
                 controller:    'ManageController',
                 resolve: {
                     User: function($state, $stateParams, $q, accountService) {
-                        return accountService.isUserInRole(["User"]).then(
+                        return accountService.isUserInRole(["User", "Administrator"]).then(
                             function(data) {
                                 return data;
                             },
@@ -31,4 +31,4 @@ WobenAccount.config(function($stateProvider){
             });
         });
 
-WobenAccount.constant("authEndPoint", "https://woben.azurewebsites.net");
+WobenAccount.constant("authEndPoint", "http://localhost:22657/");

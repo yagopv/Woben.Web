@@ -99,9 +99,17 @@ WobenCommon.directive('woOffcanvasMain', function($window) {
                 $scope.windowWidth = newValue;
             });
 
-            window.onresize = function(){
+            $window.onresize = function(){
                 $scope.$apply();
+                reCalculatePadBottom();
                 checkButtonsVisibility();
+            }
+
+            var reCalculatePadBottom = function() {
+                var padBottom = $window.innerHeight -
+                    angular.element(".navbar").height() -
+                    angular.element(".st-offcanvas-main").height() - 60;
+                angular.element(".st-offcanvas-main").css("padding-bottom", padBottom);
             }
 
             var checkButtonsVisibility = function() {
@@ -119,6 +127,7 @@ WobenCommon.directive('woOffcanvasMain', function($window) {
                 }
             }
 
+            reCalculatePadBottom();
             checkButtonsVisibility();
         },
         link: function($scope, element, attrs, offcanvas) {

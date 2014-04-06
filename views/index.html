@@ -27,7 +27,6 @@
 
 <body>
     <div class="page-wrapper">
-
         <header class="header-10" ng-controller="HeaderController">
             <div class="container">
                 <div class="row">
@@ -38,26 +37,26 @@
                         </div>
                         <div class="collapse navbar-collapse pull-right">
                             <ul class="nav pull-left">
-                                <li ng-class="{'active' : $state.includes('home')}">
+                                <li ui-sref-active="active">
                                     <a href="javascript:;" ui-sref="home">Inicio</a>
                                 </li>
-                                <li ng-class="{'active' : $state.includes('products')}">
-                                    <a href="javascript:;" ui-sref="products">Ver productos</a>
+                                <li ui-sref-active="active">
+                                    <a href="javascript:;" ui-sref="products">Productos</a>
                                 </li>
-                                <li ng-class="{'active' : $state.includes('login')}" ng-show="!User.isAuthenticated">
-                                    <a href="javascript:;" ui-sref="login">Login</a>
+                                <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
+                                    <a href="/dashboard" target="_self">Dashboard</a>
                                 </li>
-                                <li ng-class="{'active' : $state.includes('manage')}" ng-show="User.isAuthenticated">
-                                    <a href="javascript:;" ui-sref="manage">{{ User.userName }}</a>
+                                <li ui-sref-active="active" ng-show="!User.isAuthenticated">
+                                    <a href="javascript:;" ui-sref="login">Inicia sesión</a>
+                                </li>
+                                <li ui-sref-active="active" ng-show="User.isAuthenticated">
+                                    <a href="javascript:;" ui-sref="manage">Tu Cuenta : {{ User.userName }}</a>
                                 </li>
                                 <li ng-show="User.isAuthenticated" ng-click="logout()">
                                     <a href="javascript:;">Desconectar</a>
                                 </li>
-                                <li ng-class="{'active' : $state.includes('register')}" ng-show="!User.isAuthenticated">
-                                    <a href="javascript:;" ui-sref="register">Register</a>
-                                </li>
-                                <li ng-class="{'active' : $state.includes('dashboard')}" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
-                                    <a href="/dashboard" target="_self">Dashboard</a>
+                                <li ui-sref-active="active" ng-show="!User.isAuthenticated">
+                                    <a href="javascript:;" ui-sref="register">Crea una nueva cuenta</a>
                                 </li>
                             </ul>
                         </div>
@@ -141,7 +140,7 @@
     
     <!-- Angular -->
     <script type="text/javascript" src="/lib/angular/angular.js"></script>
-    <script type="text/javascript" src="/lib/angular/angular-ui-router.js"></script>
+    <script type="text/javascript" src="/lib/angular-ui-router/angular-ui-router.js"></script>
 
     <!-- Angular components -->
 

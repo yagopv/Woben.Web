@@ -7,7 +7,7 @@ header {
 }
 
 .st-offcanvas-main {
-    padding-bottom : 30em !important;
+    /*padding-bottom : 10em !important;*/
 }
 
 #loader {
@@ -51,4 +51,12 @@ header {
 
 .dropdown-menu {
     min-height : 100px !important;
+}
+
+.pagination-container {
+    text-align : center;
+}
+
+.buttonsContainer {
+    margin-bottom : 1em;
 }

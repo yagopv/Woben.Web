@@ -12,9 +12,9 @@
 
     <link rel="stylesheet" href="/lib/offcanvas/offcanvas.css">
     <link rel="stylesheet" href="/lib/sticky/sticky.css">
-    <link rel="stylesheet" href="/lib/ngDialog/ngDialog.css">
-    <link rel="stylesheet" href="/lib/ngDialog/ngDialog-default.css">    
-    <link rel="stylesheet" href="/lib/ngDialog/ngDialog-plain.css">    
+    <link rel="stylesheet" href="/lib/angular-dialog/ngDialog.css">
+    <link rel="stylesheet" href="/lib/angular-dialog/ngDialog-default.css">
+    <link rel="stylesheet" href="/lib/angular-dialog/ngDialog-plain.css">
     <link rel="stylesheet" href="/common-files/dashboard.css">
 
 </head>
@@ -28,13 +28,11 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
                         <span class="sr-only">Toggle navigation</span>
                     </button>
-
-                    <a class="navbar-brand" ui-sref="dashboard">Woben</a>
+                    <a class="navbar-brand" ui-sref="dashboard">Dashboard</a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse-01">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#fakelink">Products</a></li>
-                        <li><a href="#fakelink">Features</a></li>
+                        <li><a href="/" target="_self">Ir al sitio</a></li>
                     </ul>
                     <form class="navbar-form navbar-right" action="#" role="search">
                         <div class="form-group">
@@ -53,16 +51,23 @@
         <wo-offcanvas active-transitions="true">
 
             <wo-offcanvas-menu>
-                <ul id="dashboard-menu" class="list-unstyled">
-                    <li>
-                        <a href="#"><span class="fui-home"></span>  Inicio</a>
+                <ul class="nav nav-list">
+                    <li class="nav-header">DASHBOARD</li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="dashboard">
+                            <span class="fui-home"></span>
+                            Inicio
+                            <span class="fui-arrow-right pull-right"></span>
+                        </a>
                     </li>
-                    <li>
-                        <a ui-sref="productList"><span class="fui-document"></span>  Productos</a>
+                    <li ui-sref-active="active">
+                        <a ui-sref="productList">
+                            <span class="fui-document"></span>
+                            Productos
+                            <span class="fui-arrow-right pull-right"></span>
+                        </a>
                     </li>
-                    <li>
-                        <a href="#"><span class="fui-user"></span>  Usuarios</a>
-                    </li>
+                    <li class="divider"></li>
                 </ul>
             </wo-offcanvas-menu>
 
@@ -132,10 +137,12 @@
     <script type="text/javascript" src="/lib/startup/flat-ui/js/jquery.placeholder.js"></script>
 
     <!-- Angular -->
+    <script type="text/javascript" src="/lib/angular-file-upload/angular-file-upload-html5-shim.js"></script>
     <script type="text/javascript" src="/lib/angular/angular.js"></script>
     <script type="text/javascript" src="/lib/angular/angular-sanitize.js"></script>
-    <script type="text/javascript" src="/lib/angular/angular-ui-router.js"></script>
-    <script type="text/javascript" src="/lib/ngDialog/ngDialog.js"></script>
+    <script type="text/javascript" src="/lib/angular-ui-router/angular-ui-router.js"></script>
+    <script type="text/javascript" src="/lib/angular-dialog/ngDialog.js"></script>
+    <script type="text/javascript" src="/lib/angular-file-upload/angular-file-upload.js"></script>
 
     <!-- Marked -->
     <script type="text/javascript" src="/lib/marked/marked.js"></script>
@@ -149,7 +156,7 @@
     <script type="text/javascript" src="/app/common/loaderInterceptor.js"></script>
     <script type="text/javascript" src="/app/common/errorService.js"></script>
     <script type="text/javascript" src="/app/common/offcanvasDirective.js"></script>
-    <script type="text/javascript" src="/app/common/fileInputDirective.js"></script>
+    <script type="text/javascript" src="/app/common/fileUploadDirective.js"></script>
     <script type="text/javascript" src="/app/common/selectDirective.js"></script>
     <script type="text/javascript" src="/app/common/loaderInterceptor.js"></script>
     <script type="text/javascript" src="/app/common/loaderDirective.js"></script>

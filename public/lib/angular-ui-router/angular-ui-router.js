@@ -242,8 +242,8 @@ angular.module('ui.router.state', ['ui.router.router', 'ui.router.util']);
  * <html ng-app="myApp">
  * <head>
  *   <script src="js/angular.js"></script>
- *   <!-- Include the ui-router script -->
- *   <script src="js/angular-ui-router.min.js"></script>
+ *   <!-- Include the angular-ui-router script -->
+ *   <script src="js/angular-angular-ui-router.min.js"></script>
  *   <script>
  *     // ...and add 'ui.router' as a dependency
  *     var myApp = angular.module('myApp', ['ui.router']);
@@ -1464,7 +1464,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory,           $
    * @description
    * Allows you to extend (carefully) or override (at your own peril) the 
    * `stateBuilder` object used internally by `$stateProvider`. This can be used 
-   * to add custom functionality to ui-router, for example inferring templateUrl 
+   * to add custom functionality to angular-ui-router, for example inferring templateUrl
    * based on the state name.
    *
    * When passing only a name, it returns the current (original or decorated) builder
@@ -2540,7 +2540,7 @@ angular.module('ui.router.state').provider('$uiViewScroll', $ViewScrollProvider)
  * same state. You can have views of the same name that live in different states.
  *
  * @param {string=} autoscroll It allows you to set the scroll behavior of the browser window
- * when a view is populated. By default, $anchorScroll is overridden by ui-router's custom scroll
+ * when a view is populated. By default, $anchorScroll is overridden by angular-ui-router's custom scroll
  * service, {@link ui.router.state.$uiViewScroll}. This custom service let's you
  * scroll ui-view elements into view when they are populated during a state activation.
  *
