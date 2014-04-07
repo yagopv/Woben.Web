@@ -31,4 +31,4 @@ WobenAccount.config(function($stateProvider){
             });
         });
 
-WobenAccount.constant("authEndPoint", "http://localhost:22657/");
+WobenAccount.constant("authEndPoint", "https://woben.azurewebsites.net");

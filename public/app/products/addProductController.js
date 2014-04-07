@@ -2,7 +2,7 @@ WobenProducts.controller('AddProductController', function($scope, productService
 
     $scope.addProduct = function() {
         $scope.disabled = true;
-        $scope.product.html = marked($scope.product.markdown);
+        $scope.product.html = marked($scope.product.markdown ? $scope.product.markdown : "");
         productService.add($scope.product).then(
             function(data) {
                 $scope.disabled = false;

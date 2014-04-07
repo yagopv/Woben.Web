@@ -77,4 +77,4 @@ WobenProducts.config(function($stateProvider) {
             });            
         });
         
-WobenProducts.value("productEndPoint", "http://localhost:22657/odata");
+WobenProducts.value("productEndPoint", "https://woben.azurewebsites.net/odata");

@@ -9,44 +9,108 @@ WobenCommon.directive('woFileUpload', function(baseEndPoint, $window) {
             selectText: '@',
             updateText : '@',
             deleteText : '@',
+            mode : "@" // "multipart" or "html5"
             ngModel : "="
         },
-        controller : function($scope, $upload) {
-            $scope.deleteFile = function() {
-
-            },
-
-            $scope.onFileSelect = function($files) {
-                //$files: an array of files selected, each file has name, size, and type.
-                for (var i = 0; i < $files.length; i++) {
-                    var file = $files[i];
-                    $scope.upload = $upload.upload({
-                        url: baseEndPoint + "/api/file", //upload.php script, node.js route, or servlet url
-                        method: "POST",
-                        // headers: {'Authorization': 'Bearer ' + $window.sessionStorage.token },
-                        // withCredentials: true,
-                        // data: {myObj: $scope.myModelObj},
-                        file: file // or list of files: $files for html5 only
-                        /* set the file formData name ('Content-Desposition'). Default is 'file' */
-                        //fileFormDataName: myFile, //or a list of names for multiple files (html5).
-                        /* customize how data is added to formData. See #40#issuecomment-28612000 for sample code */
-                        //formDataAppender: function(formData, key, val){}
-                    }).progress(function(evt) {
-                        console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-                    }).success(function(data, status, headers, config) {
-                        // file is uploaded successfully
-                        console.log(data);
-                        $scope.ngModel = baseEndPoint + data[0].url;
-                    });
-                    //.error(...)
-                    //.then(success, error, progress);
-                    //.xhr(function(xhr){xhr.upload.addEventListener(...)})// access and attach any event listener to XMLHttpRequest.
-                }
-                /* alternative way of uploading, send the file binary with the file's content-type.
-                 Could be used to upload files to CouchDB, imgur, etc... html5 FileReader is needed.
-                 It could also be used to monitor the progress of a normal http post/put request with large data*/
-                // $scope.upload = $upload.http({...})  see 88#issuecomment-31366487 for sample code.
-            };
+        controller : function($scope, $http, $timeout, $upload) {
+        	$scope.fileReaderSupported = window.FileReader != null;
+        	$scope.uploadRightAway = true;
+        	$scope.changeAngularVersion = function() {
+        		window.location.hash = $scope.angularVersion;
+        		window.location.reload(true);
+        	}
+        	$scope.hasUploader = function(index) {
+        		return $scope.upload[index] != null;
+        	};
+        	$scope.abort = function(index) {
+        		$scope.upload[index].abort(); 
+        		$scope.upload[index] = null;
+        	};
+        	$scope.angularVersion = window.location.hash.length > 1 ? window.location.hash.substring(1) : '1.2.0';
+        	$scope.onFileSelect = function($files) {
+        		$scope.selectedFiles = [];
+        		$scope.progress = [];
+        		if ($scope.upload && $scope.upload.length > 0) {
+        			for (var i = 0; i < $scope.upload.length; i++) {
+        				if ($scope.upload[i] != null) {
+        					$scope.upload[i].abort();
+        				}
+        			}
+        		}
+        		$scope.upload = [];
+        		$scope.uploadResult = [];
+        		$scope.selectedFiles = $files;
+        		$scope.dataUrls = [];
+        		for ( var i = 0; i < $files.length; i++) {
+        			var $file = $files[i];
+        			if (window.FileReader && $file.type.indexOf('image') > -1) {
+        				var fileReader = new FileReader();
+        				fileReader.readAsDataURL($files[i]);
+        				var loadFile = function(fileReader, index) {
+        					fileReader.onload = function(e) {
+        						$timeout(function() {
+        							$scope.dataUrls[index] = e.target.result;
+        						});
+        					}
+        				}(fileReader, i);
+        			}
+        			$scope.progress[i] = -1;
+        			if ($scope.uploadRightAway) {
+        				$scope.start(i);
+        			}
+        		}
+        	}
+        
+        	$scope.start = function(index) {
+        		$scope.progress[index] = 0;
+        		if ($scope.mode == "multipart") {
+        			$scope.upload[index] = $upload.upload({
+        				url : baseEndPoint + '/api/file',
+        				method: $scope.httpMethod,
+        				headers: {'my-header': 'my-header-value'},
+        				/*data : {
+        					myModel : $scope.myModel
+        				},*/
+        				/* formDataAppender: function(fd, key, val) {
+        					if (angular.isArray(val)) {
+                                angular.forEach(val, function(v) {
+                                  fd.append(key, v);
+                                });
+                              } else {
+                                fd.append(key, val);
+                              }
+        				}, */
+        				/* transformRequest: [function(val, h) {
+        					console.log(val, h('my-header')); return val + 'aaaaa';
+        				}], */
+        				file: $scope.selectedFiles[index],
+        				fileFormDataName: 'myFile'
+        			}).then(function(response) {
+        				$scope.uploadResult.push(response.data);
+        				$scope.ngModel = baseEndPoint + response.data[index].url;
+        			}, null, function(evt) {
+        				$scope.progress[index] = parseInt(100.0 * evt.loaded / evt.total);
+        			}).xhr(function(xhr){
+        				xhr.upload.addEventListener('abort', function(){console.log('aborted complete')}, false);
+        			});
+        		} else {
+        			var fileReader = new FileReader();
+                    fileReader.onload = function(e) {
+        		        $scope.upload[index] = $upload.http({
+        		        	url: baseEndPoint + '/api/file',
+        					headers: {'Content-Type': $scope.selectedFiles[index].type},
+        					data: e.target.result
+        				}).then(function(response) {
+        					$scope.uploadResult.push(response.data);
+        					$scope.ngModel = baseEndPoint + response.data[index].url;
+        				}, null, function(evt) {
+        					// Math.min is to fix IE which reports 200% sometimes
+        					$scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+        				});
+                    }
+        	        fileReader.readAsArrayBuffer($scope.selectedFiles[index]);
+        		}
+        	}
         },
         templateUrl: '/app/templates/common/fileUploadDirective.html'
     };
