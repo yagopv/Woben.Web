@@ -35,6 +35,8 @@ WobenProducts.controller('AddProductController', function($scope, productService
 
     $scope.previewHtml = false;
 
+    $scope.uploadedFiles = [];
+
     $scope.togglePreview = function() {
         $scope.trustedHtml = $sce.trustAsHtml(marked($scope.product.markdown ? $scope.product.markdown : ""));
         $scope.previewHtml = !$scope.previewHtml;

@@ -1,7 +1,11 @@
 WobenCommon.directive('woFileUpload', function(baseEndPoint, $window) {
     return {
         link : function($scope, element, attrs) {
-
+            if (attrs.maxFiles && parseInt(attrs.maxFiles) == 1) {
+                return
+            } else {
+                angular.element(element).find("input[type=file]").attr("multiple", "multiple");
+            }
         },
         restrict: 'E',
         replace : true,
@@ -9,12 +13,13 @@ WobenCommon.directive('woFileUpload', function(baseEndPoint, $window) {
             selectText: '@',
             updateText : '@',
             deleteText : '@',
-            mode : "@" // "multipart" or "html5"
+            mode : "@", // "multipart" or "html5"
+            maxFiles : "@",
+            uploadRightAway : "@",
             ngModel : "="
         },
         controller : function($scope, $http, $timeout, $upload) {
         	$scope.fileReaderSupported = window.FileReader != null;
-        	$scope.uploadRightAway = true;
         	$scope.changeAngularVersion = function() {
         		window.location.hash = $scope.angularVersion;
         		window.location.reload(true);
@@ -55,7 +60,7 @@ WobenCommon.directive('woFileUpload', function(baseEndPoint, $window) {
         				}(fileReader, i);
         			}
         			$scope.progress[i] = -1;
-        			if ($scope.uploadRightAway) {
+        			if ($scope.uploadRightAway && $scope.uploadRightAway == "true") {
         				$scope.start(i);
         			}
         		}
@@ -63,10 +68,15 @@ WobenCommon.directive('woFileUpload', function(baseEndPoint, $window) {
         
         	$scope.start = function(index) {
         		$scope.progress[index] = 0;
+
+        		if ($scope.maxFiles && angular.element("input[type=file]")[0].files.length > parseInt($scope.maxFiles)) {
+        		    
+        		}
+
         		if ($scope.mode == "multipart") {
         			$scope.upload[index] = $upload.upload({
         				url : baseEndPoint + '/api/file',
-        				method: $scope.httpMethod,
+        				method: "POST",
         				headers: {'my-header': 'my-header-value'},
         				/*data : {
         					myModel : $scope.myModel
@@ -87,7 +97,7 @@ WobenCommon.directive('woFileUpload', function(baseEndPoint, $window) {
         				fileFormDataName: 'myFile'
         			}).then(function(response) {
         				$scope.uploadResult.push(response.data);
-        				$scope.ngModel = baseEndPoint + response.data[index].url;
+        				$scope.ngModel = $scope.uploadResult;
         			}, null, function(evt) {
         				$scope.progress[index] = parseInt(100.0 * evt.loaded / evt.total);
         			}).xhr(function(xhr){
@@ -102,7 +112,8 @@ WobenCommon.directive('woFileUpload', function(baseEndPoint, $window) {
         					data: e.target.result
         				}).then(function(response) {
         					$scope.uploadResult.push(response.data);
-        					$scope.ngModel = baseEndPoint + response.data[index].url;
+        					$scope.ngModel = response.data;
+        					$scope.ngModel = $scope.uploadResult;
         				}, null, function(evt) {
         					// Math.min is to fix IE which reports 200% sometimes
         					$scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));

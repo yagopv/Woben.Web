@@ -1,17 +1,19 @@
-<div>
-	<div class="upload-div">
-		http method: <input type="radio" ng-model="httpMethod" ng-init="httpMethod = 'POST'" value="POST"/>post <input type="radio" ng-model="httpMethod" value='PUT'/>put<br/>
-		<br/>
-		choose a single file: <input type="file" ng-file-select="onFileSelect($files)">
-		<br/>
-		or multiple files: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="file" ng-file-select="onFileSelect($files)" multiple>
-		<br/>
-		<br/>
-		<div ng-show="dropSupported" class="drop-box" ng-file-drop="onFileSelect($files);" ng-file-drop-available="dropSupported=true">or drop files here</div>
-		<div ng-show="!dropSupported">HTML5 Drop File is not supported on this browser</div>
-		<br/>
-		<input type="checkbox" ng-model="uploadRightAway">Upload right away
-		<br/>
+<section class="upload-section row">
+	<div class="col-md-12" ng-file-drop-available="dropSupported=true">
+		<div ng-if="dropSupported" class="drop-box bg-info" ng-file-drop="onFileSelect($files);">
+		    <div class="image">
+		        <img src="/common-files/svg/file.svg" />
+		    </div>
+            <span class="btn-file">
+                <input type="file" ng-file-select="onFileSelect($files)" >
+            </span>
+		</div>
+		<div ng-if="!dropSupported">
+            <span class="btn-file">
+                {{ selectText }}
+                <input type="file" ng-file-select="onFileSelect($files)" >
+            </span>		    
+		</div>
 		<br/>
 		Progress:
 		<br/>
@@ -44,5 +46,10 @@
 				</li>
 			</ul>
 		</div>
-	</div>    
-</div>
+	</div>  
+	<div class="col-md-12">
+        <div class="alert alert-error" ng-show="error">
+            <p>{{ error }}</p>
+        </div>		    
+	</div>
+</section>
