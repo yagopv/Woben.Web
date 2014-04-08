@@ -96,7 +96,7 @@ WobenCommon.directive('woFileUpload', function(baseEndPoint, $window) {
         				file: $scope.selectedFiles[index],
         				fileFormDataName: 'myFile'
         			}).then(function(response) {
-        				$scope.uploadResult.push(response.data);
+        				$scope.uploadResult.push(response.data[index]);
         				$scope.ngModel = $scope.uploadResult;
         			}, null, function(evt) {
         				$scope.progress[index] = parseInt(100.0 * evt.loaded / evt.total);
@@ -111,7 +111,7 @@ WobenCommon.directive('woFileUpload', function(baseEndPoint, $window) {
         					headers: {'Content-Type': $scope.selectedFiles[index].type},
         					data: e.target.result
         				}).then(function(response) {
-        					$scope.uploadResult.push(response.data);
+        					$scope.uploadResult.push(response.data[index]);
         					$scope.ngModel = response.data;
         					$scope.ngModel = $scope.uploadResult;
         				}, null, function(evt) {

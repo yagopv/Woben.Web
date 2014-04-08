@@ -1,4 +1,4 @@
-WobenProducts.controller('AddProductController', function($scope, productService, errorService, categoryService, ngDialog, $sce) {
+WobenProducts.controller('AddProductController', function($scope, productService, errorService, categoryService, ngDialog, $sce, baseEndPoint) {
 
     $scope.addProduct = function() {
         $scope.disabled = true;
@@ -36,6 +36,10 @@ WobenProducts.controller('AddProductController', function($scope, productService
     $scope.previewHtml = false;
 
     $scope.uploadedFiles = [];
+
+    $scope.$watch("uploadedFiles", function(newValue, oldValue) {
+        $scope.selectedImage = baseEndPoint + newValue[0].url;
+    });
 
     $scope.togglePreview = function() {
         $scope.trustedHtml = $sce.trustAsHtml(marked($scope.product.markdown ? $scope.product.markdown : ""));
