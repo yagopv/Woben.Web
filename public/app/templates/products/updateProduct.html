@@ -4,9 +4,12 @@
             <div id="addProduct">
                 <wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors"></wo-errors>
                 <form name="updateProductForm" ng-submit="updateProduct()" novalidate>
+                    <div ng-show="product.imageUrl">
+                        <img class="img-responsive img-thumbnail" ng-src="{{ product.imageUrl }}" />
+                        <a ng-Click="eiminarImagen()" class="btn btn-danger">Eliminar</a>
+                    </div>
                     <div class="form-group" ng-class="{'has-error': updateProductForm.imageUrl.$invalid && updateProductForm.imageUrl.$dirty}">
-                        <label>Imagen del producto</label>
-                        <input name="imageUrl" type="text" class="form-control" placeholder="Imagen" ng-model="product.imageUrl" required />
+                        <input name="imageUrl" type="hidden" class="form-control" placeholder="Imagen" ng-model="product.imageUrl" required />
                         <span class="help-block" ng-show="updateProductForm.imageUrl.$error.required && updateProductForm.imageUrl.$dirty">Campo obligatorio</span>
                     </div>                    
                     <div class="form-group" ng-class="{'has-error': updateProductForm.name.$invalid && updateProductForm.name.$dirty}">

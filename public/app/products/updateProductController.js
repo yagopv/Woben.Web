@@ -13,6 +13,10 @@ WobenProducts.controller('UpdateProductController', function($scope, productServ
             });
     }
 
+    $scope.eliminarImagen =  function() {
+
+    }
+
     $q.all([ productService.getById($stateParams.productId), categoryService.getAll()])
         .then(
             function(data) {

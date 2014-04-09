@@ -1,4 +1,4 @@
-WobenProducts.controller('AddProductController', function($scope, productService, errorService, categoryService, ngDialog, $sce, baseEndPoint) {
+WobenProducts.controller('AddProductController', function($scope, productService, errorService, categoryService, ngDialog, $sce, baseEndPoint, $state) {
 
     $scope.addProduct = function() {
         $scope.disabled = true;
@@ -6,6 +6,7 @@ WobenProducts.controller('AddProductController', function($scope, productService
         productService.add($scope.product).then(
             function(data) {
                 $scope.disabled = false;
+                $state.go("updateProduct", { productId :  data.productId });
             },
             function(error) {
                 $scope.modelErrors = errorService.handleODataErrors(error);
@@ -36,12 +37,11 @@ WobenProducts.controller('AddProductController', function($scope, productService
     $scope.previewHtml = false;
 
     $scope.uploadedFiles = [];
-
-    $scope.selectedImage = null;
     
     $scope.$watch("uploadedFiles", function(newValue, oldValue) {
         if (newValue && newValue[0]) {
-            $scope.selectedImage = baseEndPoint + newValue[0].url;   
+            $scope.product.imageUrl = baseEndPoint + newValue[0].url;
+
         }
     });
 

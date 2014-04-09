@@ -114,10 +114,10 @@ header {
 .upload-section .progress {
     width : 100px;
     position : relative;
-    top : 7px;
+    top : 10px;
 }
 
 .upload-section .sel-file  td span {
     position : relative;
-    top : 7px;    
+    top : 10px;
 }
