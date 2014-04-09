@@ -110,3 +110,14 @@ header {
 .upload-section .image img {
     width : 50px;
 }
+
+.upload-section .progress {
+    width : 100px;
+    position : relative;
+    top : 7px;
+}
+
+.upload-section .sel-file  td span {
+    position : relative;
+    top : 7px;    
+}

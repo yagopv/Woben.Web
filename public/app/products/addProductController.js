@@ -37,8 +37,12 @@ WobenProducts.controller('AddProductController', function($scope, productService
 
     $scope.uploadedFiles = [];
 
+    $scope.selectedImage = null;
+    
     $scope.$watch("uploadedFiles", function(newValue, oldValue) {
-        $scope.selectedImage = baseEndPoint + newValue[0].url;
+        if (newValue && newValue[0]) {
+            $scope.selectedImage = baseEndPoint + newValue[0].url;   
+        }
     });
 
     $scope.togglePreview = function() {

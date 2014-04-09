@@ -22,18 +22,16 @@
                     <td>
                         <img ng-show="dataUrls[$index]" ng-src="{{dataUrls[$index]}}" class="img-responsive img-tumbnail">
                     </td>
-                    <td>{{ f.name }}</td>
-                    <td>{{ f.size }}</td>
-                    <td>{{ f.type }}</td>
+                    <td><span>{{ f.name }}</span></td>
+                    <td><span>{{ f.size }}</span></td>
+                    <td><span>{{ f.type }}</span></td>
                     <td>
                         <a class="btn btn-primary" ng-click="start($index)" ng-show="progress[$index] < 0">Subir</a>
                         <a class="btn btn-danger" ng-click="abort($index)" ng-show="hasUploader($index) && progress[$index] < 100">Cancelar</a>
                     </td>
                     <td>
-                        <div class="progress" ng-show="progress[$index] >= 0">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="{{ progress[$index] }}" aria-valuemin="0" aria-valuemax="100" ng-style="{ width : progress[$index] }">
-                                {{ progress[$index] + "%" }}
-                            </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" ng-style="{ width : progress[$index] > 0 ?  progress[$index] : 0}"></div>
                         </div>
                     </td>
                 </tr>
