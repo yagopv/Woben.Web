@@ -43,14 +43,11 @@
                                 <li ui-sref-active="active">
                                     <a href="javascript:;" ui-sref="products">Productos</a>
                                 </li>
-                                <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
-                                    <a href="/dashboard" target="_self">Dashboard</a>
-                                </li>
                                 <li ui-sref-active="active" ng-show="!User.isAuthenticated">
                                     <a href="javascript:;" ui-sref="login">Inicia sesión</a>
                                 </li>
                                 <li ui-sref-active="active" ng-show="User.isAuthenticated">
-                                    <a href="javascript:;" ui-sref="manage">Tu Cuenta : {{ User.userName }}</a>
+                                    <a href="/dashboard" target="_self">Tu Cuenta : {{ User.userName }}</a>
                                 </li>
                                 <li ng-show="User.isAuthenticated" ng-click="logout()">
                                     <a href="javascript:;">Desconectar</a>

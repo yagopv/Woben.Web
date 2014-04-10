@@ -7,8 +7,13 @@ WobenAccount.controller('ChangePasswordController', function($scope, accountServ
         accountService.changePassword($scope.oldPassword, $scope.newPassword, $scope.confirmPassword)
             .then(function(data) {
                 $scope.disabled = false;
+                $scope.modelErrors = null;
+                $scope.oldPassword = null;
+                $scope.newPassword = null;
+                $scope.confirmPassword = null;
+                $scope.changePasswordForm.$setPristine();
             }, function(error) {
-                $scope.modelErrors = errorService.handleAuthenticationErrors(error);
+                $scope.modelErrors = errorService.handleValidationErrors(error);
                 $scope.disabled = false;
             })
     }

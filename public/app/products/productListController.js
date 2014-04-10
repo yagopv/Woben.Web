@@ -26,7 +26,7 @@ WobenProducts.controller("IndexController", function($scope, $filter, productSer
 
     $scope.sureToDelete = function(product) {
         $scope.selectedProduct = product;
-
+        $scope.dialogMessage = "¿Seguro que quieres eliminar este producto?"
         ngDialog.open({
             template : "/app/templates/common/dialogConfirmation.html",
             scope : $scope

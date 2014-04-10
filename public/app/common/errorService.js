@@ -3,7 +3,7 @@ WobenCommon.factory('errorService', function() {
     return {
 
         handleValidationErrors : function(data) {
-            var errors;
+            var errors = [];
 
             if (!data || !data.message) {
                 return;
@@ -11,7 +11,7 @@ WobenCommon.factory('errorService', function() {
 
             if (data.modelState) {
                 for (var key in data.modelState) {
-                    errors = data.modelState[key];
+                    errors.push(data.modelState[key][0]);
                 }
             }
 

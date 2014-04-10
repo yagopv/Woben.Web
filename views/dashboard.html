@@ -19,20 +19,21 @@
 
 </head>
 
-<body>
+<body ng-cloak>
 
     <div id="page-wrapper" class="st-sticky-wrap">
-        <header>
+        <header ng-Controller="DashboardHeaderController">
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
                         <span class="sr-only">Toggle navigation</span>
                     </button>
-                    <a class="navbar-brand" ui-sref="dashboard">Dashboard</a>
+                    <a class="navbar-brand" ui-sref="dashboard" ng-cloak>{{ userName }}</a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse-01">
                     <ul class="nav navbar-nav">
                         <li><a href="/" target="_self">Ir al sitio</a></li>
+                        <li><a href="javascript:;" ng-click="logout()">Desconectar</a></li>
                     </ul>
                     <form class="navbar-form navbar-right" action="#" role="search">
                         <div class="form-group">
@@ -51,47 +52,51 @@
         <wo-offcanvas active-transitions="true">
 
             <wo-offcanvas-menu>
-                <ul class="nav nav-list" ng-controller="DashboardMenuController">
-                    <li class="nav-header" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">DASHBOARD</li>
-                    <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
-                        <a ui-sref="dashboard">
-                            <span class="fui-home"></span>
-                            Inicio
-                            <span class="fui-arrow-right pull-right"></span>
-                        </a>
-                    </li>
-                    <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
-                        <a ui-sref="productList">
-                            <span class="fui-document"></span>
-                            Productos
-                            <span class="fui-arrow-right pull-right"></span>
-                        </a>
-                        <ul class="nav nav-list">
-                            <li ui-sref-active="active">
-                                <a ui-sref="addProduct">
-                                    <span class="fui-plus"></span>
-                                    Nuevo
-                                </a>
-                            </li>                        
-                        </ul>
-                    </li>
-                    <li class="divider"></li>
-                    <li class="nav-header" ng-show="User.isAuthenticated">MI CUENTA</li>
-                    <li ui-sref-active="active" ng-show="User.isAuthenticated">
-                        <a ui-sref="changePassword">
-                            <span class="fui-home"></span>
-                            Modificar el Password
-                            <span class="fui-arrow-right pull-right"></span>
-                        </a>
-                    </li>  
-                   <li ui-sref-active="active" ng-show="User.isAuthenticated">
-                        <a ui-sref="deleteAccount">
-                            <span class="fui-home"></span>
-                            Cancelar cuenta
-                            <span class="fui-arrow-right pull-right"></span>
-                        </a>
-                    </li>
-                </ul>
+                <div  ng-controller="DashboardMenuController">
+                    <ul class="nav nav-list">
+                        <li class="nav-header" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
+                            <span class="fui-gear"></span>
+                            DASHBOARD
+                        </li>
+                        <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
+                            <a ui-sref="dashboard">
+                                Inicio
+                                <span class="fui-arrow-right pull-right"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
+                            <a ui-sref="productList">
+                                Productos
+                                <span class="fui-arrow-right pull-right"></span>
+                            </a>
+                            <ul class="nav nav-list">
+                                <li ui-sref-active="active">
+                                    <a ui-sref="addProduct">
+                                        <span class="fui-plus-inverted"></span>
+                                        Nuevo
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="nav-header" ng-show="User.isAuthenticated">
+                            <span class="fui-user"></span>
+                            MI CUENTA
+                        </li>
+                        <li ui-sref-active="active" ng-show="User.isAuthenticated">
+                            <a ui-sref="changePassword">
+                                Cambiar Password
+                                <span class="fui-arrow-right pull-right"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active" ng-show="User.isAuthenticated">
+                            <a ui-sref="deleteAccount">
+                                Eliminar cuenta
+                                <span class="fui-arrow-right pull-right"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </wo-offcanvas-menu>
 
             <wo-offcanvas-main>
@@ -101,7 +106,9 @@
             </wo-offcanvas-main>
 
             <wo-offcanvas-additional>
+                <div ng-Controller="DashboardAdditionalController">
 
+                </div>
             </wo-offcanvas-additional>
 
         </wo-offcanvas>
@@ -195,7 +202,9 @@
     <script type="text/javascript" src="/app/dashboard/init.js"></script>
     <script type="text/javascript" src="/app/dashboard/dashboardController.js"></script>
     <script type="text/javascript" src="/app/dashboard/dashboardMenuController.js"></script>
-    
+    <script type="text/javascript" src="/app/dashboard/dashboardAdditionalController.js"></script>
+    <script type="text/javascript" src="/app/dashboard/dashboardHeaderController.js"></script>
+
     <!-- Products module -->
     <script type="text/javascript" src="/app/products/init.js"></script>
     <script type="text/javascript" src="/app/products/productService.js"></script>

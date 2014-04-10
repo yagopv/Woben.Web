@@ -1,3 +1,8 @@
 <div class="container-fluid">
-    
+    <wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors"></wo-errors>
+    <div class="alert alert-error">
+        <h4>Estas seguro de que quieres cancelar tu cuenta</h4>
+        <p>Esta operación no se puede deshacer perderás el acceso a este sitio web</p>
+        <a class="btn btn-danger btn-wide" ng-click="sureToDelete()">Eliminar mi cuenta</a>
+    </div>
 </div>

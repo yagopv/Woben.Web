@@ -48,7 +48,7 @@ WobenAccount.factory('accountService', function($http, $q, $window, $rootScope, 
             }).success(function(data, status, headers, config) {
                 $window.localStorage.clear("token");
                 $window.sessionStorage.clear("token");
-                $window.location.reload();
+                $window.location = "/";
                 deferred.resolve(data);
             }).error(function(error) {
                 deferred.reject(error);
