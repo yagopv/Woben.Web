@@ -18,10 +18,5 @@ WobenDashboard.config(function($stateProvider){
                         );
                     }
                 }
-            })
-            .state('signin', {
-                url: "/dashboard/signin",
-                controller:  "LoginController",
-                templateUrl: "/app/templates/dashboard/signin.html"
             });
         });

@@ -1,4 +1,4 @@
-WobenProducts.controller('UpdateProductController', function($scope, productService, errorService, categoryService, ngDialog, $sce, $stateParams,$q) {
+WobenProducts.controller('UpdateProductController', function($scope, productService, errorService, categoryService, ngDialog, $sce, $stateParams,$q, baseEndPoint) {
 
     $scope.updateProduct = function() {
         $scope.disabled = true;
@@ -11,10 +11,6 @@ WobenProducts.controller('UpdateProductController', function($scope, productServ
                 $scope.modelErrors = errorService.handleODataErrors(error);
                 $scope.disabled = false;
             });
-    }
-
-    $scope.eliminarImagen =  function() {
-
     }
 
     $q.all([ productService.getById($stateParams.productId), categoryService.getAll()])
@@ -38,6 +34,14 @@ WobenProducts.controller('UpdateProductController', function($scope, productServ
     $scope.disabled = false;
 
     $scope.previewHtml = false;
+
+    $scope.uploadedFiles = [];
+    
+    $scope.$watch("uploadedFiles", function(newValue, oldValue) {
+        if (newValue && newValue[0]) {
+            $scope.product.imageUrl = baseEndPoint + newValue[0].url;
+        }
+    });
 
     $scope.togglePreview = function() {
         $scope.trustedHtml = $sce.trustAsHtml(marked($scope.product.markdown ? $scope.product.markdown : ""));

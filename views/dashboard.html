@@ -51,23 +51,46 @@
         <wo-offcanvas active-transitions="true">
 
             <wo-offcanvas-menu>
-                <ul class="nav nav-list">
-                    <li class="nav-header">DASHBOARD</li>
-                    <li ui-sref-active="active">
+                <ul class="nav nav-list" ng-controller="DashboardMenuController">
+                    <li class="nav-header" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">DASHBOARD</li>
+                    <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
                         <a ui-sref="dashboard">
                             <span class="fui-home"></span>
                             Inicio
                             <span class="fui-arrow-right pull-right"></span>
                         </a>
                     </li>
-                    <li ui-sref-active="active">
+                    <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
                         <a ui-sref="productList">
                             <span class="fui-document"></span>
                             Productos
                             <span class="fui-arrow-right pull-right"></span>
                         </a>
+                        <ul class="nav nav-list">
+                            <li ui-sref-active="active">
+                                <a ui-sref="addProduct">
+                                    <span class="fui-plus"></span>
+                                    Nuevo
+                                </a>
+                            </li>                        
+                        </ul>
                     </li>
                     <li class="divider"></li>
+                    <li class="nav-header" ng-show="User.isAuthenticated">MI CUENTA</li>
+                    <li ui-sref-active="active" ng-show="User.isAuthenticated">
+                        <a ui-sref="changePassword">
+                            <span class="fui-home"></span>
+                            Modificar el Password
+                            <span class="fui-arrow-right pull-right"></span>
+                        </a>
+                    </li>  
+                   <li ui-sref-active="active" ng-show="User.isAuthenticated">
+                        <a ui-sref="deleteAccount">
+                            <span class="fui-home"></span>
+                            Cancelar cuenta
+                            <span class="fui-arrow-right pull-right"></span>
+                        </a>
+                    </li>
                 </ul>
             </wo-offcanvas-menu>
 
@@ -165,10 +188,13 @@
     <script type="text/javascript" src="/app/account/init.js"></script>
     <script type="text/javascript" src="/app/account/accountService.js"></script>
     <script type="text/javascript" src="/app/account/loginController.js"></script>
+    <script type="text/javascript" src="/app/account/changePasswordController.js"></script>
+    <script type="text/javascript" src="/app/account/deleteAccountController.js"></script>
 
     <!-- Dashboard module -->
     <script type="text/javascript" src="/app/dashboard/init.js"></script>
     <script type="text/javascript" src="/app/dashboard/dashboardController.js"></script>
+    <script type="text/javascript" src="/app/dashboard/dashboardMenuController.js"></script>
     
     <!-- Products module -->
     <script type="text/javascript" src="/app/products/init.js"></script>

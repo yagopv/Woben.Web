@@ -12,10 +12,10 @@ WobenAccount.config(function($stateProvider){
                 templateUrl: "/app/templates/account/register.html",
                 controller:    'RegisterController'
             })
-            .state('manage', {
-                url: "/manage",
-                templateUrl: "/app/templates/account/manage.html",
-                controller:    'ManageController',
+            .state('changePassword', {
+                url: "/dashboard/changePassword",
+                templateUrl: "/app/templates/account/changePassword.html",
+                controller:    'ChangePasswordController',
                 resolve: {
                     User: function($state, $stateParams, $q, accountService) {
                         return accountService.isUserInRole(["User", "Administrator"]).then(
@@ -23,12 +23,34 @@ WobenAccount.config(function($stateProvider){
                                 return data;
                             },
                             function(error) {
-                                $state.go('login');
+                                $state.go('signin');
                             }
                         );
                     }
                 }
+            })
+            .state('deleteAccount', {
+                url: "/dashboard/deleteAccount",
+                templateUrl: "/app/templates/account/deleteAccount.html",
+                controller:    'DeleteAccountController',
+                resolve: {
+                    User: function($state, $stateParams, $q, accountService) {
+                        return accountService.isUserInRole(["User", "Administrator"]).then(
+                            function(data) {
+                                return data;
+                            },
+                            function(error) {
+                                $state.go('signin');
+                            }
+                        );
+                    }
+                }                
+            })
+            .state('signin', {
+                url: "/dashboard/signin",
+                controller:  "LoginController",
+                templateUrl: "/app/templates/dashboard/signin.html"
             });
-        });
+        });       
 
 WobenAccount.constant("authEndPoint", "https://woben.azurewebsites.net");

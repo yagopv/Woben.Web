@@ -61,7 +61,14 @@ header {
     margin-bottom : 1em;
 }
 
+/* */
+
+.table [class*="fui-"] {
+    top: 4px;
+}
+
 /* File upload section */
+
 .upload-section .btn-file {
     position: relative;
     overflow: hidden;

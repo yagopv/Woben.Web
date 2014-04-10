@@ -1,4 +1,4 @@
-WobenProducts.factory('productService', function($http, $q, $cacheFactory, productEndPoint) {
+WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseEndPoint) {
 
     return {
         getAll : function() {
@@ -6,7 +6,7 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, produ
                 self = this;
             $http({
                 method: 'GET',
-                url: productEndPoint + '/Product',
+                url: baseEndPoint + '/odata/Product?$orderby=UpdatedDate desc',
                 cache : true
             }).success(function(data, status, headers, config) {
                 deferred.resolve(data);
@@ -21,7 +21,7 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, produ
                 self = this;
             $http({
                 method: 'GET',
-                url: productEndPoint + '/Product(' + productId + ')'
+                url: baseEndPoint + '/odata/Product(' + productId + ')'
             }).success(function(data, status, headers, config) {
                 deferred.resolve(data);
             }).error(function(error) {
@@ -33,7 +33,7 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, produ
         add : function(product) {
             var deferred = $q.defer(),
                 self = this,
-                url = productEndPoint + '/Product';
+                url = baseEndPoint + '/odata/Product';
             $http({
                 method: 'POST',
                 url: url,
@@ -50,7 +50,7 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, produ
         update : function(product) {
             var deferred = $q.defer(),
                 self = this,
-                url = productEndPoint + '/Product(' + product.productId + ')'
+                url = baseEndPoint + '/odata/Product(' + product.productId + ')'
             $http({
                 method: 'PUT',
                 url: url,
@@ -69,13 +69,27 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, produ
                 self = this;
             $http({
                 method: 'DELETE',
-                url: productEndPoint + '/Product(' + productId + ')'
+                url: baseEndPoint + '/odata/Product(' + productId + ')'
             }).success(function(data, status, headers, config) {
                 deferred.resolve(data);
             }).error(function(error) {
                 deferred.reject(error);
             });
             return deferred.promise;
-        }
+        },
+        
+        deleteImage : function(file) {
+            var deferred = $q.defer(),
+                self = this;
+            $http({
+                method: 'DELETE',
+                url: baseEndPoint + '/api/file?filename=' + file
+            }).success(function(data, status, headers, config) {
+                deferred.resolve(data);
+            }).error(function(error) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
+        }        
     }
 });

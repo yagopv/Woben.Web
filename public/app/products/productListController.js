@@ -38,8 +38,8 @@ WobenProducts.controller("IndexController", function($scope, $filter, productSer
     }
 
     /* Pagination */
-    $scope.sortingOrder = "name";
-    $scope.reverse = false;
+    $scope.sortingOrder = "updatedDate";
+    $scope.reverse = true;
     $scope.filteredItems = [];
     $scope.groupedItems = [];
     $scope.itemsPerPage = 5;
