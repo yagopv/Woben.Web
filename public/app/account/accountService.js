@@ -130,6 +130,59 @@ WobenAccount.factory('accountService', function($http, $q, $window, $rootScope, 
             return deferred.promise;
         },
 
+		forgotPassword: function (email) {
+            var deferred = $q.defer(),
+                self = this,
+                url = baseEndPoint + '/api/account/forgotpassword';
+            $http({
+                method: 'POST',
+                url: url,
+                data : { email : email }
+            }).success(function(data, status, headers, config) {
+                deferred.resolve(data);
+            }).error(function(error) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
+		},
+
+
+		resetPassword: function (email, password, confirmPassword, code) {
+            var deferred = $q.defer(),
+                self = this,
+                url = baseEndPoint + '/api/account/resetpassword';
+            $http({
+                method: 'POST',
+                url: url,
+                data : { email : email,
+                         password : password,
+                         confirmPassword : confirmPassword,
+                         code : code
+                       }
+            }).success(function(data, status, headers, config) {
+                deferred.resolve(data);
+            }).error(function(error) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
+		},
+
+
+		deleteAccount: function () {
+            var deferred = $q.defer(),
+                self = this,
+                url = baseEndPoint + '/api/account/deleteaccount';
+            $http({
+                method: 'POST',
+                url: url
+            }).success(function(data, status, headers, config) {
+                deferred.resolve(data);
+            }).error(function(error) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
+		},
+		
         initializeAuth : function() {
             var self = this,
                 token = $window.sessionStorage.token;
