@@ -1,4 +1,4 @@
-WobenAccount.factory('accountService', function($http, $q, $window, $rootScope, authEndPoint) {
+WobenAccount.factory('accountService', function($http, $q, $window, $rootScope, baseEndPoint) {
 
     var User = function(userData) {
         this.userName = userData.userName;
@@ -27,7 +27,7 @@ WobenAccount.factory('accountService', function($http, $q, $window, $rootScope, 
                 self = this;
             $http({
                 method: 'POST',
-                url: authEndPoint + '/token',
+                url: baseEndPoint + '/token',
                 data : data
             }).success(function(data, status, headers, config) {
                 data.roles = data.roles.split(",");
@@ -44,7 +44,7 @@ WobenAccount.factory('accountService', function($http, $q, $window, $rootScope, 
             var deferred = $q.defer();
             $http({
                 method : "POST",
-                url : authEndPoint + "/api/account/logout"
+                url : baseEndPoint + "/api/account/logout"
             }).success(function(data, status, headers, config) {
                 $window.localStorage.clear("token");
                 $window.sessionStorage.clear("token");
@@ -61,7 +61,7 @@ WobenAccount.factory('accountService', function($http, $q, $window, $rootScope, 
                 self = this;
             $http({
                 method: 'POST',
-                url: authEndPoint + '/api/account/register',
+                url: baseEndPoint + '/api/account/register',
                 data : data
             }).success(function(data, status, headers, config) {
                     deferred.resolve(data);
@@ -76,7 +76,7 @@ WobenAccount.factory('accountService', function($http, $q, $window, $rootScope, 
                 self = this;
             $http({
                 method: 'GET',
-                url: authEndPoint + '/api/account/userinfo'
+                url: baseEndPoint + '/api/account/userinfo'
             }).success(function(data, status, headers, config) {
                     self.User = setUserObject(data, $window.sessionStorage.token, false);
                     $rootScope.$broadcast("woben:authenticated");
@@ -130,6 +130,25 @@ WobenAccount.factory('accountService', function($http, $q, $window, $rootScope, 
             return deferred.promise;
         },
 
+		changePassword: function (oldPassword, newPassword, confirmPassword) {
+            var deferred = $q.defer(),
+                self = this,
+                url = baseEndPoint + '/api/account/changepassword';
+            $http({
+                method: 'POST',
+                url: url,
+                data : { oldPassword : oldPassword,
+                         newPassword : newPassword,
+                         confirmPassword : confirmPassword
+                       }
+            }).success(function(data, status, headers, config) {
+                deferred.resolve(data);
+            }).error(function(error) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
+		},
+
 		forgotPassword: function (email) {
             var deferred = $q.defer(),
                 self = this,
@@ -145,8 +164,7 @@ WobenAccount.factory('accountService', function($http, $q, $window, $rootScope, 
             });
             return deferred.promise;
 		},
-
-
+		
 		resetPassword: function (email, password, confirmPassword, code) {
             var deferred = $q.defer(),
                 self = this,
