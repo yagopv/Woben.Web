@@ -54,15 +54,20 @@
             <wo-offcanvas-menu>
                 <div  ng-controller="DashboardMenuController">
                     <ul class="nav nav-list">
-                        <li class="nav-header" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
+                        <li class="nav-header" ng-show="User.isAuthenticated">
                             <span class="fui-gear"></span>
                             DASHBOARD
                         </li>
-                        <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
+                        <li ui-sref-active="active" ng-show="User.isAuthenticated">
                             <a ui-sref="dashboard">
                                 Inicio
                                 <span class="fui-arrow-right pull-right"></span>
                             </a>
+                        </li>
+                        <li class="divider" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1"></li>
+                        <li class="nav-header" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
+                            <span class="fui-gear"></span>
+                            ADMIN
                         </li>
                         <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
                             <a ui-sref="productList">
@@ -92,6 +97,13 @@
                         <li ui-sref-active="active" ng-show="User.isAuthenticated">
                             <a ui-sref="deleteAccount">
                                 Eliminar cuenta
+                                <span class="fui-arrow-right pull-right"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active" ng-show="User.isAuthenticated && !User.emailConfirmed">
+                            <a href="javascript:;" ui-sref="confirmAccount" class="text-danger">
+                                <span class="fui-alert"></span>
+                                Confirma tu cuenta
                                 <span class="fui-arrow-right pull-right"></span>
                             </a>
                         </li>
@@ -197,6 +209,7 @@
     <script type="text/javascript" src="/app/account/loginController.js"></script>
     <script type="text/javascript" src="/app/account/changePasswordController.js"></script>
     <script type="text/javascript" src="/app/account/deleteAccountController.js"></script>
+    <script type="text/javascript" src="/app/account/confirmAccountController.js"></script>
 
     <!-- Dashboard module -->
     <script type="text/javascript" src="/app/dashboard/init.js"></script>

@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <div class="page-header">
+        <h4>Confirma tu cuenta <small>Tu cuenta no ha sido confirmada</small></h4>
+    </div>
+    <p>Si no confirmas la cuenta habrá ciertas opciones que no puedas utilizar aún.</p>
+    <p>Cuando te diste de alta en Woben te enviamos un mail para confirmar tu cuenta por lo que sólo tienes que seguir las instrucciones
+        que te hemos enviado para confirmar tu cuenta.
+    </p>
+    <p>Si no has recibido ningún mail comprueba tu bandeja de correo no deseado o spam para ver si está allí y si aún así no lo encuentras
+        puedes pulsar el siguiente botón para enviarlo de nuevo.
+    </p>
+    <a class="btn btn-primary" ng-click="sendConfirmationMail()">Enviar mail de nuevo</a>
+    <div class="alert alert-success" ng-show="showEmailSent">
+        <h4>Te hemos enviado  un mail</h4>
+        <p>Comprueba tu bandeja de entrada y sigue las instrucciones para confirmar tu cuenta en Woben</p>
+    </div>
+    <wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors"></wo-errors>
+</div>

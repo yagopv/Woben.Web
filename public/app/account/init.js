@@ -46,6 +46,39 @@ WobenAccount.config(function($stateProvider){
                     }
                 }                
             })
+            .state('confirmAccount', {
+                url: "/dashboard/confirmaccount",
+                templateUrl: "/app/templates/account/confirmAccount.html",
+                controller:    'ConfirmAccountController',
+                resolve: {
+                    User: function($state, $stateParams, $q, accountService) {
+                        return accountService.isUserInRole(["User"]).then(
+                            function(data) {
+                                return data;
+                            },
+                            function(error) {
+                                $state.go('signin');
+                            }
+                        );
+                    }
+                }
+            })
+            .state('registrationComplete', {
+                url: "/dashboard/registrationcomplete",
+                templateUrl: "/app/templates/account/registrationComplete.html",
+                resolve: {
+                    User: function($state, $stateParams, $q, accountService) {
+                        return accountService.isUserInRole(["User"]).then(
+                            function(data) {
+                                return data;
+                            },
+                            function(error) {
+                                $state.go('signin');
+                            }
+                        );
+                    }
+                }
+            })
             .state('signin', {
                 url: "/dashboard/signin",
                 controller:  "LoginController",

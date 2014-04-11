@@ -200,7 +200,22 @@ WobenAccount.factory('accountService', function($http, $q, $window, $rootScope, 
             });
             return deferred.promise;
 		},
-		
+
+        sendConfirmationMail : function() {
+            var deferred = $q.defer(),
+                self = this,
+                url = baseEndPoint + '/api/account/resendconfirmationemail';
+            $http({
+                method: 'POST',
+                url: url
+            }).success(function(data, status, headers, config) {
+                deferred.resolve(data);
+            }).error(function(error) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
+        },
+
         initializeAuth : function() {
             var self = this,
                 token = $window.sessionStorage.token;
