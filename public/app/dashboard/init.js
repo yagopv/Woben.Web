@@ -8,7 +8,7 @@ WobenDashboard.config(function($stateProvider){
                 templateUrl: "/app/templates/dashboard/index.html",
                 resolve: {
                     User: function($state, $stateParams, $q, accountService) {
-                        return accountService.isUserInRole(["User"]).then(
+                        return accountService.isUserInRole(["User", "Administrator"]).then(
                             function(data) {
                                return data;
                             },

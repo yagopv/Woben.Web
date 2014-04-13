@@ -1,4 +1,4 @@
-WobenProducts.factory('categoryService', function($http, $q, productEndPoint) {
+WobenProducts.factory('categoryService', function($http, $q, baseEndPoint) {
 
     return {
         getAll : function() {
@@ -6,7 +6,7 @@ WobenProducts.factory('categoryService', function($http, $q, productEndPoint) {
                 self = this;
             $http({
                 method: 'GET',
-                url: productEndPoint + '/Category'
+                url: baseEndPoint + '/odata/Category'
             }).success(function(data, status, headers, config) {
                 deferred.resolve(data);
             }).error(function(error) {
@@ -20,7 +20,7 @@ WobenProducts.factory('categoryService', function($http, $q, productEndPoint) {
                 self = this;
             $http({
                 method: 'GET',
-                url: productEndPoint + '/Category(' + productId + ')'
+                url: baseEndPoint + '/odata/Category(' + productId + ')'
             }).success(function(data, status, headers, config) {
                 deferred.resolve(data);
             }).error(function(error) {
@@ -34,7 +34,7 @@ WobenProducts.factory('categoryService', function($http, $q, productEndPoint) {
                 self = this;
             $http({
                 method: 'POST',
-                url: productEndPoint + '/Category',
+                url: baseEndPoint + '/odata/Category',
                 data : data
             }).success(function(data, status, headers, config) {
                 deferred.resolve(data);
