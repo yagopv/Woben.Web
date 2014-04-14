@@ -156,7 +156,7 @@ WobenAccount.factory('accountService', function($http, $q, $window, $rootScope, 
             $http({
                 method: 'POST',
                 url: url,
-                data : { email : email }
+                data : { eMail : email }
             }).success(function(data, status, headers, config) {
                 deferred.resolve(data);
             }).error(function(error) {

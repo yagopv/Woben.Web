@@ -74,6 +74,23 @@ WobenProducts.config(function($stateProvider) {
                         );
                     }
                 }
+            })
+            .state('publicProducts', {
+                url: "/products",
+                controller:  "PublicProductController",
+                templateUrl: "/app/templates/products/publicProducts.html",
+                resolve: {
+                    User: function($state, $stateParams, $q, accountService) {
+                        return accountService.isUserInRole(["User", "Administrator"]).then(
+                            function(data) {
+                                return data;
+                            },
+                            function(error) {
+                                $state.go('login');
+                            }
+                        );
+                    }
+                }
             });            
         });
 

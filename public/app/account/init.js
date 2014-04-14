@@ -29,6 +29,16 @@ WobenAccount.config(function($stateProvider){
                     }
                 }
             })
+            .state('forgetPassword', {
+                url: "/forgetPassword",
+                templateUrl: "/app/templates/account/forgetPassword.html",
+                controller:    'ForgetPasswordController'
+            })
+            .state('resetPassword', {
+                url: "/resetPassword",
+                templateUrl: "/app/templates/account/resetPassword.html",
+                controller:    'ResetPasswordController'
+            })            
             .state('deleteAccount', {
                 url: "/dashboard/deleteAccount",
                 templateUrl: "/app/templates/account/deleteAccount.html",
