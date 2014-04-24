@@ -34,6 +34,9 @@
                     <ul class="nav navbar-nav">
                         <li><a href="/" target="_self">Ir al sitio</a></li>
                         <li><a href="javascript:;" ng-click="logout()">Desconectar</a></li>
+                        <li ui-sref-active="active" ng-show="User.isAuthenticated && !User.emailConfirmed">
+                            <a href="javascript:;" ui-sref="confirmAccount">Confirmar cuenta<span class="navbar-new">1</span></a>
+                        </li>
                     </ul>
                     <form class="navbar-form navbar-right" action="#" role="search">
                         <div class="form-group">
@@ -97,13 +100,6 @@
                         <li ui-sref-active="active" ng-show="User.isAuthenticated">
                             <a ui-sref="deleteAccount">
                                 Eliminar cuenta
-                                <span class="fui-arrow-right pull-right"></span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active" ng-show="User.isAuthenticated && !User.emailConfirmed">
-                            <a href="javascript:;" ui-sref="confirmAccount" class="text-danger">
-                                <span class="fui-alert"></span>
-                                Confirma tu cuenta
                                 <span class="fui-arrow-right pull-right"></span>
                             </a>
                         </li>
