@@ -74,20 +74,8 @@ WobenAccount.config(function($stateProvider){
                 }
             })
             .state('registrationComplete', {
-                url: "/dashboard/registrationcomplete",
-                templateUrl: "/app/templates/account/registrationComplete.html",
-                resolve: {
-                    User: function($state, $stateParams, $q, accountService) {
-                        return accountService.isUserInRole(["User"]).then(
-                            function(data) {
-                                return data;
-                            },
-                            function(error) {
-                                $state.go('signin');
-                            }
-                        );
-                    }
-                }
+                url: "/registrationcomplete",
+                templateUrl: "/app/templates/account/registrationComplete.html"
             })
             .state('signin', {
                 url: "/dashboard/signin",
