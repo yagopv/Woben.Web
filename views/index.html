@@ -41,7 +41,7 @@
                                     <a href="javascript:;" ui-sref="home">Inicio</a>
                                 </li>
                                 <li ui-sref-active="active">
-                                    <a href="javascript:;" ui-sref="products">Productos</a>
+                                    <a href="javascript:;" ui-sref="publicProducts">Productos</a>
                                 </li>
                                 <li ui-sref-active="active" ng-show="!User.isAuthenticated">
                                     <a href="javascript:;" ui-sref="login">Inicia sesión</a>
@@ -164,6 +164,12 @@
     
     <!-- Products module -->
     <script type="text/javascript" src="/app/products/init.js"></script>
+    <script type="text/javascript" src="/app/products/productService.js"></script>
+    <script type="text/javascript" src="/app/products/categoryService.js"></script>
+    <script type="text/javascript" src="/app/products/productListController.js"></script>
+    <script type="text/javascript" src="/app/products/addProductController.js"></script>
+    <script type="text/javascript" src="/app/products/updateProductController.js"></script>
+    <script type="text/javascript" src="/app/products/addCategoryController.js"></script>
     <script type="text/javascript" src="/app/products/publicProductController.js"></script>
 
     <script type="text/javascript" src="/app/index.js"></script>

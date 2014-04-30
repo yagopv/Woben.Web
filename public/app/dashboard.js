@@ -63,7 +63,7 @@ Woben.config(function ($httpProvider) {
     .config(function($stateProvider, $urlRouterProvider, $locationProvider){
         $stateProvider
             .state('notfound', {
-                url: "/404",
+                url: "/dashboard/404",
                 templateUrl: "app/templates/common/404.html"
             });
 
