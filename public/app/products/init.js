@@ -1,28 +1,6 @@
 var WobenProducts = angular.module('WobenProducts',['ui.router', 'ngDialog']);
 
 WobenProducts.config(function($stateProvider) {
-    $stateProvider
-        .state('products', {
-            url: "/products",
-            templateUrl: "/app/templates/products/products.html",
-            controller:    'PublicProductController',
-            resolve: {
-                User: function($state, $stateParams, $q, accountService) {
-                    return accountService.isUserInRole(["User"]).then(
-                        function(data) {
-                            return data;
-                        },
-                        function(error) {
-                            $state.go('login');
-                        }
-                    );
-                }
-            }
-        });
-    });
-    
-WobenProducts.config(function($stateProvider) {
-
         $stateProvider
             .state('productList', {
                 url: "/dashboard/product/index",
@@ -91,7 +69,7 @@ WobenProducts.config(function($stateProvider) {
                         );
                     }
                 }
-            });            
+            });
         });
 
 WobenProducts.value("baseEndPoint", "https://woben.azurewebsites.net");

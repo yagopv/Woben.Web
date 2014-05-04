@@ -35,7 +35,7 @@ WobenAccount.config(function($stateProvider){
                 controller:    'ForgetPasswordController'
             })
             .state('resetPassword', {
-                url: "/resetPassword",
+                url: "/resetPassword?email&code",
                 templateUrl: "/app/templates/account/resetPassword.html",
                 controller:    'ResetPasswordController'
             })            
@@ -82,6 +82,6 @@ WobenAccount.config(function($stateProvider){
                 controller:  "LoginController",
                 templateUrl: "/app/templates/dashboard/signin.html"
             });
-        });       
+        });
 
 WobenAccount.constant("authEndPoint", "https://woben.azurewebsites.net");
