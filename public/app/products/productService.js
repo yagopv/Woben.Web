@@ -1,12 +1,12 @@
 WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseEndPoint) {
 
     return {
-        getAll : function() {
+        getAll : function(query) {
             var deferred = $q.defer(),
                 self = this;
             $http({
                 method: 'GET',
-                url: baseEndPoint + '/odata/Product?$orderby=UpdatedDate desc',
+                url: baseEndPoint + '/odata/Product' + (query ? "?" + query : ""),
                 cache : true
             }).success(function(data, status, headers, config) {
                 deferred.resolve(data);

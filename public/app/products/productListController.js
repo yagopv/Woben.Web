@@ -1,6 +1,6 @@
 WobenProducts.controller("IndexController", function($scope, $filter, productService, errorService, ngDialog) {
 
-   productService.getAll().then(
+   productService.getAll("$orderby=UpdatedDate desc").then(
        function(data) {
            $scope.products = data;
            $scope.search();
