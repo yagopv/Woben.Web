@@ -1,4 +1,7 @@
-WobenAccount.controller('RegisterController', function($scope, $http, accountService, errorService) {
+WobenAccount.controller('RegisterController', ['$scope', 'accountService', 'errorService', 
+
+function($scope, accountService, errorService) {
+    
     $scope.register = function() {
         $scope.disabled = true;
         accountService.register({
@@ -35,4 +38,4 @@ WobenAccount.controller('RegisterController', function($scope, $http, accountSer
 
     $scope.disabled = false;
 
-});
+}]);

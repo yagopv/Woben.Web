@@ -1,4 +1,7 @@
-WobenAccount.controller('LoginController', function($scope, $http, accountService, $state, errorService) {
+WobenAccount.controller('LoginController', ['$scope', 'accountService', '$state', 'errorService', 
+
+function($scope, accountService, $state, errorService) {
+    
         $scope.login = function(stateToGo) {
             $scope.disabled = true;
             accountService.login({
@@ -26,4 +29,4 @@ WobenAccount.controller('LoginController', function($scope, $http, accountServic
         $scope.modelErrors = null;
 
         $scope.disabled = false;
-});
+}]);

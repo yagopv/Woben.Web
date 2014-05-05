@@ -1,4 +1,6 @@
-WobenAccount.factory('accountService', function($http, $q, $window, $rootScope, baseEndPoint) {
+WobenAccount.factory('accountService', ['$http','$q','$window','$rootScope', 'baseEndPoint' ,
+
+    function($http, $q, $window, $rootScope, baseEndPoint) {
 
     var User = function(userData) {
         this.userName = userData.userName;
@@ -233,4 +235,4 @@ WobenAccount.factory('accountService', function($http, $q, $window, $rootScope, 
             )
         }
     }
-});
+}]);

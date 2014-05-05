@@ -1,4 +1,7 @@
-WobenAccount.controller('DeleteAccountController', function($scope, accountService, $state, errorService, ngDialog) {
+WobenAccount.controller('DeleteAccountController', ['$scope', 'accountService', '$state', 'errorService', 'ngDialog',
+
+function($scope, accountService, $state, errorService, ngDialog) {
+
     $scope.sureToDelete = function() {
         $scope.dialogMessage = "¿Seguro que quieres cancelar tu cuenta?"
         ngDialog.open({
@@ -17,4 +20,4 @@ WobenAccount.controller('DeleteAccountController', function($scope, accountServi
             }
         )
     }
-});
+}]);

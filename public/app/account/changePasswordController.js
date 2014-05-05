@@ -1,4 +1,6 @@
-WobenAccount.controller('ChangePasswordController', function($scope, accountService, $state, errorService) {
+WobenAccount.controller('ChangePasswordController', ['$scope', 'accountService', '$state', 'errorService', 
+
+    function($scope, accountService, $state, errorService) {
 
     $scope.disabled = false;
     
@@ -17,5 +19,4 @@ WobenAccount.controller('ChangePasswordController', function($scope, accountServ
                 $scope.disabled = false;
             })
     }
-
-});
+}]);

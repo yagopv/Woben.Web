@@ -1,4 +1,6 @@
-WobenAccount.controller('ConfirmAccountController', function($scope, accountService, $state, errorService, ngDialog) {
+WobenAccount.controller('ConfirmAccountController', ['$scope', 'accountService', '$state', 'errorService', 'ngDialog', 
+
+    function($scope, accountService, $state, errorService, ngDialog) {
 
     $scope.disabled = false;
     $scope.showEmailSent = false;
@@ -17,4 +19,4 @@ WobenAccount.controller('ConfirmAccountController', function($scope, accountServ
             }
         );
     }
-});
+}]);

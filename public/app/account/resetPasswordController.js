@@ -1,4 +1,7 @@
-WobenAccount.controller('ResetPasswordController', function($scope, $http, accountService, $state, $stateParams, errorService) {
+WobenAccount.controller('ResetPasswordController', ['$scope', 'accountService', '$state', '$stateParams', 'errorService', 
+
+function($scope, accountService, $state, $stateParams, errorService) {
+    
     $scope.disabled = true;
     $scope.email = $stateParams.email;
     $scope.code = $stateParams.code;
@@ -25,4 +28,4 @@ WobenAccount.controller('ResetPasswordController', function($scope, $http, accou
     $scope.modelErrors = null;
 
     $scope.disabled = false;
-});
+}]);

@@ -1,4 +1,7 @@
-WobenAccount.controller('ForgetPasswordController', function($scope, $http, accountService, $state, errorService) {
+WobenAccount.controller('ForgetPasswordController', ['$scope', 'accountService', '$state', 'errorService',
+
+function($scope, accountService, $state, errorService) {
+    
     $scope.disabled = true;
     $scope.mailSentSuccess = false;
 
@@ -24,4 +27,4 @@ WobenAccount.controller('ForgetPasswordController', function($scope, $http, acco
     $scope.modelErrors = null;
 
     $scope.disabled = false;
-});
+}]);

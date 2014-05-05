@@ -1,6 +1,7 @@
 var WobenAccount = angular.module('WobenAccount',['ui.router']);
 
-WobenAccount.config(function($stateProvider){
+WobenAccount.config(['$stateProvider', function($stateProvider) {
+    
         $stateProvider
             .state('login', {
                 url: "/login",
@@ -82,6 +83,6 @@ WobenAccount.config(function($stateProvider){
                 controller:  "LoginController",
                 templateUrl: "/app/templates/dashboard/signin.html"
             });
-        });
+        }]);
 
 WobenAccount.constant("authEndPoint", "https://woben.azurewebsites.net");
