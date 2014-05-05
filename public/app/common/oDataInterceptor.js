@@ -4,8 +4,13 @@ WobenCommon.factory('oDataInterceptor', function ($q) {
         var oDataObject = {};
         
         for (prop in data) {
-            var propCamelCased = prop.charAt(0).toLowerCase() + prop.slice(1);
-            oDataObject[propCamelCased] = data[prop];
+            var propCamelCased = prop.charAt(0).toLowerCase() + prop.slice(1); 
+            
+            if (typeof data[prop] === "object") {
+                oDataObject[propCamelCased] = camelcaseObject(data[prop]);
+            } else {
+                oDataObject[propCamelCased] = data[prop];    
+            }
         }     
         
         return oDataObject;
