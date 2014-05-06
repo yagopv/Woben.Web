@@ -1,5 +1,6 @@
-WobenProducts.controller('PublicProductController',
-    ["$scope", "categoryService", "productService", function($scope, categoryService, productService) {
+WobenProducts.controller('PublicProductController', ["$scope", "categoryService", "productService", "utilsService",
+
+    function($scope, categoryService, productService, utilsService) {
 
     // Get categories
     categoryService.getAll().then(
@@ -10,13 +11,42 @@ WobenProducts.controller('PublicProductController',
            $scope.modelErrors = errorService.handleODataErrors(error);
         });
 
-    productService.getAll("$top=10&$orderby=UpdatedDate desc&$expand=Category").then(
+    productService.getAll("$top=6&$orderby=UpdatedDate desc&$expand=Category").then(
         function(data) {
             $scope.products = data;
+            $scope.pagedProducts = utilsService.groupToPages($scope.products, 3);
         },
         function(error) {
             $scope.modelErrors = errorService.handleODataErrors(error);
         });
+
+    $scope.loadMore = function() {
+        productService.getAll("$skip=" +
+                              $scope.products.length +
+                              ($scope.selectedCategoryId ? "&$filter=CategoryId eq " + $scope.selectedCategoryId : "") +
+                              "&$top=6&$orderby=UpdatedDate desc&$expand=Category").then(
+            function(data) {
+                angular.forEach(data, function(product, index) {
+                    $scope.products.push(product);
+                });
+                $scope.pagedProducts = utilsService.groupToPages($scope.products, 3);
+            },
+            function(error) {
+                $scope.modelErrors = errorService.handleODataErrors(error);
+            });
+    };
+
+    $scope.filterByCategory = function(categoryId) {
+        productService.getAll("&$top=6&$filter=CategoryId eq " + categoryId + "&$orderby=UpdatedDate desc&$expand=Category").then(
+            function(data) {
+                $scope.products = data;
+                $scope.pagedProducts = utilsService.groupToPages($scope.products, 3);
+                $scope.selectedCategoryId = categoryId;
+            },
+            function(error) {
+                $scope.modelErrors = errorService.handleODataErrors(error);
+            });
+    };
 
     // Typeahead
     var numbers = new Bloodhound({

@@ -18,15 +18,15 @@
 <section class="crew-3 pbs">
     <div class="container">
         <div class="title">
-            <a href="javascript:;" ng-repeat="category in categories">{{ category.name }}</a>
+            <a href="javascript:;" ng-class="{ active : category.categoryId == selectedCategoryId}" ng-repeat="category in categories" ng-click="filterByCategory(category.categoryId)">{{ category.name }}</a>
         </div>
     </div>
 </section>
 
 <section class="crew-2 pts">
     <div class="container">
-        <div class="members">
-            <div class="member-wrapper" ng-repeat="product in products">
+        <div class="members" ng-repeat="productGroup in pagedProducts">
+            <div class="member-wrapper" ng-repeat="product in productGroup">
                 <div class="member">
                     <div class="photo-wrapper">
                         <div class="photo" ng-style="{ 'background-image': 'url(' + product.imageUrl + ')'}">
@@ -57,4 +57,8 @@
         </div>
     </div>
     <!--/.container-->
+</section>
+
+<section class="content-12">
+    <a class="wide btn-wide" ng-click="loadMore()" href="#"><b>Carga más productos</b></a>
 </section>
