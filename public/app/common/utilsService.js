@@ -13,6 +13,16 @@ WobenCommon.factory('utilsService', function() {
             }
 
             return pagedItems;
+        },
+
+        addDummyProduct : function(products) {
+            var len = products.length;
+            if ((len % 3) == 2) {
+                products.push({
+                   categoryId : Number.MAX_VALUE,
+                   dummy : true
+                });
+            }
         }
     }
 });

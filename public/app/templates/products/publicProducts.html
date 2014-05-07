@@ -26,7 +26,7 @@
 <section class="crew-2 pts">
     <div class="container">
         <div class="members" ng-repeat="productGroup in pagedProducts">
-            <div class="member-wrapper" ng-repeat="product in productGroup">
+            <div class="member-wrapper" ng-repeat="product in productGroup" ng-style="{'visibility' : product.dummy ? 'collapse' : ''}">
                 <div class="member">
                     <div class="photo-wrapper">
                         <div class="photo" ng-style="{ 'background-image': 'url(' + product.imageUrl + ')'}">

@@ -14,6 +14,7 @@ WobenProducts.controller('PublicProductController', ["$scope", "categoryService"
     productService.getAll("$top=6&$orderby=UpdatedDate desc&$expand=Category").then(
         function(data) {
             $scope.products = data;
+            utilsService.addDummyProduct($scope.products, $scope.products.length);
             $scope.pagedProducts = utilsService.groupToPages($scope.products, 3);
         },
         function(error) {
@@ -29,6 +30,7 @@ WobenProducts.controller('PublicProductController', ["$scope", "categoryService"
                 angular.forEach(data, function(product, index) {
                     $scope.products.push(product);
                 });
+                utilsService.addDummyProduct($scope.products, $scope.products.length);
                 $scope.pagedProducts = utilsService.groupToPages($scope.products, 3);
             },
             function(error) {
@@ -40,6 +42,7 @@ WobenProducts.controller('PublicProductController', ["$scope", "categoryService"
         productService.getAll("&$top=6&$filter=CategoryId eq " + categoryId + "&$orderby=UpdatedDate desc&$expand=Category").then(
             function(data) {
                 $scope.products = data;
+                utilsService.addDummyProduct($scope.products, $scope.products.length);
                 $scope.pagedProducts = utilsService.groupToPages($scope.products, 3);
                 $scope.selectedCategoryId = categoryId;
             },
