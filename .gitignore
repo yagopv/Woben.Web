@@ -235,3 +235,8 @@ wp-content/uploads
 ## Node JS ##
 #############
 node_modules
+
+##########################
+## Visual Studio Monaco ##
+##########################
+web.config
