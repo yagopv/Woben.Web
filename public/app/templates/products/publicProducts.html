@@ -6,7 +6,7 @@
                     <input type="text" class="sfTypeahead" placeholder="Ej. seguro vida" spellcheck="false" options="searchOptions" datasets="searchData" ng-model="searchModel">
                 </div>
                 <div class="col-sm-4">
-                    <button class="btn btn-large btn-primary" type="submit">
+                    <button class="btn btn-large btn-primary" type="submit" ng-click="search()">
                         Comienza a buscar
                     </button>
                 </div>
@@ -14,6 +14,8 @@
         </div>
     </div>
 </section>
+
+<wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors"></wo-errors>
 
 <section class="crew-3 pbs">
     <div class="container">

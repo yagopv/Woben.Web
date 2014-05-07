@@ -1,6 +1,6 @@
-WobenProducts.controller('PublicProductController', ["$scope", "categoryService", "productService", "utilsService",
+WobenProducts.controller('PublicProductController', ["$scope", "categoryService", "productService", "utilsService", "errorService",
 
-    function($scope, categoryService, productService, utilsService) {
+    function($scope, categoryService, productService, utilsService, errorService) {
 
     // Get categories
     categoryService.getAll().then(
@@ -20,6 +20,21 @@ WobenProducts.controller('PublicProductController', ["$scope", "categoryService"
         function(error) {
             $scope.modelErrors = errorService.handleODataErrors(error);
         });
+
+    $scope.search = function() {
+        productService.getAll("$filter=substringof('" + $scope.searchModel + "', Name) or " +
+                              "substringof('" + $scope.searchModel + "', Description) or " +
+                              "substringof('" + $scope.searchModel + "', Markdown)" +
+                              "&$top=6&$orderby=UpdatedDate desc&$expand=Category").then(
+            function(data) {
+                $scope.products = data;
+                utilsService.addDummyProduct($scope.products, $scope.products.length);
+                $scope.pagedProducts = utilsService.groupToPages($scope.products, 3);
+            },
+            function(error) {
+                $scope.modelErrors = errorService.handleODataErrors(error);
+            });
+    };
 
     $scope.loadMore = function() {
         productService.getAll("$skip=" +
