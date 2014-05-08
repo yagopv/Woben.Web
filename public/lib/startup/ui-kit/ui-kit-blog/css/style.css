@@ -5,7 +5,7 @@
 /* styles from flat-ui-free2.0.0-fix.less files */
 body {
   color: #34495e;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.231;
 }
@@ -13,7 +13,7 @@ input,
 button,
 select,
 textarea {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
 }
 a {
@@ -516,7 +516,7 @@ h5,
 .h5,
 h6,
 .h6 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #2c3e50;
 }
 h1 {
@@ -544,7 +544,7 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .uneditable-input {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: normal;
   color: #7f8c8d;
@@ -580,7 +580,7 @@ header .brand {
   font-size: 25px;
   font-weight: normal;
   color: #34495e;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
   letter-spacing: -1px;
   color: #2c3e50;
@@ -733,7 +733,7 @@ section * {
 }
 .blog-1 .page-transitions .hero-unit p {
   font-size: 20px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
   line-height: normal;
 }
@@ -799,7 +799,7 @@ section * {
 }
 .blog-1 .title .submitted {
   font-size: 12px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.19em;
@@ -823,7 +823,7 @@ section * {
 .blog-1 .links,
 .blog-1 .links * {
   font-size: 12px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.19em;
@@ -964,7 +964,7 @@ section * {
   padding-bottom: 200px;
   position: relative;
   background-color: #ecf0f1;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #35495d;
 }
 @media (max-width: 768px) {
@@ -977,7 +977,7 @@ section * {
   margin: 0 0 20px;
   font-size: 35px;
   font-weight: 500;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   letter-spacing: -1px;
 }
 .blog-2 h3 img {
@@ -987,7 +987,7 @@ section * {
 .blog-2 h4 {
   margin: 0 0 24px;
   color: #34495e;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 30px;
   letter-spacing: -1px;
   font-weight: 300;
@@ -1075,7 +1075,7 @@ section * {
 }
 .blog-3 h6 {
   font-size: 20px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   margin: 0 0 25px;
   text-transform: none;
@@ -1131,7 +1131,7 @@ section * {
   margin-bottom: 35px;
   font-size: 37px;
   line-height: 50px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #2c3e50;
   letter-spacing: -1px;
   font-weight: 300;
@@ -1158,7 +1158,7 @@ section * {
 .blog-3 .links,
 .blog-3 .links * {
   font-size: 13px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -1173,7 +1173,7 @@ section * {
 .blog-3 .links a {
   color: #1abc9c;
   font-size: 20px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   text-transform: none;
   letter-spacing: normal;
@@ -1203,7 +1203,7 @@ section * {
 }
 .blog-4 h6 {
   font-size: 20px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   margin: 0 0 25px;
   text-transform: none;
@@ -1235,7 +1235,7 @@ section * {
   margin: 60px 0 55px 40px;
   font-size: 37px;
   line-height: 50px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #2c3e50;
   font-weight: 300;
   letter-spacing: -1px;
@@ -1255,7 +1255,7 @@ section * {
 .blog-4 .tags {
   margin-top: 70px;
   font-size: 12px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.19em;
@@ -1292,7 +1292,7 @@ section * {
 }
 .blog-4 .related-articles h6 {
   font-size: 19px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   margin: 0 0 30px;
 }
@@ -1406,7 +1406,7 @@ section * {
 }
 .blog-5 .page-transitions .hero-unit p {
   font-size: 20px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
   line-height: normal;
 }
@@ -1448,7 +1448,7 @@ section * {
 }
 .blog-5 .title .submitted {
   font-size: 12px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.19em;
@@ -1499,7 +1499,7 @@ section * {
   color: #2c3e50;
   background: #f5f6f6;
   font-size: 30px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-align: center;
   letter-spacing: -1px;
 }
@@ -1514,7 +1514,7 @@ section * {
   font-size: 18px;
   font-weight: 500;
   color: #2980b9;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   letter-spacing: 0;
 }
 @media (max-width: 767px) {
@@ -1615,7 +1615,7 @@ section * {
 }
 .blog-5 .tags {
   font-size: 12px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.19em;

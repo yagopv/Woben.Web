@@ -13,7 +13,7 @@
 }
 .demo-headline {
   color: #1abc9c;
-  font: 700 118px/1.1 "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font: 700 118px/1.1 "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   margin-bottom: 50px;
   padding: 40px 0;
   text-align: center;
@@ -109,14 +109,14 @@
   float: left;
   margin: -0.5em 20px 0;
   width: 240px;
-  font: 700 24.5px/40px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 700 24.5px/40px "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .demo-title h1,
 .demo-title h2,
 .demo-title h3,
 .demo-title h4 {
   margin-top: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .demo-title h1,
 .demo-title h2,

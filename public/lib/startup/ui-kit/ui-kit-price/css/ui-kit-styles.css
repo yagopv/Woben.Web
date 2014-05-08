@@ -5,7 +5,7 @@
 /* styles from flat-ui-free2.0.0-fix.less files */
 body {
   color: #34495e;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.231;
 }
@@ -13,7 +13,7 @@ input,
 button,
 select,
 textarea {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
 }
 a {
@@ -516,7 +516,7 @@ h5,
 .h5,
 h6,
 .h6 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #2c3e50;
 }
 h1 {
@@ -544,7 +544,7 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .uneditable-input {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: normal;
   color: #7f8c8d;
@@ -580,7 +580,7 @@ header .brand {
   font-size: 25px;
   font-weight: normal;
   color: #34495e;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
   letter-spacing: -1px;
   color: #2c3e50;
@@ -663,7 +663,7 @@ section * {
   padding: 0;
   margin: 0;
   overflow: visible;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 @media (max-width: 1200px) {
   .dockbar.navbar-fixed-top {
@@ -771,7 +771,7 @@ section * {
 .dockbar .main-menu dl dd a {
   font-size: 12px;
   font-weight: normal;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   padding-right: 22px;
   text-transform: uppercase;
@@ -791,7 +791,7 @@ section * {
 body {
   padding-top: 66px;
   position: relative;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 body.hovered {
   background-color: #ecf0f1;
@@ -978,7 +978,7 @@ body .colapsed-menu::-webkit-scrollbar {
   padding: 55px 0 55px;
   background: #34495e;
   color: #fff;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   font-size: 16px;
   letter-spacing: 2px;
@@ -1327,7 +1327,7 @@ body .colapsed-menu::-webkit-scrollbar {
   font-weight: 700;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: none;
 }
 .price-4 .description-detail [class*="fui-"] {
@@ -1379,7 +1379,7 @@ body .colapsed-menu::-webkit-scrollbar {
   padding: 32px 0 40px;
   background: #1abc9c;
   color: #fff;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 3px;
@@ -1534,7 +1534,7 @@ body .colapsed-menu::-webkit-scrollbar {
   margin: 40px 0 20px;
   color: #95a5a6;
   font-size: 12px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 18px;
 }
 .price-5 .terms a {

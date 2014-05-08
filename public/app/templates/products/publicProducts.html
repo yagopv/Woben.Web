@@ -3,7 +3,7 @@
         <div class="row">
             <form>
                 <div class="col-sm-8">
-                    <input type="text" class="sfTypeahead" placeholder="Ej. seguro vida" spellcheck="false" options="searchOptions" datasets="searchData" ng-model="searchModel">
+                    <input  type="text" wo-typeahead placeholder="Ej. seguro vida" spellcheck="false" options="searchOptions" datasets="searchData" ng-model="searchModel">
                 </div>
                 <div class="col-sm-4">
                     <button class="btn btn-large btn-primary" type="submit" ng-click="search()">
@@ -31,9 +31,7 @@
             <div class="member-wrapper" ng-repeat="product in productGroup" ng-style="{'visibility' : product.dummy ? 'collapse' : ''}">
                 <div class="member">
                     <div class="photo-wrapper">
-                        <div class="photo" ng-style="{ 'background-image': 'url(' + product.imageUrl + ')'}">
-                            <img ng-src="{{ product.imageUrl }}" alt="" style="display: none;">
-                        </div>
+                        <div class="photo" ng-style="{ 'background-image': 'url(' + product.imageUrl + ')'}"></div>
                         <div class="name">{{ product.name }}</div>
                         <div class="position">{{ product.category.name }}</div>
                     </div>
