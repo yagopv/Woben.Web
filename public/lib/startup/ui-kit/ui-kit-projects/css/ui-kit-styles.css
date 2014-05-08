@@ -5,7 +5,7 @@
 /* styles from flat-ui-free2.0.0-fix.less files */
 body {
   color: #34495e;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.231;
 }
@@ -13,16 +13,16 @@ input,
 button,
 select,
 textarea {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
 }
 a {
   color: #16a085;
   text-decoration: none;
-  -webkit-transition: 0.25s;
-  -moz-transition: 0.25s;
-  -o-transition: 0.25s;
-  transition: 0.25s;
+  -webkit-transition: color 0.25s, background 0.25s;
+  -moz-transition: color 0.25s, background 0.25s;
+  -o-transition: color 0.25s, background 0.25s;
+  transition: color 0.25s, background 0.25s;
 }
 a:hover {
   color: #1abc9c;
@@ -332,6 +332,10 @@ footer {
 .bordered.bg-concrete {
   border-color: #7f8c8d;
 }
+html,
+body {
+  height: 100%;
+}
 body {
   overflow-x: hidden;
   color: #7f8c8d;
@@ -351,10 +355,10 @@ li {
   -moz-border-radius: 6px;
   border-radius: 6px;
   line-height: 22px;
-  -webkit-transition: 0.25s;
-  -moz-transition: 0.25s;
-  -o-transition: 0.25s;
-  transition: 0.25s;
+  -webkit-transition: color 0.25s, background 0.25s;
+  -moz-transition: color 0.25s, background 0.25s;
+  -o-transition: color 0.25s, background 0.25s;
+  transition: color 0.25s, background 0.25s;
 }
 .btn.btn-large {
   font-size: 17px;
@@ -428,6 +432,8 @@ p {
   position: relative;
   z-index: 2;
   background: #fff;
+  overflow: hidden;
+  min-height: 100%;
 }
 .header-background {
   position: absolute;
@@ -436,37 +442,34 @@ p {
   right: 0;
   bottom: 0;
 }
-.page-wrapper,
-.header-antiflicker,
-body > header .header-background {
+.loaded .page-wrapper,
+.loaded .header-antiflicker,
+.loaded body > header .header-background {
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
   -o-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   -webkit-transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
   -moz-transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
   -o-transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
-  -ms-transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
   transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
 }
-.nav-visible .page-wrapper,
-.nav-visible .navbar.navbar-fixed-top,
-.nav-visible .header-antiflicker,
-.nav-visible body > header .header-background {
+.loaded.nav-visible .page-wrapper,
+.loaded.nav-visible .navbar.navbar-fixed-top,
+.loaded.nav-visible .header-antiflicker,
+.loaded.nav-visible body > header .header-background {
   -webkit-transform: translate3d(-230px, 0, 0);
   -moz-transform: translate3d(-230px, 0, 0);
-  -ms-transform: translate3d(-230px, 0, 0);
   -o-transform: translate3d(-230px, 0, 0);
   transform: translate3d(-230px, 0, 0);
 }
-.no-csstransitions .page-wrapper,
-.no-csstransitions .header-antiflicker {
+.loaded.no-csstransitions .page-wrapper,
+.loaded.no-csstransitions .header-antiflicker {
   left: 0;
 }
-.no-csstransitions.nav-visible .page-wrapper,
-.no-csstransitions.nav-visible .navbar.navbar-fixed-top,
-.no-csstransitions.nav-visible .header-antiflicker {
+.loaded.no-csstransitions.nav-visible .page-wrapper,
+.loaded.no-csstransitions.nav-visible .navbar.navbar-fixed-top,
+.loaded.no-csstransitions.nav-visible .header-antiflicker {
   left: -230px !important;
   right: auto;
 }
@@ -513,7 +516,7 @@ h5,
 .h5,
 h6,
 .h6 {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #2c3e50;
 }
 h1 {
@@ -541,7 +544,7 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .uneditable-input {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: normal;
   color: #7f8c8d;
@@ -553,6 +556,12 @@ button:focus,
 a:active,
 button:active {
   outline: none;
+}
+#bgVideo {
+  overflow: hidden;
+}
+#bgVideo > video {
+  position: absolute !important;
 }
 .delimiter {
   margin-top: 200px;
@@ -571,7 +580,7 @@ header .brand {
   font-size: 25px;
   font-weight: normal;
   color: #34495e;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
   letter-spacing: -1px;
   color: #2c3e50;
@@ -599,14 +608,6 @@ section * {
   filter: alpha(opacity=2000);
   opacity: 0.2;
   filter: alpha(opacity=20);
-}
-@media (max-width: 768px) {
-  .background {
-    -webkit-background-size: auto 200%;
-    -moz-background-size: auto 200%;
-    -o-background-size: auto 200%;
-    background-size: auto 200%;
-  }
 }
 .container {
   position: relative;
@@ -688,7 +689,7 @@ section * {
   padding: 0;
   margin: 0;
   overflow: visible;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 @media (max-width: 1200px) {
   .dockbar.navbar-fixed-top {
@@ -724,7 +725,11 @@ section * {
   }
   .dockbar .menu-btn span {
     content: '';
-    background-image: url("../../../common-files/icons/menu-icon.png");
+    background-image: url("../../../common-files/icons/menu-icon@2x.png");
+    -webkit-background-size: 17px 12px;
+    -moz-background-size: 17px 12px;
+    -o-background-size: 17px 12px;
+    background-size: 17px 12px;
     width: 17px;
     height: 12px;
   }
@@ -792,7 +797,7 @@ section * {
 .dockbar .main-menu dl dd a {
   font-size: 12px;
   font-weight: normal;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   padding-right: 22px;
   text-transform: uppercase;
@@ -812,7 +817,7 @@ section * {
 body {
   padding-top: 66px;
   position: relative;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 body.hovered {
   background-color: #ecf0f1;
@@ -834,7 +839,6 @@ body .colapsed-menu {
   top: 0;
   right: 0;
   bottom: 0;
-  height: 100%;
   padding: 25px 0;
   margin: 0;
   overflow: auto;
@@ -899,7 +903,7 @@ body .colapsed-menu::-webkit-scrollbar {
 .projects-1 .title a {
   color: #bdc3c7;
   font-size: 13px;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -955,7 +959,7 @@ body .colapsed-menu::-webkit-scrollbar {
 }
 .projects-1 .head-box .brand {
   margin-bottom: 17px;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   font-size: 23px;
   color: #34495e;
@@ -1165,7 +1169,7 @@ body .colapsed-menu::-webkit-scrollbar {
   }
 }
 .projects-2 .content {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   letter-spacing: 1px;
   font-size: 13px;
@@ -1176,7 +1180,7 @@ body .colapsed-menu::-webkit-scrollbar {
   display: block;
   margin: 18px 0 0;
   font-size: 13px;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   ffont-weight: 500;
 }
 @media (max-width: 480px) {
@@ -1252,13 +1256,13 @@ body .colapsed-menu::-webkit-scrollbar {
   }
 }
 .projects-2 .project-1 {
-  background-image: url('../../../common-files/img/Hawaii_001.png');
+  background-image: url('../../../common-files/img/Hawaii_001.jpg');
 }
 .projects-2 .project-1 .container h1 {
   font-size: 50px;
   font-weight: normal;
   color: #ffffff;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
   letter-spacing: 0px;
   margin-bottom: 12px;
@@ -1268,7 +1272,7 @@ body .colapsed-menu::-webkit-scrollbar {
   font-size: 30px;
   font-weight: normal;
   color: #ffffff;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   letter-spacing: 0px;
   padding-top: 0;
@@ -1284,7 +1288,7 @@ body .colapsed-menu::-webkit-scrollbar {
   }
 }
 .projects-2 .project-2 {
-  background-image: url('../../../common-files/img/Italy_001.png');
+  background-image: url('../../../common-files/img/Italy_001.jpg');
 }
 @media (max-width: 480px) {
   .projects-2 .project-2 .hero-unit h1 {
@@ -1292,7 +1296,7 @@ body .colapsed-menu::-webkit-scrollbar {
   }
 }
 .projects-2 .project-3 {
-  background-image: url('../../../common-files/img/NY_002.png');
+  background-image: url('../../../common-files/img/NY_002.jpg');
 }
 .projects-2 .project-3 [class*="fui-"] {
   font-size: 95px;
@@ -1464,6 +1468,7 @@ body .colapsed-menu::-webkit-scrollbar {
   overflow: hidden;
 }
 .projects-4 .projects .photo {
+  display: none;
   position: absolute;
   width: 100%;
   height: 100%;

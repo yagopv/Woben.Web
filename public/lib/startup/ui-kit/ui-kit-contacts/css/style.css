@@ -5,7 +5,7 @@
 /* styles from flat-ui-free2.0.0-fix.less files */
 body {
   color: #34495e;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.231;
 }
@@ -13,16 +13,16 @@ input,
 button,
 select,
 textarea {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
 }
 a {
   color: #16a085;
   text-decoration: none;
-  -webkit-transition: 0.25s;
-  -moz-transition: 0.25s;
-  -o-transition: 0.25s;
-  transition: 0.25s;
+  -webkit-transition: color 0.25s, background 0.25s;
+  -moz-transition: color 0.25s, background 0.25s;
+  -o-transition: color 0.25s, background 0.25s;
+  transition: color 0.25s, background 0.25s;
 }
 a:hover {
   color: #1abc9c;
@@ -332,6 +332,10 @@ footer {
 .bordered.bg-concrete {
   border-color: #7f8c8d;
 }
+html,
+body {
+  height: 100%;
+}
 body {
   overflow-x: hidden;
   color: #7f8c8d;
@@ -351,10 +355,10 @@ li {
   -moz-border-radius: 6px;
   border-radius: 6px;
   line-height: 22px;
-  -webkit-transition: 0.25s;
-  -moz-transition: 0.25s;
-  -o-transition: 0.25s;
-  transition: 0.25s;
+  -webkit-transition: color 0.25s, background 0.25s;
+  -moz-transition: color 0.25s, background 0.25s;
+  -o-transition: color 0.25s, background 0.25s;
+  transition: color 0.25s, background 0.25s;
 }
 .btn.btn-large {
   font-size: 17px;
@@ -428,6 +432,8 @@ p {
   position: relative;
   z-index: 2;
   background: #fff;
+  overflow: hidden;
+  min-height: 100%;
 }
 .header-background {
   position: absolute;
@@ -436,37 +442,34 @@ p {
   right: 0;
   bottom: 0;
 }
-.page-wrapper,
-.header-antiflicker,
-body > header .header-background {
+.loaded .page-wrapper,
+.loaded .header-antiflicker,
+.loaded body > header .header-background {
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
   -o-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   -webkit-transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
   -moz-transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
   -o-transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
-  -ms-transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
   transition: all 0.33s cubic-bezier(0.694, 0.0482, 0.335, 1);
 }
-.nav-visible .page-wrapper,
-.nav-visible .navbar.navbar-fixed-top,
-.nav-visible .header-antiflicker,
-.nav-visible body > header .header-background {
+.loaded.nav-visible .page-wrapper,
+.loaded.nav-visible .navbar.navbar-fixed-top,
+.loaded.nav-visible .header-antiflicker,
+.loaded.nav-visible body > header .header-background {
   -webkit-transform: translate3d(-230px, 0, 0);
   -moz-transform: translate3d(-230px, 0, 0);
-  -ms-transform: translate3d(-230px, 0, 0);
   -o-transform: translate3d(-230px, 0, 0);
   transform: translate3d(-230px, 0, 0);
 }
-.no-csstransitions .page-wrapper,
-.no-csstransitions .header-antiflicker {
+.loaded.no-csstransitions .page-wrapper,
+.loaded.no-csstransitions .header-antiflicker {
   left: 0;
 }
-.no-csstransitions.nav-visible .page-wrapper,
-.no-csstransitions.nav-visible .navbar.navbar-fixed-top,
-.no-csstransitions.nav-visible .header-antiflicker {
+.loaded.no-csstransitions.nav-visible .page-wrapper,
+.loaded.no-csstransitions.nav-visible .navbar.navbar-fixed-top,
+.loaded.no-csstransitions.nav-visible .header-antiflicker {
   left: -230px !important;
   right: auto;
 }
@@ -513,7 +516,7 @@ h5,
 .h5,
 h6,
 .h6 {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #2c3e50;
 }
 h1 {
@@ -541,7 +544,7 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .uneditable-input {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: normal;
   color: #7f8c8d;
@@ -553,6 +556,12 @@ button:focus,
 a:active,
 button:active {
   outline: none;
+}
+#bgVideo {
+  overflow: hidden;
+}
+#bgVideo > video {
+  position: absolute !important;
 }
 .delimiter {
   margin-top: 200px;
@@ -571,7 +580,7 @@ header .brand {
   font-size: 25px;
   font-weight: normal;
   color: #34495e;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
   letter-spacing: -1px;
   color: #2c3e50;
@@ -599,14 +608,6 @@ section * {
   filter: alpha(opacity=2000);
   opacity: 0.2;
   filter: alpha(opacity=20);
-}
-@media (max-width: 768px) {
-  .background {
-    -webkit-background-size: auto 200%;
-    -moz-background-size: auto 200%;
-    -o-background-size: auto 200%;
-    background-size: auto 200%;
-  }
 }
 .container {
   position: relative;
@@ -640,7 +641,7 @@ section * {
 .contacts-1 h6,
 .contacts-1 .h6 {
   margin: 0 0 12px;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   font-size: 18px;
   text-transform: none;
@@ -713,7 +714,7 @@ section * {
 }
 .contacts-1 .phone {
   font-size: 13px;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
   letter-spacing: 2px;
   line-height: 1.2;
@@ -768,7 +769,7 @@ section * {
 .contacts-2 h6,
 .contacts-2 .h6 {
   margin: 0 0 15px;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   font-size: 18px;
   text-transform: none;
@@ -890,7 +891,7 @@ section * {
 .contacts-3 h6,
 .contacts-3 .h6 {
   margin: 0 0 15px;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   font-size: 18px;
   text-transform: none;
@@ -991,7 +992,7 @@ section * {
  * Copntact 4 stylesheet  
  * */
 .contacts-4 {
-  background: #34495e url('../../../common-files/img/map.png') 50% 50% no-repeat;
+  background: #34495e url('../../../common-files/img/map.jpg') 50% 50% no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -1061,7 +1062,7 @@ section * {
 .contacts-4 .links {
   margin: 35px 0 0;
   font-size: 47px;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
   word-break: break-all;
 }
