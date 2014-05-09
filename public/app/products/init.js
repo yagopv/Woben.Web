@@ -67,7 +67,17 @@ WobenProducts.config(function($stateProvider) {
                                 $state.go('login');
                             }
                         );
-                    }
+                    },
+                    TypeaheadData: function($state, productService) {
+                        return productService.getAll("$select=Name,Description").then(
+                            function(data) {
+                                return data;
+                            },
+                            function(error) {
+                                $state.go('resolveFailure');
+                            }
+                        );
+                    }          
                 }
             });
         });
