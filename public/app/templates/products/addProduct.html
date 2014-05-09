@@ -35,25 +35,28 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row splitter" >
-                        <div class="col-md-8">
-                            <div class="form-group" ng-hide="previewHtml">
-                                <a href="javascript:;" class="btn btn-primary" ng-click="togglePreview()">Vista preliminar</a>
-                                <hr/>
-                                <textarea name="markdown" class="form-control" placeholder="Texto del producto" ng-model="product.markdown" rows="20"></textarea>
-                            </div>
-                            <div class="form-group" ng-show="previewHtml">
-                                <a href="javascript:;" class="btn btn-primary" ng-click="togglePreview()">Editar</a>
-                                <hr/>
-                                <div ng-bind-html="trustedHtml" ng-bind-html="trustedHtml"></div>                    
-                            </div>                                                                    
-                        </div>   
-                        <div class="col-md-4">
-                            <iframe id="preview-frame" src="/products/preview" width="100%" />
-                        </div> 
+                    <div>
+                        <a href="javascript:;" class="btn btn-primary" ng-click="togglePreview()">Vista preliminar</a>
+                        <button class="btn btn-huge btn-info pull-right" ng-disabled="!addProductForm.$valid || disabled">Añadir producto</button>
                     </div>
-                    <div class="form-group">
-                        <button class="btn btn-huge btn-info" ng-disabled="!addProductForm.$valid || disabled">Añadir producto</button>
+                    <hr/>
+                    <div class="editor">
+                        <div ui-layout="{ flow : 'column' }" >
+                            <div>
+                                <div class="form-group" ng-hide="previewHtml">
+                                    <textarea name="markdown" class="form-control" placeholder="Texto del producto" ng-model="product.markdown" rows="20"></textarea>
+                                </div>
+                                <div class="form-group" ng-show="previewHtml">
+                                    <div ng-bind-html="trustedHtml"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mask"></div>
+                                <div class="iframe-wrapper">
+                                    <iframe id="preview-frame" src="/products/preview" width="100%" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>

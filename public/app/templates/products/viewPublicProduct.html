@@ -1,30 +1,30 @@
-<section id="product-view" class="blog-1">
-    <div class="title">
-        <div class="container">
-            <h3 ng-bind="product.name"></h3>
-            <div class="submitted" ng-bind="product.createdDate | date"></div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3 links">
-                <div class="tags">
-                    <h6>TAGS</h6>
-                    <ul>
-                        <li><a href="#">design</a></li>
-                        <li><a href="#">web design</a></li>
-                        <li><a href="#">tutorials</a></li>
-                        <li><a href="#">thoughts</a></li>
-                    </ul>
+<section id="product-view" class="blog-1 pb0">
+    <div id="b1-pt-1" class="page-transitions pt-perspective">
+        <div class="pt-page pt-page-1 bg-midnight-blue">
+            <div class="container">
+                <div class="box-icon">
+                    <a class="pt-control-prev" href="#"></a>
+                    <span class="icon fui-mic"></span>
+                    <a class="pt-control-next" href="#"></a>
                 </div>
-                <div class="comments">
-                    <h6>Category</h6>
-                    <a href="#" ng-bind="product.category.Name"></a>
+                <div class="hero-unit">
+                    <h1 ng-bind="product.name"></h1>
+                    <p ng-bind="product.description"></p>
                 </div>
             </div>
-            <div class="col-sm-9">
-                <p ng-bind="product.description"></p>
-			</div>
+        </div>
+        <div class="pt-page pt-page-2 pt-page-current bg-midnight-blue">
+            <div class="container">
+                <div class="box-icon">
+                    <a class="pt-control-prev" href="#"></a>
+                    <span class="icon fui-mic"></span>
+                    <a class="pt-control-next" href="#"></a>
+                </div>
+                <div class="hero-unit">
+                    <h1 ng-bind="product.category.name"></h1>
+                    <p ng-bind="product.createdDate | date"></p>
+                </div>
+            </div>
         </div>
     </div>
 </section>

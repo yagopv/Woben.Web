@@ -6,7 +6,7 @@ WobenCommon.factory('oDataInterceptor', function ($q) {
         for (prop in data) {
             var propCamelCased = prop.charAt(0).toLowerCase() + prop.slice(1); 
             
-            if (typeof data[prop] === "object") {
+            if (data[prop] && typeof data[prop] === "object") {
                 oDataObject[propCamelCased] = camelcaseObject(data[prop]);
             } else {
                 oDataObject[propCamelCased] = data[prop];    

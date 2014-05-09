@@ -120,8 +120,7 @@ startupKit.uiKitHeader._inFixedMode = function(headerClass) {
     $('body').prepend(fixedNavbarHeaderClone);
     fixedNavbarHeader.detach();
 
-    //UPDATED !!!!!!!!!!!!!!!! added off()
-    $(headerClass + ' .navbar-toggle').off("click").on('click', function() {
+    $(headerClass + ' .navbar-toggle').on('click', function() {
         var $this = $(this);
         if($('html').hasClass('nav-visible')) {
             startupKit.hideCollapseMenu();
@@ -395,8 +394,7 @@ startupKit.uiKitHeader.header10 = function() {
     };
     startupKit.uiKitHeader._inFixedMode('.header-10');
 
-    //UPDATED!!!!!!!!!!! added live
-    $(document).off("click", ".header-10-sub .control-btn").on('click', ".header-10-sub .control-btn", function() {
+    $('.header-10-sub .control-btn').on('click', function() {
         $.scrollTo($(this).closest('section').next(), {
             axis : 'y',
             duration : 500
@@ -590,7 +588,7 @@ startupKit.uiKitHeader.header23 = function() {
     startupKit.uiKitHeader._inFixedMode('.header-23');
 
     $('body').prepend($('.mask, .popup-video').not('pre .mask, pre .popup-video'));
-    $('.header-23 .mask, .header-23 .popup-video').not('pre .mask, pre .popup-video').detach();
+    $('header-23 .mask, header-23 .popup-video').not('pre .mask, pre .popup-video').detach();
 
     var iframe = $('#pPlayer')[0];
     var player = $f(iframe);
@@ -1426,7 +1424,6 @@ startupKit.uiKitFooter.footer15 = function() {};
                 startupKit.uiKitHeader[header]();
             };
         }
-
 
         /* implementing contents */
         for (content in startupKit.uiKitContent) {

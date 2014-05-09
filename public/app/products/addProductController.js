@@ -58,7 +58,8 @@ WobenProducts.controller('AddProductController', ["$scope", "productService", "e
         var iframe = document.getElementById("preview-frame").contentWindow;
         if (prod && iframe.angular) {
             prod.html = marked(prod.markdown ? prod.markdown : "");
-            iframe.angular.element("#product-view").scope().updatePreviewData(prod);   
+            iframe.angular.element("#product-view").scope().updatePreviewData(prod);
         }                        
     }, true);
+
 }]);

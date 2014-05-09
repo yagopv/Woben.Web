@@ -1,4 +1,4 @@
-WobenProducts.controller('UpdateProductController', function($scope, productService, errorService, categoryService, ngDialog, $sce, $stateParams,$q, baseEndPoint) {
+WobenProducts.controller('UpdateProductController', function($scope, productService, errorService, categoryService, ngDialog, $sce, $stateParams,$q, baseEndPoint, $timeout) {
 
     $scope.updateProduct = function() {
         $scope.disabled = true;
@@ -47,4 +47,16 @@ WobenProducts.controller('UpdateProductController', function($scope, productServ
         $scope.trustedHtml = $sce.trustAsHtml(marked($scope.product.markdown ? $scope.product.markdown : ""));
         $scope.previewHtml = !$scope.previewHtml;
     }
+
+    $scope.$watch("product", function(prod) {
+        var iframe = document.getElementById("preview-frame").contentWindow;
+        if (prod && iframe.angular) {
+            prod.html = marked(prod.markdown ? prod.markdown : "");
+            iframe.angular.element("#product-view").scope().updatePreviewData(prod);
+        }
+    }, true);
+
+    $timeout(function() {
+        $scope.product.init = true;
+    }, 2500);
 });

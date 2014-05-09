@@ -1,7 +1,7 @@
-WobenProducts.controller("ViewPublicProductController", ["$scope", "$stateParams", "productService", "errorService", "$window", "$sce", 
+WobenProducts.controller("ViewPublicProductController", ["$scope", "$stateParams", "productService", "errorService", "$window", "$sce",
 	function($scope, $stateParams, productService, errorService, $window, $sce) {
 		if ($stateParams.urlCode != "preview") {
-			productService.getAll("$filter=UrlCodeReference eq '" + $stateParams.urlCode + "'").then(
+			productService.getAll("$expand=Category&$filter=UrlCodeReference eq '" + $stateParams.urlCode + "'").then(
 				function(data) {
 					$scope.product = data[0];
 					if ($scope.product.html) {
@@ -12,8 +12,10 @@ WobenProducts.controller("ViewPublicProductController", ["$scope", "$stateParams
 					$scope.modelErrors = errorService.handleoDataErrors(error);
 				}			
 			)										
-		}	
-		
+		}
+
+        startupKit.uiKitBlog.blog1();
+
 		$scope.updatePreviewData = function(product) {
 			if (product.html) {					
 				$scope.trustedHtml = $sce.trustAsHtml(product.html);
@@ -21,6 +23,6 @@ WobenProducts.controller("ViewPublicProductController", ["$scope", "$stateParams
 			$scope.$apply(function(){
             	$scope.product = product;
           	});
-		}	
+		}
 	}
 ]);

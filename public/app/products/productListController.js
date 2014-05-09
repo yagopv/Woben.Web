@@ -42,7 +42,7 @@ WobenProducts.controller("IndexController", function($scope, $filter, productSer
     $scope.reverse = true;
     $scope.filteredItems = [];
     $scope.groupedItems = [];
-    $scope.itemsPerPage = 5;
+    $scope.itemsPerPage = 10;
     $scope.pagedItems = [];
     $scope.currentPage = 0;    
     $scope.products = [];

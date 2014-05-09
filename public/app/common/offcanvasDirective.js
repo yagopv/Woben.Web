@@ -101,7 +101,7 @@ WobenCommon.directive('woOffcanvasMain', function($window) {
 
             $window.onresize = function(){
                 $scope.$apply();
-                reCalculatePadBottom();
+                //reCalculatePadBottom();
                 checkButtonsVisibility();
             }
 
@@ -127,7 +127,7 @@ WobenCommon.directive('woOffcanvasMain', function($window) {
                 }
             }
 
-            reCalculatePadBottom();
+            //reCalculatePadBottom();
             checkButtonsVisibility();
         },
         link: function($scope, element, attrs, offcanvas) {
