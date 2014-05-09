@@ -1,6 +1,6 @@
-WobenProducts.controller('PublicProductController', ["$scope", "categoryService", "productService", "utilsService", "errorService", "baseEndPoint", "TypeaheadData",
+WobenProducts.controller('PublicProductController', ["$scope", "categoryService", "productService", "utilsService", "errorService", "baseEndPoint", "TypeaheadData", "$state",
 
-    function($scope, categoryService, productService, utilsService, errorService, baseEndPoint, TypeaheadData) {
+    function($scope, categoryService, productService, utilsService, errorService, baseEndPoint, TypeaheadData, $state) {
 
         $scope.searchModel = null;
 
@@ -85,5 +85,9 @@ WobenProducts.controller('PublicProductController', ["$scope", "categoryService"
                 function(error) {
                     $scope.modelErrors = errorService.handleODataErrors(error);
                 });
+        };
+        
+        $scope.navigateToDetail = function(product) {
+            $state.go("viewPublicProduct", { urlCode : product.urlCodeReference });
         };
 }]);

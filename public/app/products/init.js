@@ -79,7 +79,24 @@ WobenProducts.config(function($stateProvider) {
                         );
                     }          
                 }
-            });
+            })
+            .state('viewPublicProduct', {
+                url: "/products/:urlCode",
+                controller:  "ViewPublicProductController",
+                templateUrl: "/app/templates/products/viewPublicProduct.html",
+                resolve: {
+                    User: function($state, $stateParams, $q, accountService) {
+                        return accountService.isUserInRole(["User", "Administrator"]).then(
+                            function(data) {
+                                return data;
+                            },
+                            function(error) {
+                                $state.go('login');
+                            }
+                        );
+                    }
+                }
+            });            
         });
 
 WobenProducts.value("baseEndPoint", "https://woben.azurewebsites.net");
