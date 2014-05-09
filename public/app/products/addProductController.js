@@ -1,5 +1,9 @@
-WobenProducts.controller('AddProductController', function($scope, productService, errorService, categoryService, ngDialog, $sce, baseEndPoint, $state) {
+WobenProducts.controller('AddProductController', ["$scope", "productService", "errorService", "categoryService", "ngDialog", "$sce", "baseEndPoint", "$state",
+    
+    function($scope, productService, errorService, categoryService, ngDialog, $sce, baseEndPoint, $state, $window) {
 
+    $scope.product = { };
+    
     $scope.addProduct = function() {
         $scope.disabled = true;
         $scope.product.html = marked($scope.product.markdown ? $scope.product.markdown : "");
@@ -49,4 +53,12 @@ WobenProducts.controller('AddProductController', function($scope, productService
         $scope.trustedHtml = $sce.trustAsHtml(marked($scope.product.markdown ? $scope.product.markdown : ""));
         $scope.previewHtml = !$scope.previewHtml;
     }
-});
+    
+    $scope.$watch("product", function(prod) {
+        var iframe = document.getElementById("preview-frame").contentWindow;
+        if (prod && iframe.angular) {
+            prod.html = marked(prod.markdown ? prod.markdown : "");
+            iframe.angular.element("#product-view").scope().updatePreviewData(prod);   
+        }                        
+    }, true);
+}]);

@@ -74,7 +74,7 @@ Woben.config(function ($httpProvider) {
     }).run(function(accountService) {
         accountService.initializeAuth();
 	    marked.setOptions({
-			sanitize: true,
+			sanitize: false,
 			breaks : true
 		});
 });

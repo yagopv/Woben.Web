@@ -96,7 +96,7 @@ WobenProducts.config(function($stateProvider) {
                         );
                     }
                 }
-            });            
+            });          
         });
 
 WobenProducts.value("baseEndPoint", "https://woben.azurewebsites.net");
