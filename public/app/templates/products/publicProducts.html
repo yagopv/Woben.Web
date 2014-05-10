@@ -17,7 +17,7 @@
 
 <wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors"></wo-errors>
 
-<section class="crew-3 pbs">
+<section class="crew-3 pb0">
     <div class="container">
         <div class="title">
             <a href="javascript:;" ng-class="{ active : category.categoryId == selectedCategoryId}" ng-repeat="category in categories" ng-click="filterByCategory(category.categoryId)">{{ category.name }}</a>
@@ -25,7 +25,7 @@
     </div>
 </section>
 
-<section class="crew-2 pts">
+<section class="crew-2 pt0">
     <div class="container">
         <div class="members" ng-repeat="productGroup in pagedProducts">
             <div class="member-wrapper" ng-click="navigateToDetail(product)" ng-repeat="product in productGroup" ng-style="{'visibility' : product.dummy ? 'collapse' : ''}">
