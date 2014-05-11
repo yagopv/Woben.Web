@@ -1,4 +1,4 @@
-WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseEndPoint) {
+WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseEndPoint, $window) {
 
     return {
         getAll : function(query) {
@@ -39,7 +39,7 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseE
                 url: url,
                 data : product
             }).success(function(data, status, headers, config) {
-                $cacheFactory.get("$http").remove(url);
+                $cacheFactory.get("$http").removeAll();
                 deferred.resolve(data);
             }).error(function(error) {
                 deferred.reject(error);
@@ -56,7 +56,7 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseE
                 url: url,
                 data : product
             }).success(function(data, status, headers, config) {
-                $cacheFactory.get("$http").remove(url);
+                $cacheFactory.get("$http").removeAll();
                 deferred.resolve(data);
             }).error(function(error) {
                 deferred.reject(error);
@@ -90,6 +90,28 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseE
                 deferred.reject(error);
             });
             return deferred.promise;
-        }        
+        },
+        updateRelatedTags : function(productId, tags) {
+            var deferred = $q.defer(),
+                self = this,
+                url =
+
+            $.ajax({
+                 url: baseEndPoint + '/odata/Product(' + productId + ')/UpdateRelatedTags',
+                 type: 'POST',
+                 data: JSON.stringify({"Tags" : tags }),
+                 headers: {
+                     "Authorization": "Bearer " + ($window.localStorage.token || $window.sessionStorage.token),
+                     "Content-Type" : "application/json"
+                 },
+                 dataType: 'json'
+            }).done(function(data) {
+                 deferred.resolve(data);
+            }).fail(function(error) {
+                 deferred.reject(error);
+            });
+
+            return deferred.promise;
+        }
     }
 });

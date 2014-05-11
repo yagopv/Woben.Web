@@ -119,4 +119,11 @@ WobenProducts.controller("IndexController", function($scope, $filter, productSer
 
     };
 
+    $scope.addProduct = function() {
+        ngDialog.open({
+            template: "/app/templates/products/addProduct.html",
+            controller : "AddProductController",
+            scope: $scope
+        });
+    }
 });

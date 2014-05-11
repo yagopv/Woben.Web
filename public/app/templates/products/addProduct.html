@@ -3,60 +3,14 @@
         <div class="col-sm-12">
             <div id="addProduct">
                 <wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors"></wo-errors>
-                <wo-file-upload ng-model="uploadedFiles" mode="multipart" max-files="2" upload-right-away="false" select-text="Selecciona o arrastra" update-text="Modifica la imagen" delete-text="Borrar la imagen"></wo-file-upload>
                 <form name="addProductForm" ng-submit="addProduct()" novalidate>
-                    <div ng-show="product.imageUrl">
-                        <img class="img-responsive img-thumbnail" ng-src="{{ product.imageUrl }}" />
-                    </div>
-                    <div class="form-group" ng-class="{'has-error': addProductForm.imageUrl.$invalid && addProductForm.imageUrl.$dirty}">
-                        <input name="imageUrl" type="hidden" class="form-control" ng-model="product.imageUrl" required />
-                        <span class="help-block" ng-show="addProductForm.imageUrl.$error.required && addProductForm.imageUrl.$dirty">Campo obligatorio</span>
-                    </div>                    
                     <div class="form-group" ng-class="{'has-error': addProductForm.name.$invalid && addProductForm.name.$dirty}">
-                        <label>Nombre del producto</label>
-                        <input name="name" type="text" class="form-control" placeholder="Nombre" ng-model="product.name" required />
-                        <span class="help-block" ng-show="addProductForm.name.$error.required && addProductForm.name.$dirty">Campo obligatorio</span>
-                    </div>
-                    <div class="form-group" ng-class="{'has-error': addProductForm.description.$invalid && addProductForm.description.$dirty}">
-                        <label>Descripción del producto</label>
-                        <textarea name="description" class="form-control" placeholder="Descripcion" ng-model="product.description" required rows="5"></textarea>
-                        <span class="help-block" ng-show="addProductForm.description.$error.required && addProductForm.description.$dirty">Campo obligatorio</span>
+                        <label>Escribe un nombre para tu nuevo producto</label>
+                        <input name="name" type="text" class="form-control" placeholder="Nombre" ng-model="name" required />
+                        <span class="help-block" ng-show="addCategoryForm.name.$error.required && addCategoryForm.name.$dirty">Campo obligatorio</span>
                     </div>
                     <div class="form-group">
-                        <wo-checkbox ng-model="product.isPublished" label="¿Es el producto público?" value="false"></wo-checkbox>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-xs-9">
-                                <wo-select ng-model="product.categoryId" title="Selecciona una categoría" options="categories" value="categoryId" description="name"></wo-select>
-                            </div>
-                            <div class="col-xs-3">
-                                <a class="btn btn-primary btn-block" ng-click="addCategoryDialog()"><span class="fui-plus"></span><span class="hidden-sm">   Nueva Categoría</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <a href="javascript:;" class="btn btn-primary" ng-click="togglePreview()">Vista preliminar</a>
-                        <button class="btn btn-huge btn-info pull-right" ng-disabled="!addProductForm.$valid || disabled">Añadir producto</button>
-                    </div>
-                    <hr/>
-                    <div class="editor">
-                        <div ui-layout="{ flow : 'column' }" >
-                            <div>
-                                <div class="form-group" ng-hide="previewHtml">
-                                    <textarea name="markdown" class="form-control" placeholder="Texto del producto" ng-model="product.markdown" rows="20"></textarea>
-                                </div>
-                                <div class="form-group" ng-show="previewHtml">
-                                    <div ng-bind-html="trustedHtml"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="mask"></div>
-                                <div class="iframe-wrapper">
-                                    <iframe id="preview-frame" src="/products/preview" width="100%" />
-                                </div>
-                            </div>
-                        </div>
+                        <button class="btn btn-huge btn-info pull-right" ng-disabled="!addProductForm.$valid || disabled">Crear Producto</button>
                     </div>
                 </form>
             </div>

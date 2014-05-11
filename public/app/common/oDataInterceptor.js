@@ -1,10 +1,10 @@
 WobenCommon.factory('oDataInterceptor', function ($q) {
     
-    var camelcaseObject = function(data) {
+    var camelcaseObject = function(data, toUpper) {
         var oDataObject = {};
         
         for (prop in data) {
-            var propCamelCased = prop.charAt(0).toLowerCase() + prop.slice(1); 
+            var propCamelCased = toUpper ?  prop.charAt(0).toUpperCase() + prop.slice(1) : prop.charAt(0).toLowerCase() + prop.slice(1);
             
             if (data[prop] && typeof data[prop] === "object") {
                 oDataObject[propCamelCased] = camelcaseObject(data[prop]);
@@ -14,7 +14,7 @@ WobenCommon.factory('oDataInterceptor', function ($q) {
         }     
         
         return oDataObject;
-    }
+    };
     
     var examineODataResponse = function(data) {
         
@@ -31,7 +31,7 @@ WobenCommon.factory('oDataInterceptor', function ($q) {
         }
 
         return response;
-    }
+    };
 
     return {
         response: function (response) {
@@ -41,7 +41,7 @@ WobenCommon.factory('oDataInterceptor', function ($q) {
                 var oDataObject = null;
                 
                 if (response.data["odata.metadata"]) {
-                    var oDataObject = examineODataResponse(response.data); 
+                    var oDataObject = examineODataResponse(response.data);
                 }
 
                 if(oDataObject) {

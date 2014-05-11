@@ -19,23 +19,6 @@ WobenProducts.config(function($stateProvider) {
                     }
                 }
             })
-            .state('addProduct', {
-                url: "/dashboard/product/new",
-                controller:  "AddProductController",
-                templateUrl: "/app/templates/products/addProduct.html",
-                resolve: {
-                    User: function($state, $stateParams, $q, accountService) {
-                        return accountService.isUserInRole(["Administrator"]).then(
-                            function(data) {
-                                return data;
-                            },
-                            function(error) {
-                                $state.go('signin');
-                            }
-                        );
-                    }
-                }
-            })
             .state('updateProduct', {
                 url: "/dashboard/product/update/:productId",
                 controller:  "UpdateProductController",
