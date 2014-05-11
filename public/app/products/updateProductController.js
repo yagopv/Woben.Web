@@ -5,7 +5,6 @@ WobenProducts.controller('UpdateProductController', function($scope, productServ
     $scope.updateProduct = function() {
         $scope.disabled = true;
         $scope.product.html = marked($scope.product.markdown ? $scope.product.markdown : "");
-        updateTagCollection();
         productService.update($scope.product).then(
             function(data) {
                 $scope.disabled = false;
@@ -21,6 +20,13 @@ WobenProducts.controller('UpdateProductController', function($scope, productServ
             function(data) {
                 $scope.product = data[0][0];
                 $scope.categories = data[1];
+                var tags = [];
+                if (angular.isArray($scope.product.tags)) {
+                    angular.forEach($scope.product.tags, function (tagObject, index) {
+                        tags.push(tagObject.name);
+                    });
+                    $scope.tags = tags.toString();
+                }
             },
             function(error) {
                 $scope.modelErrors = errorService.handleODataErrors(error);
@@ -66,52 +72,21 @@ WobenProducts.controller('UpdateProductController', function($scope, productServ
     $(".tagsinput").tagsInput({
         'onChange' : function(theTag) {
             $("input[name=tagsinput]").trigger("input");
-        }
-    });
-
-    function updateTagCollection() {
-
-        if ($scope.tags == "") {
-            $scope.product.tags = [];
-            return;
-        }
-
-        var newTagList = $scope.tags.split(",");
-
-        if (!angular.isArray($scope.product.tags)) {
-            $scope.product.tags = [];
-        }
-
-        // Add tags
-        angular.forEach(newTagList, function(tagString, index) {
-            var alreadyExist = false;
-            angular.forEach($scope.product.tags, function(tagObject, index) {
-                if (tagObject.name == tagString) {
-                    alreadyExist = true;
-                }
+        },
+        'onAddTag' : function(tag) {
+            $scope.product.tags.push({
+                tagId : 0,
+                name : tag
             });
-
-            if (!alreadyExist) {
-                $scope.product.tags.push({
-                   name : tagString,
-                   productId : $scope.product.productId
+        },
+        'onRemoveTag' : function(tag) {
+            if (angular.isArray($scope.product.tags)) {
+                angular.forEach($scope.product.tags, function (tagObject, index) {
+                    if(tagObject.name == tag) {
+                        tagObject.tagId = -1;
+                    }
                 });
             }
-        });
-
-        //Delete tags
-        angular.forEach($scope.product.tags, function(tagObject, index) {
-            var alreadyExist = false;
-
-            angular.forEach(newTagList, function(tagString, index) {
-                if (tagString == tagObject.name) {
-                    alreadyExist = true;
-                }
-            });
-
-            if (!alreadyExist) {
-                tagObject.tagId = -1;
-            }
-        });
-    }
+        }
+    });
 });
