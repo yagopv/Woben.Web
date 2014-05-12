@@ -16,7 +16,7 @@ WobenProducts.controller('UpdateProductController', function($scope, productServ
     };
 
     $q.all([ productService.getAll("$filter=ProductId eq " + $stateParams.productId + "&$expand=Tags"), categoryService.getAll()])
-        .then(
+        .then( 
             function(data) {
                 $scope.product = data[0][0];
                 $scope.categories = data[1];
