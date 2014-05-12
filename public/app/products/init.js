@@ -82,4 +82,4 @@ WobenProducts.config(function($stateProvider) {
             });          
         });
 
-WobenProducts.value("baseEndPoint", "http://localhost:22657");
+WobenProducts.value("baseEndPoint", "https://woben.azurewebsites.net");

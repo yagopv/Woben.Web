@@ -1,7 +1,8 @@
 WobenProducts.controller('UpdateProductController', function($scope, productService, errorService, categoryService, ngDialog, $sce, $stateParams,$q, baseEndPoint, $timeout) {
 
     $scope.tags = "";
-
+    $scope.tagMaxIndex = "";
+    
     $scope.updateProduct = function() {
         $scope.disabled = true;
         $scope.product.html = marked($scope.product.markdown ? $scope.product.markdown : "");
@@ -9,6 +10,18 @@ WobenProducts.controller('UpdateProductController', function($scope, productServ
             function(data) {
                 $scope.disabled = false;
                 $scope.product = data;
+                var tags = [];
+                if (angular.isObject($scope.product.tags)) {
+                    angular.forEach($scope.product.tags, function(value, key) {
+                        tags.push($scope.product.tags[key].name);
+                    });
+                    $scope.tagMaxIndex = Object.keys($scope.product.tags)[Object.keys($scope.product.tags).length - 1];
+                    $scope.tags = tags.toString();
+                    $(".tagsinput").importTags($scope.tags);
+                } else {
+                    $scope.tagMaxIndex = "0";
+                    $scope.product.tags = {};
+                }                                
             },
             function(error) {
                 $scope.modelErrors = errorService.handleODataErrors(error);
@@ -22,13 +35,16 @@ WobenProducts.controller('UpdateProductController', function($scope, productServ
                 $scope.product = data[0][0];
                 $scope.categories = data[1];
                 var tags = [];
-                if (angular.isArray($scope.product.tags)) {
-                    angular.forEach($scope.product.tags, function (tagObject, index) {
-                        tags.push(tagObject.name);
+                if (angular.isObject($scope.product.tags)) {
+                    angular.forEach($scope.product.tags, function(value, key) {
+                        tags.push($scope.product.tags[key].name);
                     });
+                    $scope.tagMaxIndex = Object.keys($scope.product.tags)[Object.keys($scope.product.tags).length - 1];
                     $scope.tags = tags.toString();
+                    _bindTagsInput();
                 } else {
-                    $scope.product.tags = [];
+                    $scope.tagMaxIndex = "0";
+                    $scope.product.tags = {};
                 }
             },
             function(error) {
@@ -72,29 +88,34 @@ WobenProducts.controller('UpdateProductController', function($scope, productServ
         $scope.product.init = true;
     }, 2500);
 
-    $(".tagsinput").tagsInput({
-        'onChange' : function(theTag) {
-            $("input[name=tagsinput]").trigger("input");
-        },
-        'onAddTag' : function(tag) {
-            $scope.product.tags.push({
-                tagId : 0,
-                name : tag,
-                productId : $scope.product.productId
-            });
-        },
-        'onRemoveTag' : function(tag) {
-            if (angular.isArray($scope.product.tags)) {
-                angular.forEach($scope.product.tags, function (tagObject, index) {
-                    if(tagObject.name == tag) {
-                        if (tagObject.tagId > 0) {
-                            tagObject.tagId = -1;                            
-                        } else {
-                            $scope.product.tags.splice(index, 1);
-                        }                        
-                    }
-                });
+    function _bindTagsInput() {
+        $(".tagsinput").tagsInput({
+            'onChange' : function(theTag) {
+                $("input[name=tagsinput]").trigger("input");
+            },
+            'onAddTag' : function(tag) {
+                var index = (parseInt($scope.tagMaxIndex) + 1).toString();
+                $scope.product.tags[index] = {                     
+                    tagId : 0,
+                    name : tag,
+                    productId : $scope.product.productId
+                };
+                $scope.tagMaxIndex = index;
+            },
+            'onRemoveTag' : function(tag) {
+                if (angular.isObject($scope.product.tags)) {                     
+                    angular.forEach($scope.product.tags, function (value, index) {
+                        if(value.name == tag) {
+                            if (value.tagId > 0) {
+                                value.tagId = -1;                            
+                            } else {
+                                delete $scope.product.tags[index];                                
+                            }
+                        }
+                    });
+                }
             }
-        }
-    });
+        });
+        $(".tagsinput").importTags($scope.tags);        
+    }
 });
