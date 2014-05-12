@@ -8,6 +8,7 @@ WobenProducts.controller('UpdateProductController', function($scope, productServ
         productService.update($scope.product).then(
             function(data) {
                 $scope.disabled = false;
+                $scope.product = data;
             },
             function(error) {
                 $scope.modelErrors = errorService.handleODataErrors(error);
@@ -26,6 +27,8 @@ WobenProducts.controller('UpdateProductController', function($scope, productServ
                         tags.push(tagObject.name);
                     });
                     $scope.tags = tags.toString();
+                } else {
+                    $scope.product.tags = [];
                 }
             },
             function(error) {
@@ -76,14 +79,19 @@ WobenProducts.controller('UpdateProductController', function($scope, productServ
         'onAddTag' : function(tag) {
             $scope.product.tags.push({
                 tagId : 0,
-                name : tag
+                name : tag,
+                productId : $scope.product.productId
             });
         },
         'onRemoveTag' : function(tag) {
             if (angular.isArray($scope.product.tags)) {
                 angular.forEach($scope.product.tags, function (tagObject, index) {
                     if(tagObject.name == tag) {
-                        tagObject.tagId = -1;
+                        if (tagObject.tagId > 0) {
+                            tagObject.tagId = -1;                            
+                        } else {
+                            $scope.product.tags.splice(index, 1);
+                        }                        
                     }
                 });
             }
