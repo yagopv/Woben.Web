@@ -1288,14 +1288,20 @@ startupKit.uiKitBlog.blog1 = function() {
     });
 
     var pt1 = PageTransitions();
-    pt1.init($('#b1-pt-1'));
 
-    $('#b1-pt-1 .pt-control-prev').on('click', function() {
+    // Updated!!!!!! wait for render control
+    setTimeout(function() {
+        pt1.init($('#b1-pt-1'));
+    }, 500);
+
+    // Updated !!!!!!!!!! Added live events
+    $(document).off('click', '#b1-pt-1 .pt-control-prev').on('click', '#b1-pt-1 .pt-control-prev', function() {
         pt1.gotoPage(28, 'prev');
         return false;
     });
 
-    $('#b1-pt-1 .pt-control-next').on('click', function() {
+    // Updated !!!!!!!!!! Added live events
+    $(document).off('click', '#b1-pt-1 .pt-control-next').on('click', '#b1-pt-1 .pt-control-next', function() {
         pt1.gotoPage(29, 'next');
         return false;
     });

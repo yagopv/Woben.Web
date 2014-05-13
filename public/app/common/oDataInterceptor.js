@@ -1,22 +1,26 @@
 WobenCommon.factory('oDataInterceptor', function ($q) {
     
-    var camelcaseObject = function(data, toUpper) {
+    var camelcaseObject = function(data) {
         var oDataObject = {};
         
         for (prop in data) {
-            var propCamelCased = toUpper ?  prop.charAt(0).toUpperCase() + prop.slice(1) : prop.charAt(0).toLowerCase() + prop.slice(1);
+            var propCamelCased = prop.charAt(0).toLowerCase() + prop.slice(1);
             if (angular.isArray(data[prop])) {
                 oDataObject[propCamelCased] =  [];
                 angular.forEach(data[prop], function(item, index) {
                     var relatedoDataObject = { };
                     for (subprop in item) {
-                        var subpropCamelCased = toUpper ?  subprop.charAt(0).toUpperCase() + subprop.slice(1) : subprop.charAt(0).toLowerCase() + subprop.slice(1);
+                        var subpropCamelCased = subprop.charAt(0).toLowerCase() + subprop.slice(1);
                         relatedoDataObject[subpropCamelCased] = item[subprop];
                     }
                     oDataObject[propCamelCased].push(relatedoDataObject);
                 });
             } else {
-                oDataObject[propCamelCased] = data[prop];
+                if (angular.isObject(data[prop])) {
+                    oDataObject[propCamelCased] = camelcaseObject(data[prop]);
+                } else {
+                    oDataObject[propCamelCased] = data[prop];
+                }
             }
         }     
         

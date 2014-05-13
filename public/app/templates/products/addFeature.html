@@ -1,0 +1,23 @@
+<section class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="addFeature">
+                <form name="addFeatureForm" ng-submit="addFeature()" novalidate>
+                    <div class="form-group" ng-class="{'has-error': addFeatureForm.name.$invalid && addFeatureForm.name.$dirty}">
+                        <label>Nombre</label>
+                        <input name="name" type="text" class="form-control" placeholder="Nombre" ng-model="feature.name" required />
+                        <span class="help-block" ng-show="addFeatureForm.name.$error.required && addFeatureForm.name.$dirty">Campo obligatorio</span>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error': addFeatureForm.description.$invalid && addFeatureForm.description.$dirty}">
+                        <label>Descripción</label>
+                        <textarea name="description" class="form-control" placeholder="Descripcion" ng-model="feature.description" required></textarea>
+                        <span class="help-block" ng-show="addFeatureForm.description.$error.required && addFeatureForm.description.$dirty">Campo obligatorio</span>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-huge btn-info pull-right" ng-disabled="!addFeatureForm.$valid || disabled">Añadir Ventaja</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

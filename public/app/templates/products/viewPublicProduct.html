@@ -1,6 +1,6 @@
-<section id="product-view" class="blog-1 pb0">
-    <div id="b1-pt-1" class="page-transitions pt-perspective">
-        <div class="pt-page pt-page-1 bg-midnight-blue">
+<section class="blog-1" id="product-view">
+    <div id="b1-pt-1" class="page-transitions pt-perspective" ng-show="product.features.length > 0">
+        <div class="pt-page  pt-page-current bg-midnight-blue {{ 'pt-page-' + ($index + 1) }}"  ng-repeat="feature in product.features">
             <div class="container">
                 <div class="box-icon">
                     <a class="pt-control-prev" href="#"></a>
@@ -8,27 +8,35 @@
                     <a class="pt-control-next" href="#"></a>
                 </div>
                 <div class="hero-unit">
-                    <h1 ng-bind="product.name"></h1>
-                    <p ng-bind="product.description"></p>
-                </div>
-            </div>
-        </div>
-        <div class="pt-page pt-page-2 pt-page-current bg-midnight-blue">
-            <div class="container">
-                <div class="box-icon">
-                    <a class="pt-control-prev" href="#"></a>
-                    <span class="icon fui-mic"></span>
-                    <a class="pt-control-next" href="#"></a>
-                </div>
-                <div class="hero-unit">
-                    <h1 ng-bind="product.category.name"></h1>
-                    <p ng-bind="product.createdDate | date"></p>
+                    <h1 ng-bind="feature.name"></h1>
+                    <p ng-bind="feature.description"></p>
                 </div>
             </div>
         </div>
     </div>
-</section>
+    <div class="title">
+        <div class="container">
+            <h3 ng-bind="product.name"></h3>
+            <div class="submitted" ng-bind="product.description"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 links">
+                <div class="tags">
+                    <h6>Etiquetas</h6>
+                    <ul>
+                        <li ng-repeat="tag in product.tags"><a href="#" ng-bind="tag.name"></a></li>
+                    </ul>
+                </div>
+                <div class="comments">
+                    <h6>Categoria</h6>
+                    <a href="javascript:;" ng-bind="product.category.name"></a>
+                </div>
+            </div>
+            <div class="col-sm-9" ng-bind-html="trustedHtml">
 
-<section id="content" ng-bind-html="trustedHtml">
-
+            </div>
+        </div>
+    </div>
 </section>

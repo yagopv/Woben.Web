@@ -22,6 +22,14 @@ WobenCommon.directive('woCheckbox', function() {
                 scope.$apply();
                 return false;
             });
+
+            attrs.$observe('value', function(newValue) {
+                if (newValue == "true") {
+                    $checkbox.checkbox("check");
+                } else {
+                    $checkbox.checkbox("uncheck");
+                }
+            });
         },
         restrict: 'E',
         replace : true,
@@ -29,6 +37,9 @@ WobenCommon.directive('woCheckbox', function() {
             label: '@',
             value : '@',
             ngModel : "="
+        },
+        controller : function() {
+
         },
         templateUrl: '/app/templates/common/checkboxDirective.html'
     };

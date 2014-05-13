@@ -10,7 +10,8 @@
                     </div>
                     <div class="form-group" ng-class="{'has-error': updateProductForm.imageUrl.$invalid && updateProductForm.imageUrl.$dirty}">
                         <input name="imageUrl" type="hidden" class="form-control" placeholder="Imagen" ng-model="product.imageUrl" />
-                    </div>                    
+                    </div>
+                    <hr />
                     <div class="form-group" ng-class="{'has-error': updateProductForm.name.$invalid && updateProductForm.name.$dirty}">
                         <label>Nombre del producto</label>
                         <input name="name" type="text" class="form-control" placeholder="Nombre" ng-model="product.name" required/>
@@ -21,8 +22,9 @@
                         <textarea name="description" class="form-control" placeholder="Descripcion" ng-model="product.description"  rows="5"></textarea>
                     </div>
                     <div class="form-group">
-                        <wo-checkbox ng-model="product.isPublished" label="¿Es el producto público?" value="false"></wo-checkbox>
+                        <wo-checkbox ng-model="product.isPublished" label="¿Es el producto público?" value="{{ product.isPublished }}"></wo-checkbox>
                     </div>
+                    <hr />
                     <div class="form-group">
                         <div class="row">
                             <div class="col-xs-9">
@@ -33,14 +35,41 @@
                             </div>
                         </div>
                     </div>
+                    <hr />
                     <div class="form-group">
                         <input name="tagsinput" class="tagsinput tagsinput-primary" ng-model="tags" />
                     </div>
+                    <hr />
+                    <div>
+                        <a href="javascript:;" class="btn btn-primary btn-wide" ng-click="addFeature()"><span class="fui-new"></span>   Añade una nueva ventaja del producto</a>
+                        <div class="table-responsive mtl" ng-show="product.features.length > 0">
+                            <table class="table table-striped table-hover">
+                                <tbody>
+                                <tr>
+                                    <th class="name">Nombre</a></th>
+                                    <th class="description">Descripcion</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                <tr ng-repeat="feature in product.features | orderBy:name" ng-if="feature.featureId != -1">
+                                    <td>{{ feature.name }}</td>
+                                    <td>{{ feature.description }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="javascript:;" ng-click="deleteFeature(feature)" class="btn btn-danger btn-xs"><span class="fui-cross"></span></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <hr />
                     <div>
                         <a href="javascript:;" class="btn btn-primary" ng-click="togglePreview()">Vista preliminar</a>
+                        <a ng-href="{{ '/products/' + product.urlCodeReference }}" target="_blank" class="btn btn-primary">Ir a la página del producto</a>
                         <button class="btn btn-huge btn-info pull-right" ng-disabled="!updateProductForm.$valid || disabled">Actualizar</button>
                     </div>
-                    <hr/>
+                    <hr />
                     <div class="editor">
                         <div ui-layout="{ flow : 'column' }" >
                             <div>
