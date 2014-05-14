@@ -1,5 +1,8 @@
-WobenProducts.controller("ViewPublicProductController", ["$scope", "$stateParams", "productService", "errorService", "$window", "$sce",
-	function($scope, $stateParams, productService, errorService, $window, $sce) {
+WobenProducts.controller("ViewPublicProductController", ["$scope", "$stateParams", "productService", "errorService", "$window", "$sce", "accountService",
+	function($scope, $stateParams, productService, errorService, $window, $sce, accountService) {
+
+        $scope.User = accountService.User;
+
 		if ($stateParams.urlCode != "preview") {
 			productService.getAll("$expand=Category,Tags,Features&$filter=UrlCodeReference eq '" + $stateParams.urlCode + "'").then(
 				function(data) {

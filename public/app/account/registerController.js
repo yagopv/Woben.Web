@@ -7,6 +7,9 @@ function($scope, accountService, errorService) {
         accountService.register({
             userName : $scope.userName,
             email    : $scope.email,
+            name    : $scope.name,
+            firstName    : $scope.firstName,
+            lastName    : $scope.lastName,
             password : $scope.password,
             confirmPassword : $scope.confirmPassword
         }).then(

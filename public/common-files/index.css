@@ -72,11 +72,23 @@ span.icons {
 .twitter-typeahead .tt-dropdown-menu {
     top : 190px !important;
     z-index : 9999999999 !important;
-    background: #000;
+    background: #FFF;
+}
+
+.twitter-typeahead .tt-dropdown-menu span {
+    cursor : pointer;
 }
 
 @media all and (min-width : 768px) {
     .twitter-typeahead .tt-dropdown-menu {
         top : 100px !important;
     }
+}
+
+.alert-error {
+    background-color: #f8f5f5;
+    border-color: #ebe9ea;
+}
+.alert-error a {
+    color: #e74c3c;
 }

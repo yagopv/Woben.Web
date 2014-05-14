@@ -3,11 +3,9 @@ WobenAccount.factory('accountService', ['$http','$q','$window','$rootScope', 'ba
     function($http, $q, $window, $rootScope, baseEndPoint) {
 
     var User = function(userData) {
-        this.userName = userData.userName;
-        this.token = userData.access_token;
-        this.roles = userData.roles;
+        angular.copy(userData, this);
         this.emailConfirmed = userData.emailConfirmed || userData.isEmailConfirmed;
-        this.isAuthenticated = userData.isAuthenticated || true;
+        this.isAuthenticated = userData.isAuthenticated || true
     }
 
     var setUserObject = function(userData, token, persistent) {

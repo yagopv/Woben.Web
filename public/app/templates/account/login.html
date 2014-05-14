@@ -11,8 +11,8 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="signup-form">
-                        <wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors"></wo-errors>
                         <form name="loginForm" class="form-horizontal" ng-submit="login()" novalidate>
+                            <wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors" class="alert-danger"></wo-errors>
                             <div class="form-group" ng-class="{'has-error': loginForm.userName.$invalid && loginForm.userName.$dirty}">
                                 <label>Usuario</label>
                                 <input name="userName" type="text" class="form-control" placeholder="Usuario" ng-model="userName" required />
