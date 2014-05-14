@@ -35,6 +35,9 @@
                                 <li ui-sref-active="active">
                                     <a href="javascript:;" ui-sref="publicProducts">Productos</a>
                                 </li>
+                                <li ui-sref-active="active">
+                                    <a href="javascript:;" ui-sref="contact">Contacto</a>
+                                </li>                                
                                 <li ui-sref-active="active" ng-show="!User.isAuthenticated">
                                     <a href="javascript:;" ui-sref="login">Inicia sesión</a>
                                 </li>
@@ -172,6 +175,10 @@
     <script type="text/javascript" src="/app/products/publicProductController.js"></script>
     <script type="text/javascript" src="/app/products/viewPublicProductController.js"></script>
 
+    <!-- Contact module -->
+    <script type="text/javascript" src="/app/contact/init.js"></script>
+    <script type="text/javascript" src="/app/contact/contactController.js"></script>
+        
     <!-- Index Page -->
     <script type="text/javascript" src="/app/index.js"></script>
     <script type="text/javascript" src="/app/home/headerController.js"></script>

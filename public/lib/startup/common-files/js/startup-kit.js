@@ -120,7 +120,8 @@ startupKit.uiKitHeader._inFixedMode = function(headerClass) {
     $('body').prepend(fixedNavbarHeaderClone);
     fixedNavbarHeader.detach();
 
-    $(headerClass + ' .navbar-toggle').on('click', function() {
+    // Updated!!! Added live click
+    $(document).off('click', headerClass + ' .navbar-toggle').on('click', headerClass + ' .navbar-toggle', function() {
         var $this = $(this);
         if($('html').hasClass('nav-visible')) {
             startupKit.hideCollapseMenu();
