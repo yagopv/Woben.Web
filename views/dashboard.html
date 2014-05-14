@@ -85,7 +85,24 @@
                                         Nuevo
                                     </a>
                                 </li>
-                            </ul>
+                                <li ui-sref-active="active">
+                                    <a href="javascript:;">
+                                        <span class="fui-plus-inverted"></span>
+                                        Notificaciones
+                                    </a>
+                                </li>                                                       
+                            </ul>     
+                        </li>
+                        <li class="divider" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1"></li>
+                        <li class="nav-header" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
+                            <span class="fui-user"></span>
+                            MENSAJES
+                        </li>
+                        <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
+                            <a href="javascript:;">
+                                Mensajes
+                                <span class="fui-arrow-right pull-right"></span>
+                            </a>
                         </li>
                         <li class="divider"></li>
                         <li class="nav-header" ng-show="User.isAuthenticated">
