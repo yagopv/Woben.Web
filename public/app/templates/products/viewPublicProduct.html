@@ -1,3 +1,5 @@
+<wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors"></wo-errors>
+
 <section class="blog-1" id="product-view">
     <div id="b1-pt-1" class="page-transitions pt-perspective" ng-show="product.features.length > 0">
         <div class="pt-page  pt-page-current bg-midnight-blue {{ 'pt-page-' + ($index + 1) }}"  ng-repeat="feature in product.features">
@@ -41,24 +43,24 @@
     </div>
 </section>
 
-<section class="contacts-1">
+<section class="contacts-1" ng-hide="showNotificationMessage">
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
-                <h3>Estás interesado en este producto?. <br> Envíanos un mensaje y te llamamos gratis</h3>
+                <h3>¿Estás interesado en este producto?
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <form>
+                <form name="notificationForm"  novalidate>
                     <label class="h6">Nombre</label>
                     <input type="text" class="form-control" ng-value="User.userName" ng-disabled="true">
                     <label class="h6">Email</label>
                     <input type="text" class="form-control" ng-value="User.email" ng-disabled="true">
-                    <label class="h6">Tu teléfono</label>
-                    <input type="phone" class="form-control" placeholder="Ej. 635678937">
+                    <label class="h6">Si quieres deja un teléfono y te llamamos gratis</label>
+                    <input type="phone" class="form-control" ng-model="notification.phoneNumber" placeholder="Ej. 635678937">
                     <label class="h6">¿Cuando te viene mejor que te llamemos?</label>
-                    <div class="wo-radio" ng-model="optionSelected">
+                    <div class="wo-radio" ng-model="notification.bestTimeToCall">
                         <label class="radio">
                             <input type="radio" name="group" value="I" data-toggle="radio" checked>Indiferente    
                         </label>
@@ -69,8 +71,8 @@
                             <input type="radio" name="group" value="T" data-toggle="radio">Por las tardes                        
                         </label>                                     
                     </div>                                                                                                                                                                   
-                    <label class="h6">Qué es lo que necesitas saber</label>
-                    <textarea rows="7" class="form-control"></textarea>
+                    <label class="h6">También puedes dejarnos un comentario acerca de lo que necesitas saber</label>
+                    <textarea rows="7" class="form-control" ng-model="notification.text"></textarea>
                     <button type="submit" class="btn btn-primary" ng-click="sendNotification()"><span class="fui-mail"></span></button>
                 </form>
             </div>
@@ -95,3 +97,12 @@
         </div>
     </div>
 </section>
+
+<section class="content-11 bg-midnight-blue" ng-show="showNotificationMessage">
+    <div class="container">
+        <span>Gracias por contactar con nosotros. En breve tendrás noticias nuestras</span>
+        <a class="btn btn-large btn-success" href="javascript:;" ng-click="sendAnotherMessage()">Enviar otro mensaje</a>
+    </div>
+</section>
+
+<wo-errors title="Se han producido errores en tu solicitud" errors="notificationModelErrors"></wo-errors>

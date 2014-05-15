@@ -29,7 +29,10 @@ WobenCommon.factory('oDataInterceptor', function ($q) {
     
     var examineODataResponse = function(data) {
         
-        if (data["odata.metadata"].indexOf("$metadata#Category") != -1 || data["odata.metadata"].indexOf("$metadata#Product") != -1) {
+        if (data["odata.metadata"].indexOf("$metadata#Category") != -1 ||
+            data["odata.metadata"].indexOf("$metadata#Product") != -1  ||
+            data["odata.metadata"].indexOf("$metadata#Notification") != -1) {
+
             if (data.value) {
                 oDataArray = [];
                 angular.forEach(data.value, function(item, index) {
@@ -42,7 +45,7 @@ WobenCommon.factory('oDataInterceptor', function ($q) {
         }
 
         return response;
-    };
+    };;
 
     return {
         response: function (response) {

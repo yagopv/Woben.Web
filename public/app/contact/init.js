@@ -9,4 +9,4 @@ WobenContact.config(function($stateProvider) {
             })
         });
 
-WobenContact.value("baseEndPoint", "https://woben.azurewebsites.net");
+WobenContact.value("baseEndPoint", "http://localhost:22657");

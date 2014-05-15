@@ -57,7 +57,7 @@ WobenProducts.config(function($stateProvider) {
                                 return data;
                             },
                             function(error) {
-                                $state.go('resolveFailure');
+                                $state.go('login');
                             }
                         );
                     }          
@@ -82,4 +82,4 @@ WobenProducts.config(function($stateProvider) {
             });          
         });
 
-WobenProducts.value("baseEndPoint", "https://woben.azurewebsites.net");
+WobenProducts.value("baseEndPoint", "http://localhost:22657");

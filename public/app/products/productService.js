@@ -91,26 +91,19 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseE
             });
             return deferred.promise;
         },
-        updateRelatedTags : function(productId, tags) {
+        addNotification : function(notification) {
             var deferred = $q.defer(),
                 self = this,
-                url =
-
-            $.ajax({
-                 url: baseEndPoint + '/odata/Product(' + productId + ')/UpdateRelatedTags',
-                 type: 'POST',
-                 data: JSON.stringify({"Tags" : tags }),
-                 headers: {
-                     "Authorization": "Bearer " + ($window.localStorage.token || $window.sessionStorage.token),
-                     "Content-Type" : "application/json"
-                 },
-                 dataType: 'json'
-            }).done(function(data) {
-                 deferred.resolve(data);
-            }).fail(function(error) {
-                 deferred.reject(error);
+                url = baseEndPoint + '/odata/Notification';
+            $http({
+                method: 'POST',
+                url: url,
+                data : notification
+            }).success(function(data, status, headers, config) {
+                deferred.resolve(data);
+            }).error(function(error) {
+                deferred.reject(error);
             });
-
             return deferred.promise;
         }
     }
