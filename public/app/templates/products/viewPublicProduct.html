@@ -57,23 +57,39 @@
                     <input type="text" class="form-control" ng-value="User.email" ng-disabled="true">
                     <label class="h6">Tu teléfono</label>
                     <input type="phone" class="form-control" placeholder="Ej. 635678937">
+                    <label class="h6">¿Cuando te viene mejor que te llamemos?</label>
+                    <div class="wo-radio" ng-model="optionSelected">
+                        <label class="radio">
+                            <input type="radio" name="group" value="I" data-toggle="radio" checked>Indiferente    
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="group" value="M" data-toggle="radio">Por las mañanas    
+                        </label>           
+                        <label class="radio">
+                            <input type="radio" name="group" value="T" data-toggle="radio">Por las tardes                        
+                        </label>                                     
+                    </div>                                                                                                                                                                   
                     <label class="h6">Qué es lo que necesitas saber</label>
                     <textarea rows="7" class="form-control"></textarea>
-                    <button type="submit" class="btn btn-primary"><span class="fui-mail"></span></button>
+                    <button type="submit" class="btn btn-primary" ng-click="sendNotification()"><span class="fui-mail"></span></button>
                 </form>
             </div>
             <div class="col-sm-4 col-sm-offset-1">
                 <div class="additional">
-                    <h6>Necesitas ayuda?</h6>
-                    <p>No dudes en contactar con nosotros a través de este formulario o  bien envíanos un email directamente <a href="#">admin@woben.com</a>. También puedes llamarnos al teléfono <b>902-001-001</b>. Puedes mirar nuestra sección de preguntas frecuentes <a href="#">FAQ</a> y la página de <a href="#">Ayuda</a> para conseguir más información acerca de nuestros productos.</p>
+                    <h6>Envíanos un mensaje o escríbenos un mail</h6>
+                    <p>No dudes en contactar con nosotros a través de este formulario o  bien envíanos un email directamente <a href="#">admin@woben.com</a>. </p>                    
                 </div>
                 <div class="additional">
-                    <h6>Acerca de este formulario de contacto ...</h6>
-                    <p>A través del formulario de la izquierda también puedes contactar con nosotros.</p>
+                    <h6>Llámanos por teléfono</h6>
+                    <p>Puedes contactar directamente con nosotros en el siguiente teléfono:</p>
                 </div>
                 <div class="phone">
                     <big>902 001 001</big>
                     DISPONIBLES LAS 24h
+                </div>                
+                <div class="additional mtl">
+                    <h6>Necesitas ayuda?</h6>
+                    <p>Puedes mirar nuestra sección de preguntas frecuentes <a href="#">FAQ</a> y la página de <a href="#">Ayuda</a> para conseguir más información acerca de nuestros productos.</p>
                 </div>
             </div>
         </div>

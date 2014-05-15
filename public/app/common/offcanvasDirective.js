@@ -109,7 +109,7 @@ WobenCommon.directive('woOffcanvasMain', function($window) {
                 var padBottom = $window.innerHeight -
                     angular.element(".navbar").height() -
                     angular.element(".st-offcanvas-main").height() - 60;
-                angular.element(".st-offcanvas-main").css("padding-bottom", padBottom);
+                    angular.element(".st-offcanvas-main").css("padding-bottom", padBottom);
             }
 
             var checkButtonsVisibility = function() {

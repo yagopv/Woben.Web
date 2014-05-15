@@ -3,6 +3,8 @@ WobenProducts.controller("ViewPublicProductController", ["$scope", "$stateParams
 
         $scope.User = accountService.User;
 
+		$scope.optionSelected = "I";
+
 		if ($stateParams.urlCode != "preview") {
 			productService.getAll("$expand=Category,Tags,Features&$filter=UrlCodeReference eq '" + $stateParams.urlCode + "'").then(
 				function(data) {
@@ -18,6 +20,10 @@ WobenProducts.controller("ViewPublicProductController", ["$scope", "$stateParams
 			)										
 		}
 
+		$scope.sendNotification = function() {
+			console.log($scope);
+		}
+		
 		$scope.updatePreviewData = function(product) {
 			if (product.html) {					
 				$scope.trustedHtml = $sce.trustAsHtml(product.html);

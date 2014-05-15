@@ -92,3 +92,7 @@ span.icons {
 .alert-error a {
     color: #e74c3c;
 }
+
+.radio .icons {
+    margin-top : -5px; 
+}
