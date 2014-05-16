@@ -79,7 +79,24 @@ WobenProducts.config(function($stateProvider) {
                         );
                     }
                 }
-            });          
+            })
+            .state('notificationList', {
+                url: "/dashboard/notification/index",
+                controller:  "NotificationListController",
+                templateUrl: "/app/templates/products/notificationList.html",
+                resolve: {
+                    User: function($state, $stateParams, $q, accountService) {
+                        return accountService.isUserInRole(["Administrator"]).then(
+                            function(data) {
+                                return data;
+                            },
+                            function(error) {
+                                $state.go('signin');
+                            }
+                        );
+                    }
+                }
+            });                     
         });
 
 WobenProducts.value("baseEndPoint", "https://woben.azurewebsites.net");
