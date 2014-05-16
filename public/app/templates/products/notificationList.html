@@ -26,10 +26,10 @@
 					<th>Acciones</th>
                 </tr>
                 <tr ng-repeat="notification in notifications">
-                    <td>{{ product.productId }}</td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ updatedDate | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-					<td>{{ createdBy }}</td>
+                    <td>{{ notification.product.productId }}</td>
+                    <td>{{ notification.product.name }}</td>
+                    <td>{{ notification.createdDate | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+					<td>{{ notification.createdBy }}</td>
                     <td>
                         <div class="btn-group">
                             <a ui-sref="checkNotification(notification)" class="btn btn-primary btn-xs"><span class="fui-new"></span></a>
@@ -41,6 +41,6 @@
         </table>
     </div>
 	
-	<a class="btn btn-primary col-md-12" href="javascript:;" ng-click="loadMore()">Cargar las siguientes {{ top }} notificaciones</a>
+	<a class="btn btn-primary col-md-12" href="javascript:;" ng-click="loadMore()" ng-disabled="noMore">Cargar las siguientes {{ top }} notificaciones</a>
 	
 </section>

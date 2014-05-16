@@ -31,7 +31,8 @@ WobenCommon.factory('oDataInterceptor', function ($q) {
         
         if (data["odata.metadata"].indexOf("$metadata#Category") != -1 ||
             data["odata.metadata"].indexOf("$metadata#Product") != -1  ||
-            data["odata.metadata"].indexOf("$metadata#Notification") != -1) {
+            data["odata.metadata"].indexOf("$metadata#Notification") != -1 ||
+            data["odata.metadata"].indexOf("$metadata#Message") != -1) {
 
             if (data.value) {
                 oDataArray = [];

@@ -41,8 +41,9 @@ WobenCommon.factory('errorService', function() {
                 for (var i = 0; i < arrayErrors.length; i++) {
                     if (arrayErrors[i].indexOf(":") != -1) {
                         errors.push(arrayErrors[i].split(":")[1]);
+                    } else {
+                        errors.push(arrayErrors[i]);
                     }
-                    
                 }
             }
             

@@ -7,23 +7,23 @@ WobenContact.config(function($stateProvider) {
                 controller:  "ContactController",
                 templateUrl: "/app/templates/contact/contact.html"
             })
-        })
-        .state('messageList', {
-            url: "/dashboard/message/index",
-            controller:  "MessageListController",
-            templateUrl: "/app/templates/contact/messageList.html",
-            resolve: {
-                User: function($state, $stateParams, $q, accountService) {
-                    return accountService.isUserInRole(["Administrator"]).then(
-                        function(data) {
-                            return data;
-                        },
-                        function(error) {
-                            $state.go('signin');
-                        }
-                    );
+            .state('messageList', {
+                url: "/dashboard/message/index",
+                controller:  "MessageListController",
+                templateUrl: "/app/templates/contact/messageList.html",
+                resolve: {
+                    User: function($state, $stateParams, $q, accountService) {
+                        return accountService.isUserInRole(["Administrator"]).then(
+                            function(data) {
+                                return data;
+                            },
+                            function(error) {
+                                $state.go('signin');
+                            }
+                        );
+                    }
                 }
-            }
-        });         
+            });
+        });
 
-WobenContact.value("baseEndPoint", "https://woben.azurewebsites.net");
+WobenContact.value("baseEndPoint", "http://localhost:22657");

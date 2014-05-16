@@ -4,7 +4,8 @@ WobenProducts.controller("NotificationListController", ["$scope", "notificationS
 		
 		$scope.skip = 0;
 		$scope.top = 10;
-		$scope.odataString = "$skip=" + $scope.skip + "&$top=" + $scope.top;
+        $scope.noMore = false;
+        $scope.odataString = "$skip=" + $scope.skip + "&$top=" + $scope.top + "&$expand=Product";
 
 		notificationService.getAll($scope.odataString).then(
 			function(data) {
@@ -19,14 +20,21 @@ WobenProducts.controller("NotificationListController", ["$scope", "notificationS
 		$scope.search = function() {
 			$scope.skip = 0;
 			$scope.top = 10;
-			$scope.odataString = "$skip=" + $scope.skip + 
-								 "&$top=" + $scope.top  + 
-								 "&$filter=CreatedBy eq " + $scope.query + 
-								 "or PhoneNumber eq"      + $scope.query +
-								 "&$orderby CreatedDate desc";
+            if ($scope.query && $scope.query != "") {
+                $scope.odataString = "$skip=" + $scope.skip +
+                    "&$top=" + $scope.top  +
+                    "&$filter=CreatedBy eq '" + $scope.query +
+                    "' or PhoneNumber eq '"      + $scope.query +
+                    "'&$expand=Product" +
+                    "&$orderby=CreatedDate desc";
+
+            } else {
+                $scope.odataString = "$skip=" + $scope.skip + "&$top=" + $scope.top + "&$expand=Product";
+            }
 
 			notificationService.getAll($scope.odataString).then(
 				function(data) {
+                    $scope.noMore = false;
 					$scope.notifications = data;
 					$scope.skip = $scope.top;			
 				},
@@ -36,11 +44,19 @@ WobenProducts.controller("NotificationListController", ["$scope", "notificationS
 			);						
 		};
 		
-		$scope.loadMore = function() {								 			
+		$scope.loadMore = function() {
+            $scope.odataString = "$skip=" + $scope.skip + "&$top=" + $scope.top + "&$expand=Product";
 			notificationService.getAll($scope.odataString).then(
 				function(data) {
-					$scope.notifications = data;
-					$scope.skip = $scope.top * 2;			
+                    if (data.length > 0) {
+                        angular.forEach(data, function(notification, index) {
+                            $scope.notifications.push(notification);
+                        });
+                    }
+                    if (data.length < $scope.top) {
+                        $scope.noMore = true;
+                    }
+                    $scope.skip = $scope.skip + $scope.top;
 				},
 				function(error) {
 					$scope.modelErrors = errorService.handleODataErrors(error);
