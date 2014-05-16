@@ -1,4 +1,4 @@
-WobenProducts.controller("NotificationListController", ["$scope", "notificationService", "errorService" 
+WobenProducts.controller("NotificationListController", ["$scope", "notificationService", "errorService",
 
 	function($scope, notificationService, errorService) {
 		
