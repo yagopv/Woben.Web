@@ -1,4 +1,4 @@
-WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseEndPoint, $window) {
+WobenContact.factory('messageService', function($http, $q, $cacheFactory, baseEndPoint, $window) {
 
     return {
         getAll : function(query) {
@@ -6,7 +6,7 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseE
                 self = this;
             $http({
                 method: 'GET',
-                url: baseEndPoint + '/odata/Product' + (query ? "?" + query : ""),
+                url: baseEndPoint + '/odata/Message' + (query ? "?" + query : ""),
                 cache : true
             }).success(function(data, status, headers, config) {
                 deferred.resolve(data);
@@ -16,12 +16,12 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseE
             return deferred.promise;
         },
 
-        getById : function(productId) {
+        getById : function(messageId) {
             var deferred = $q.defer(),
                 self = this;
             $http({
                 method: 'GET',
-                url: baseEndPoint + '/odata/Product(' + productId + ')'
+                url: baseEndPoint + '/odata/Message(' + messageId + ')'
             }).success(function(data, status, headers, config) {
                 deferred.resolve(data);
             }).error(function(error) {
@@ -30,14 +30,14 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseE
             return deferred.promise;
         },
 
-        add : function(product) {
+        add : function(message) {
             var deferred = $q.defer(),
                 self = this,
-                url = baseEndPoint + '/odata/Product';
+                url = baseEndPoint + '/odata/Message';
             $http({
                 method: 'POST',
                 url: url,
-                data : product
+                data : message
             }).success(function(data, status, headers, config) {
                 $cacheFactory.get("$http").removeAll();
                 deferred.resolve(data);
@@ -47,14 +47,14 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseE
             return deferred.promise;
         },
         
-        update : function(product) {
+        update : function(message) {
             var deferred = $q.defer(),
                 self = this,
-                url = baseEndPoint + '/odata/Product(' + product.productId + ')'
+                url = baseEndPoint + '/odata/Message(' + message.messageId + ')'
             $http({
                 method: 'PUT',
                 url: url,
-                data : product
+                data : message
             }).success(function(data, status, headers, config) {
                 $cacheFactory.get("$http").removeAll();
                 deferred.resolve(data);
@@ -64,32 +64,18 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseE
             return deferred.promise;
         },
 
-        delete : function(productId) {
+        delete : function(messageId) {
             var deferred = $q.defer(),
                 self = this;
             $http({
                 method: 'DELETE',
-                url: baseEndPoint + '/odata/Product(' + productId + ')'
+                url: baseEndPoint + '/odata/Message(' + messageId + ')'
             }).success(function(data, status, headers, config) {
                 deferred.resolve(data);
             }).error(function(error) {
                 deferred.reject(error);
             });
             return deferred.promise;
-        },
-        
-        deleteImage : function(file) {
-            var deferred = $q.defer(),
-                self = this;
-            $http({
-                method: 'DELETE',
-                url: baseEndPoint + '/api/file?filename=' + file
-            }).success(function(data, status, headers, config) {
-                deferred.resolve(data);
-            }).error(function(error) {
-                deferred.reject(error);
-            });
-            return deferred.promise;
-        }
+        }       
     }
 });

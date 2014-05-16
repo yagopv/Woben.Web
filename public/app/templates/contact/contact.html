@@ -1,31 +1,46 @@
-<section class="contacts-3">
+<section id="contact" class="contacts-3">
     <div class="container">
         <div class="row">
             <div class="col-sm-5">
-                <h3>Get in touch with us</h3>
-                <p>As a Harvard professor, he was one of the first to explore the relationship in equilibrium.</p>
+                <h3>Ponte en contacto con nosotros</h3>
+                <p>Llámanos o envíanos un email</p>
                 <div class="links">
-                    <a href="#"><span class="fui-phone"></span> +1 347 523 34 90</a><br>
-                    <a href="#"><span class="fui-mail"></span> mr.madbyte@gmail.com</a>
+                    <a href="#"><span class="fui-phone"></span>  902 00 10 10</a><br>
+                    <a href="#"><span class="fui-mail"></span> admin@woben.com</a>
                 </div>
-                <h6>Where to find us</h6>
-                <p>As a Harvard professor, he was one of the first to explore the relationship in equilibrium.</p>
+                <h6>¿Donde estamos?</h6>
+                <p>Nuestra empresa reside en La Coruña:</p>
                 <div class="map">
                     <!--map-->
                     <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;t=m&amp;ll=40.714353,-74.005973&amp;spn=0.04554,0.072956&amp;z=12&amp;output=embed"></iframe>
                 </div>
             </div>
             <div class="col-sm-6 col-sm-offset-1">
-                <h3>You can mail us</h3>
-                <p>As a Harvard professor, he was one of the first to explore the relationship in equilibrium.</p>
-                <form>
-                    <label class="h6">Name / Last Name</label>
-                    <input type="text" class="form-control">
-                    <label class="h6">E-mail</label>
-                    <input type="text" class="form-control">
-                    <label class="h6">Message</label>
-                    <textarea rows="7" class="form-control"></textarea>
-                    <button type="submit" class="btn btn-primary"><span class="fui-mail"></span></button>
+                <h3>También puedes escribirnos directamente a través del siguiente formulario</h3>
+                <p>Rellena los siguiente campos y envíanos un mensaje.</p>
+                <wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors"></wo-errors>
+                <form name="contactForm" novalidate>  
+                    <div class="form-group" ng-class="{'has-error': contactForm.name.$invalid && contactForm.name.$dirty}">
+                        <label class="h6">¿Cómo te llamas</label>
+                        <input name="name" type="text" class="form-control" placeholder="Ej. Pedro" ng-model="message.name" required/>
+                        <span class="help-block" ng-show="contactForm.name.$error.required && contactForm.name.$dirty">Campo obligatorio</span>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error': contactForm.email.$invalid && contactForm.email.$dirty}">
+                        <label class="h6">¿Déjanos tu dirección de correo?</label>
+                        <input name="email" type="email" class="form-control" placeholder="Ej. pedrov@outlook.com" ng-model="message.email" required/>
+                        <span class="help-block" ng-show="contactForm.email.$error.required && contactForm.email.$dirty">Campo obligatorio</span>
+                        <span class="help-block" ng-show="contactForm.email.$error.email && contactForm.email.$dirty">El email no es correcto</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="h6">Puedes dejarnos un número de teléfono. Te llamamos gratis</label>
+                        <input name="title" type="tel" class="form-control" placeholder="Ej. 621 10 10 10" ng-model="message.phoneNumber"/>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error': contactForm.text.$invalid && contactForm.text.$dirty}">                                                             
+                        <label class="h6">Mensaje</label>
+                        <textarea rows="7" name="text" class="form-control" ng-model="message.text" required></textarea>
+                        <span class="help-block" ng-show="contactForm.text.$error.required && contactForm.text.$dirty">Campo obligatorio</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary" ng-click="sendMessage()" ng-disabled="!contactForm.$valid || disabled"><span class="fui-mail"></span></button>
                 </form>
             </div>
         </div>

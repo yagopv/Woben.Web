@@ -1,5 +1,5 @@
-WobenProducts.controller("ViewPublicProductController", ["$scope", "$stateParams", "productService", "errorService", "$window", "$sce", "accountService", "ngDialog",
-	function($scope, $stateParams, productService, errorService, $window, $sce, accountService, ngDialog) {
+WobenProducts.controller("ViewPublicProductController", ["$scope", "$stateParams", "productService", "notificationService", "errorService", "$window", "$sce", "accountService", "ngDialog",
+	function($scope, $stateParams, productService, notificationService, errorService, $window, $sce, accountService, ngDialog) {
 
         $scope.User = accountService.User;
 
@@ -45,7 +45,7 @@ WobenProducts.controller("ViewPublicProductController", ["$scope", "$stateParams
         }, true);
 
         function startSendingNotification() {
-            productService.addNotification($scope.notification).then(
+            notificationService.add($scope.notification).then(
                 function(data) {
                     $scope.showNotificationMessage = true;
                 },

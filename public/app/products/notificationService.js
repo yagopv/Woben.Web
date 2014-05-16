@@ -1,4 +1,4 @@
-WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseEndPoint, $window) {
+WobenProducts.factory('notificationService', function($http, $q, $cacheFactory, baseEndPoint, $window) {
 
     return {
         getAll : function(query) {
@@ -6,7 +6,7 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseE
                 self = this;
             $http({
                 method: 'GET',
-                url: baseEndPoint + '/odata/Product' + (query ? "?" + query : ""),
+                url: baseEndPoint + '/odata/Notification' + (query ? "?" + query : ""),
                 cache : true
             }).success(function(data, status, headers, config) {
                 deferred.resolve(data);
@@ -16,12 +16,12 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseE
             return deferred.promise;
         },
 
-        getById : function(productId) {
+        getById : function(notificationId) {
             var deferred = $q.defer(),
                 self = this;
             $http({
                 method: 'GET',
-                url: baseEndPoint + '/odata/Product(' + productId + ')'
+                url: baseEndPoint + '/odata/Notification(' + notificationId + ')'
             }).success(function(data, status, headers, config) {
                 deferred.resolve(data);
             }).error(function(error) {
@@ -30,31 +30,14 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseE
             return deferred.promise;
         },
 
-        add : function(product) {
+        add : function(notification) {
             var deferred = $q.defer(),
                 self = this,
-                url = baseEndPoint + '/odata/Product';
+                url = baseEndPoint + '/odata/Notification';
             $http({
                 method: 'POST',
                 url: url,
-                data : product
-            }).success(function(data, status, headers, config) {
-                $cacheFactory.get("$http").removeAll();
-                deferred.resolve(data);
-            }).error(function(error) {
-                deferred.reject(error);
-            });
-            return deferred.promise;
-        },
-        
-        update : function(product) {
-            var deferred = $q.defer(),
-                self = this,
-                url = baseEndPoint + '/odata/Product(' + product.productId + ')'
-            $http({
-                method: 'PUT',
-                url: url,
-                data : product
+                data : notification
             }).success(function(data, status, headers, config) {
                 $cacheFactory.get("$http").removeAll();
                 deferred.resolve(data);
@@ -64,32 +47,35 @@ WobenProducts.factory('productService', function($http, $q, $cacheFactory, baseE
             return deferred.promise;
         },
 
-        delete : function(productId) {
+        update : function(notification) {
             var deferred = $q.defer(),
-                self = this;
+                self = this,
+                url = baseEndPoint + '/odata/Notification(' + notification.notificationId + ')'
             $http({
-                method: 'DELETE',
-                url: baseEndPoint + '/odata/Product(' + productId + ')'
+                method: 'PUT',
+                url: url,
+                data : notification
             }).success(function(data, status, headers, config) {
+                $cacheFactory.get("$http").removeAll();
                 deferred.resolve(data);
             }).error(function(error) {
                 deferred.reject(error);
             });
             return deferred.promise;
         },
-        
-        deleteImage : function(file) {
+
+        delete : function(notificationId) {
             var deferred = $q.defer(),
                 self = this;
             $http({
                 method: 'DELETE',
-                url: baseEndPoint + '/api/file?filename=' + file
+                url: baseEndPoint + '/odata/Notification(' + notificationId + ')'
             }).success(function(data, status, headers, config) {
                 deferred.resolve(data);
             }).error(function(error) {
                 deferred.reject(error);
             });
             return deferred.promise;
-        }
+        }       
     }
 });
