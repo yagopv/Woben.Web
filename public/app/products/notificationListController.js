@@ -1,6 +1,6 @@
-WobenProducts.controller("NotificationListController", ["$scope", "notificationService", "errorService",
+WobenProducts.controller("NotificationListController", ["$scope", "notificationService", "errorService", "ngDialog",
 
-	function($scope, notificationService, errorService) {
+	function($scope, notificationService, errorService, ngDialog) {
 		
 		$scope.skip = 0;
 		$scope.top = 10;
@@ -63,4 +63,32 @@ WobenProducts.controller("NotificationListController", ["$scope", "notificationS
 				}
 			);
 		};
+
+        /**
+         * Delete notification confirmation dialog
+         * @param notification
+         */
+        $scope.sureToDelete = function(notification) {
+            $scope.notificationToDelete = notification;
+            $scope.dialogMessage = "¿Seguro que quieres eliminar esta notificación?"
+            ngDialog.open({
+                template : "/app/templates/common/dialogConfirmation.html",
+                scope : $scope
+            });
+        };
+
+        /**
+         * Confirm deletion when the user click ok in the dialog box
+         */
+        $scope.confirmAction = function() {
+            notificationService.delete($scope.notificationToDelete.notificationId).then(
+                function(data) {
+                    var index = $scope.notifications.indexOf($scope.notificationToDelete);
+                    $scope.notifications.splice(index,1);
+                },
+                function(error) {
+                    $scope.modelErrors = errorService.handleODataErrors(error);
+                }
+            )
+        };
 }]);

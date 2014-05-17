@@ -75,8 +75,13 @@ Woben
         $urlRouterProvider.otherwise("/404");
 
         $locationProvider.html5Mode(true);
-    }).run(function(accountService) {
+    })
+    .run(function(accountService, $rootScope) {
         accountService.initializeAuth();
+
+        $rootScope.$on('$stateChangeSuccess',function(){
+            $("html, body").animate({ scrollTop: 0 }, 200);
+        });
     });
 
 

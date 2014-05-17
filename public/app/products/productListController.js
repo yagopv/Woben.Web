@@ -9,6 +9,7 @@ WobenProducts.controller("IndexController", function($scope, $filter, productSer
            $scope.modelErrors = errorService.handleODataErrors(error);
        });
 
+
     $scope.deleteProduct = function(product) {
         productService.delete(product.productId).then(
             function(data) {
