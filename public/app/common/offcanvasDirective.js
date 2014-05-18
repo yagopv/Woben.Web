@@ -101,16 +101,15 @@ WobenCommon.directive('woOffcanvasMain', function($window) {
 
             $window.onresize = function(){
                 $scope.$apply();
-                //reCalculatePadBottom();
                 checkButtonsVisibility();
             }
 
-            var reCalculatePadBottom = function() {
-                var padBottom = $window.innerHeight -
-                    angular.element(".navbar").height() -
-                    angular.element(".st-offcanvas-main").height() - 60;
-                    angular.element(".st-offcanvas-main").css("padding-bottom", padBottom);
-            }
+            var calculateMinHeight = function() {
+                var minHeight = $window.innerHeight -
+                    angular.element("footer").height() -
+                    angular.element(".st-offcanvas-main").height() + 5;
+                    angular.element(".st-offcanvas-main").css("min-height", minHeight);
+            };
 
             var checkButtonsVisibility = function() {
                 if ($scope.windowWidth < 768) {
@@ -125,9 +124,9 @@ WobenCommon.directive('woOffcanvasMain', function($window) {
                         $scope.visibleAdditional = false;
                     }
                 }
-            }
+            };
 
-            //reCalculatePadBottom();
+            calculateMinHeight();
             checkButtonsVisibility();
         },
         link: function($scope, element, attrs, offcanvas) {
