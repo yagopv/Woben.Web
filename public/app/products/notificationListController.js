@@ -24,7 +24,8 @@ WobenProducts.controller("NotificationListController", ["$scope", "notificationS
                 $scope.odataString = "$skip=" + $scope.skip +
                     "&$top=" + $scope.top  +
                     "&$filter=CreatedBy eq '" + $scope.query +
-                    "' or PhoneNumber eq '"      + $scope.query +
+                    "' or PhoneNumber eq '"   + $scope.query +
+                    "' or Text eq '"          + $scope.query +
                     "'&$expand=Product" +
                     "&$orderby=CreatedDate desc";
 
@@ -90,5 +91,17 @@ WobenProducts.controller("NotificationListController", ["$scope", "notificationS
                     $scope.modelErrors = errorService.handleODataErrors(error);
                 }
             )
+        };
+        
+        /**
+         * Check the notification details
+         */
+        $scope.checkNotification = function(notification) { 
+            ngDialog.open({
+                template : "/app/templates/product/notificationDetail.html",
+                scope : {
+                    notification : notification
+                }
+            });
         };
 }]);
