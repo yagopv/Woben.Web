@@ -101,6 +101,7 @@ WobenCommon.directive('woOffcanvasMain', function($window) {
 
             $window.onresize = function(){
                 $scope.$apply();
+                calculateMinHeight();
                 checkButtonsVisibility();
             }
 

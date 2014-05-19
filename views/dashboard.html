@@ -86,7 +86,7 @@
                                     </a>
                                 </li>
                                 <li ui-sref-active="active">
-                                    <a ui-sref="notificationList" href="javascript:;">
+                                    <a href="javascript:;" ui-sref="notificationList">
                                         <span class="fui-plus-inverted"></span>
                                         Notificaciones
                                     </a>
@@ -99,7 +99,7 @@
                             MENSAJES
                         </li>
                         <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
-                            <a ui-sref="messageList" href="javascript:;">
+                            <a href="javascript:;" ui-sref="messageList">
                                 Mensajes
                                 <span class="fui-arrow-right pull-right"></span>
                             </a>
@@ -248,10 +248,11 @@
     <script type="text/javascript" src="/app/products/addFeatureController.js"></script>
     <script type="text/javascript" src="/app/products/notificationListController.js"></script>
 
-    <!-- Contact Module -->
+    <!-- Contact module -->
     <script type="text/javascript" src="/app/contact/init.js"></script>
+    <script type="text/javascript" src="/app/contact/contactController.js"></script>
     <script type="text/javascript" src="/app/contact/messageService.js"></script>
-    <script type="text/javascript" src="/app/contact/messageListController.js"></script>
+    <script type="text/javascript" src="/app/contact/messageListController.js"></script>        
     
     <!-- Angular components -->
     <script type="text/javascript" src="/app/dashboard.js"></script>

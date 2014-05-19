@@ -98,11 +98,10 @@ WobenContact.controller('MessageListController', ["$scope", "messageService", "e
          * Check the message details
          */
         $scope.checkMessage = function(message) {
+            $scope.messageDetail = message;
             ngDialog.open({
                 template : "/app/templates/contact/messageDetail.html",
-                scope : {
-                    message : message
-                }
+                scope : $scope
             });            
         };
 }]);
