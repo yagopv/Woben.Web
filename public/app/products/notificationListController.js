@@ -99,7 +99,7 @@ WobenProducts.controller("NotificationListController", ["$scope", "notificationS
         $scope.checkNotification = function(notification) { 
             $scope.notificationDetail = notification;
             ngDialog.open({
-                template : "/app/templates/product/notificationDetail.html",
+                template : "/app/templates/products/notificationDetail.html",
                 scope : $scope
             });
         };

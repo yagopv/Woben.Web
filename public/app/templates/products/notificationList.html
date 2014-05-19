@@ -32,7 +32,7 @@
 					<td>{{ notification.createdBy }}</td>
                     <td>
                         <div class="btn-group">
-                            <a ui-sref="checkNotification(notification)" class="btn btn-primary btn-xs"><span class="fui-new"></span></a>
+                            <a ng-click="checkNotification(notification)" class="btn btn-primary btn-xs"><span class="fui-new"></span></a>
                             <a href="javascript:;" ng-click="sureToDelete(notification)" class="btn btn-danger btn-xs"><span class="fui-cross"></span></a>
                         </div>
                     </td>
