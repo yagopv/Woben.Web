@@ -2,7 +2,12 @@ WobenProducts.controller('PublicProductController', ["$scope", "categoryService"
 
     function($scope, categoryService, productService, utilsService, errorService, baseEndPoint, TypeaheadData, $state) {
 
-        $scope.searchModel = null;
+		$scope.skip = 0;
+		$scope.top = 6;
+        $scope.noMore = false;
+
+        $scope.odataString = "$skip=" + $scope.skip + "&$top=" + $scope.top + "&$orderby=UpdatedDate desc&$expand=Category";
+        $scope.searchModel = "";
 
         var products = new Bloodhound({
             datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.name); },
@@ -32,23 +37,36 @@ WobenProducts.controller('PublicProductController', ["$scope", "categoryService"
                $scope.modelErrors = errorService.handleODataErrors(error);
             });
 
-        productService.getAll("$top=6&$orderby=UpdatedDate desc&$expand=Category").then(
+        productService.getAll($scope.odataString).then(
             function(data) {
+                $scope.noMore = false;
                 $scope.products = data;
+                $scope.skip = $scope.top;
                 utilsService.addDummyProduct($scope.products, $scope.products.length);
-                $scope.pagedProducts = utilsService.groupToPages($scope.products, 3);
+                $scope.pagedProducts = utilsService.groupToPages($scope.products, 3);                
             },
             function(error) {
                 $scope.modelErrors = errorService.handleODataErrors(error);
             });
 
         $scope.search = function() {
-            productService.getAll("$filter=substringof('" + $scope.searchModel + "', Name) or " +
+			$scope.skip = 0;
+			$scope.top  = 6;            
+            $scope.odataString = "$skip=" + $scope.skip + "&$top=" + $scope.top +             
+                                 "&$filter=substringof('" + $scope.searchModel + "', Name) or " +
                                   "substringof('" + $scope.searchModel + "', Description) or " +
                                   "substringof('" + $scope.searchModel + "', Markdown)" +
-                                  "&$top=6&$orderby=UpdatedDate desc&$expand=Category").then(
+                                  "&$orderby=UpdatedDate desc&$expand=Category";
+
+            productService.getAll($scope.odataString).then(
                 function(data) {
                     $scope.products = data;
+                    if (data.length < $scope.top) {
+                        $scope.noMore = true;
+                    } else {
+                        $scope.noMore = false;
+                    }                                        
+                    $scope.skip = $scope.top;
                     utilsService.addDummyProduct($scope.products, $scope.products.length);
                     $scope.pagedProducts = utilsService.groupToPages($scope.products, 3);
                 },
@@ -58,15 +76,23 @@ WobenProducts.controller('PublicProductController', ["$scope", "categoryService"
         };
 
         $scope.loadMore = function() {
-            productService.getAll("$skip=" +
-                                  $scope.products.length +
-                                  ($scope.selectedCategoryId ? "&$filter=CategoryId eq " + $scope.selectedCategoryId : "") +
-                                  "&$top=6&$orderby=UpdatedDate desc&$expand=Category").then(
+            $scope.odataString = "$skip=" + $scope.skip + "&$top=" + $scope.top +
+                                 "&$filter=(substringof('" + $scope.searchModel + "', Name) or " +
+                                  "substringof('" + $scope.searchModel + "', Description) or " +
+                                  "substringof('" + $scope.searchModel + "', Markdown)"   +          
+                                  ($scope.selectedCategoryId ? ") and CategoryId eq " + $scope.selectedCategoryId : ")") +
+                                  "&$orderby=UpdatedDate desc&$expand=Category"; 
+                                  
+            productService.getAll($scope.odataString).then(
                 function(data) {
                     angular.forEach(data, function(product, index) {
                         $scope.products.push(product);
                     });
-                    utilsService.addDummyProduct($scope.products, $scope.products.length);
+                    if (data.length < $scope.top) {
+                        $scope.noMore = true;
+                    }                    
+                    $scope.skip = $scope.skip + $scope.top;
+                    utilsService.addDummyProduct($scope.products, $scope.products.length);                    
                     $scope.pagedProducts = utilsService.groupToPages($scope.products, 3);
                 },
                 function(error) {
@@ -75,9 +101,23 @@ WobenProducts.controller('PublicProductController', ["$scope", "categoryService"
         };
 
         $scope.filterByCategory = function(categoryId) {
-            productService.getAll("&$top=6&$filter=CategoryId eq " + categoryId + "&$orderby=UpdatedDate desc&$expand=Category").then(
+			$scope.skip = 0;
+			$scope.top  = 6;            
+            $scope.odataString = "$skip=" + $scope.skip + "&$top=" + $scope.top +
+                                 "&$filter=(substringof('" + $scope.searchModel + "', Name) or " +
+                                  "substringof('" + $scope.searchModel + "', Description) or " +
+                                  "substringof('" + $scope.searchModel + "', Markdown)"   +          
+                                  ") and CategoryId eq " + categoryId +
+                                  "&$orderby=UpdatedDate desc&$expand=Category";
+
+            productService.getAll($scope.odataString).then(
                 function(data) {
                     $scope.products = data;
+                    if (data.length < $scope.top) {
+                        $scope.noMore = true;
+                    } else {
+                        $scope.noMore = false;
+                    }                                                  
                     utilsService.addDummyProduct($scope.products, $scope.products.length);
                     $scope.pagedProducts = utilsService.groupToPages($scope.products, 3);
                     $scope.selectedCategoryId = categoryId;
