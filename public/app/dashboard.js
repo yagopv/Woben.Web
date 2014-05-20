@@ -1,4 +1,4 @@
-var Woben = angular.module('Woben',['WobenAccount', 'WobenCommon', 'WobenDashboard', 'WobenProducts', 'WobenContact', 'ui.router', 'ui.layout']);
+var Woben = angular.module('Woben',['WobenAccount', 'WobenCommon', 'WobenDashboard', 'WobenProducts', 'WobenContact', 'ui.router', 'ui.layout', 'ngAnimate']);
 
 Woben.config(function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
