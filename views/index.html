@@ -41,6 +41,9 @@
                                 <li ui-sref-active="active">
                                     <a href="javascript:;" ui-sref="contact">Contacto</a>
                                 </li>                                
+                                <li ui-sref-active="active">
+                                    <a href="javascript:;" ui-sref="about">Acerca de</a>
+                                </li>                                                       
                                 <li ui-sref-active="active" ng-show="!User.isAuthenticated">
                                     <a href="javascript:;" ui-sref="login">Inicia sesión</a>
                                 </li>
@@ -185,6 +188,10 @@
     <script type="text/javascript" src="/app/contact/contactController.js"></script>
     <script type="text/javascript" src="/app/contact/messageService.js"></script>
         
+    <!-- About module -->
+    <script type="text/javascript" src="/app/about/init.js"></script>
+    <script type="text/javascript" src="/app/about/aboutController.js"></script>
+            
     <!-- Index Page -->
     <script type="text/javascript" src="/app/index.js"></script>
     <script type="text/javascript" src="/app/home/headerController.js"></script>

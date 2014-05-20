@@ -1,4 +1,4 @@
-var Woben = angular.module('Woben',['WobenAccount', 'WobenCommon', 'WobenProducts', 'WobenContact', 'ui.router']);
+var Woben = angular.module('Woben',['WobenAccount', 'WobenCommon', 'WobenProducts', 'WobenContact', 'WobenAbout', 'ui.router']);
 
 Woben
     .config(function ($httpProvider) {
