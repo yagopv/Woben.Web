@@ -4,8 +4,8 @@ WobenProducts.controller("NotificationListController", ["$scope", "notificationS
 		
 		$scope.skip = 0;
 		$scope.top = 10;
-        $scope.noMore = false;
-        $scope.odataString = "$skip=" + $scope.skip + "&$top=" + $scope.top + "&$expand=Product";
+                $scope.noMore = false;
+                $scope.odataString = "$skip=" + $scope.skip + "&$top=" + $scope.top + "&$expand=Product";
 
 		notificationService.getAll($scope.odataString).then(
 			function(data) {

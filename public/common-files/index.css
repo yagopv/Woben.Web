@@ -73,10 +73,16 @@ span.icons {
     top : 190px !important;
     z-index : 9999999999 !important;
     background: #FFF;
+    opacity:1 !important;
 }
 
 .twitter-typeahead .tt-dropdown-menu span {
     cursor : pointer;
+    opacity :1 !important;
+}
+
+.twitter-typeahead .tt-hint { 
+  opacity:1 !important;
 }
 
 @media all and (min-width : 768px) {
