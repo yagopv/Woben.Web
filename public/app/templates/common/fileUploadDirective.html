@@ -2,13 +2,15 @@
 	<div class="col-md-12" ng-file-drop-available="dropSupported=true">
 		<div ng-if="dropSupported" class="drop-box bg-info" ng-file-drop="onFileSelect($files);">
             <span class="btn btn-primary btn-file">
-                {{ selectText }}
+                <i class="fui-plus"></i>
+                <span class="hidden-xs">{{ selectText }}</span>
                 <input type="file" ng-file-select="onFileSelect($files)" >
             </span>
 		</div>
 		<div ng-if="!dropSupported">
             <span class="btn btn-primary btn-file">
-                {{ selectText }}
+                <i class="fui-plus"></i>
+                <span class="hidden-xs">{{ selectText }}</span>
                 <input type="file" ng-file-select="onFileSelect($files)" >
             </span>		    
 		</div>
