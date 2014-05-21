@@ -109,12 +109,12 @@ WobenCommon.directive('woOffcanvasMain', function($window) {
                 $scope.$apply();
                 calculateMinHeight();
                 checkButtonsVisibility();
-            }
+            };
 
             var calculateMinHeight = function() {
-                var minHeight = $window.innerHeight -
+                var minHeight = angular.element(window).height() -
                     angular.element("footer").height();
-                    angular.element(".st-offcanvas-main").css("min-height", minHeight);
+                    angular.element(".st-offcanvas-main").css("min-height", minHeight + 50);
                     console.log(minHeight);
             };
 

@@ -71,10 +71,13 @@ Woben.config(function ($httpProvider) {
 
         $locationProvider.html5Mode(true);
 
-    }).run(function(accountService) {
+    }).run(['accountService', '$rootScope', function(accountService, $rootScope) {
         accountService.initializeAuth();
 	    marked.setOptions({
 			sanitize: false,
 			breaks : true
 		});
-});
+        $rootScope.$on('$stateChangeSuccess',function(){
+            $("html, body").animate({ scrollTop: 0 }, 200);
+        });
+}]);
