@@ -20,129 +20,124 @@
 
 </head>
 
-<body ng-cloak>
-
-    <div id="page-wrapper" class="st-sticky-wrap">
-        <header ng-Controller="DashboardHeaderController">
-            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-                        <span class="sr-only">Toggle navigation</span>
-                    </button>
-                    <a class="navbar-brand" ui-sref="dashboard" ng-cloak>{{ userName }}</a>
-                </div>
-                <div class="collapse navbar-collapse" id="navbar-collapse-01">
-                    <ul class="nav navbar-nav">
-                        <li><a href="/" target="_self">Ir al sitio</a></li>
-                        <li><a href="javascript:;" ng-click="logout()">Desconectar</a></li>
-                        <li ui-sref-active="active" ng-show="User.isAuthenticated && !User.emailConfirmed">
-                            <a href="javascript:;" ui-sref="confirmAccount">Confirmar cuenta<span class="navbar-new">1</span></a>
-                        </li>
-                    </ul>
-                    <form class="navbar-form navbar-right" action="#" role="search">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
-                                <span class="input-group-btn">
-                                    <button type="submit" class="btn"><span class="fui-search"></span></button>
-                                </span>
-                            </div>
+<body>
+    <header ng-Controller="DashboardHeaderController">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <a class="navbar-brand" ui-sref="dashboard" ng-cloak>{{ userName }}</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-01">
+                <ul class="nav navbar-nav">
+                    <li><a href="/" target="_self">Ir al sitio</a></li>
+                    <li><a href="javascript:;" ng-click="logout()">Desconectar</a></li>
+                    <li ui-sref-active="active" ng-show="User.isAuthenticated && !User.emailConfirmed">
+                        <a href="javascript:;" ui-sref="confirmAccount">Confirmar cuenta<span class="navbar-new">1</span></a>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right" action="#" role="search">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn"><span class="fui-search"></span></button>
+                            </span>
                         </div>
-                    </form>
-                </div><!-- /.navbar-collapse -->
-            </nav><!-- /navbar -->
-        </header>
+                    </div>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </nav><!-- /navbar -->
+    </header>
 
-        <wo-offcanvas active-transitions="true" no-additional="true">
+    <wo-offcanvas active-transitions="true" no-additional="true">
 
-            <wo-offcanvas-menu>
-                <div  ng-controller="DashboardMenuController">
-                    <ul class="nav nav-list">
-                        <li class="nav-header" ng-show="User.isAuthenticated">
-                            <span class="fui-gear"></span>
-                            DASHBOARD
-                        </li>
-                        <li ui-sref-active="active" ng-show="User.isAuthenticated">
-                            <a ui-sref="dashboard">
-                                Inicio
-                                <span class="fui-arrow-right pull-right"></span>
-                            </a>
-                        </li>
-                        <li class="divider" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1"></li>
-                        <li class="nav-header" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
-                            <span class="fui-gear"></span>
-                            ADMIN
-                        </li>
-                        <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
-                            <a ui-sref="productList">
-                                Productos
-                                <span class="fui-arrow-right pull-right"></span>
-                            </a>
-                            <ul class="nav nav-list">
-                                <li ui-sref-active="active">
-                                    <a href="javascript:;" ng-click="addProduct()">
-                                        <span class="fui-plus-inverted"></span>
-                                        Nuevo
-                                    </a>
-                                </li>
-                                <li ui-sref-active="active">
-                                    <a href="javascript:;" ui-sref="notificationList">
-                                        <span class="fui-plus-inverted"></span>
-                                        Notificaciones
-                                    </a>
-                                </li>                                                       
-                            </ul>     
-                        </li>
-                        <li class="divider" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1"></li>
-                        <li class="nav-header" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
-                            <span class="fui-user"></span>
-                            MENSAJES
-                        </li>
-                        <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
-                            <a href="javascript:;" ui-sref="messageList">
-                                Mensajes
-                                <span class="fui-arrow-right pull-right"></span>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li class="nav-header" ng-show="User.isAuthenticated">
-                            <span class="fui-user"></span>
-                            MI CUENTA
-                        </li>
-                        <li ui-sref-active="active" ng-show="User.isAuthenticated">
-                            <a ui-sref="changePassword">
-                                Cambiar Password
-                                <span class="fui-arrow-right pull-right"></span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active" ng-show="User.isAuthenticated">
-                            <a ui-sref="deleteAccount">
-                                Eliminar cuenta
-                                <span class="fui-arrow-right pull-right"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </wo-offcanvas-menu>
+        <wo-offcanvas-menu>
+            <div  ng-controller="DashboardMenuController">
+                <ul class="nav nav-list">
+                    <li class="nav-header" ng-show="User.isAuthenticated">
+                        <span class="fui-gear"></span>
+                        DASHBOARD
+                    </li>
+                    <li ui-sref-active="active" ng-show="User.isAuthenticated">
+                        <a ui-sref="dashboard">
+                            Inicio
+                            <span class="fui-arrow-right pull-right"></span>
+                        </a>
+                    </li>
+                    <li class="divider" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1"></li>
+                    <li class="nav-header" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
+                        <span class="fui-gear"></span>
+                        ADMIN
+                    </li>
+                    <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
+                        <a ui-sref="productList">
+                            Productos
+                            <span class="fui-arrow-right pull-right"></span>
+                        </a>
+                        <ul class="nav nav-list">
+                            <li ui-sref-active="active">
+                                <a href="javascript:;" ng-click="addProduct()">
+                                    <span class="fui-plus-inverted"></span>
+                                    Nuevo
+                                </a>
+                            </li>
+                            <li ui-sref-active="active">
+                                <a href="javascript:;" ui-sref="notificationList">
+                                    <span class="fui-plus-inverted"></span>
+                                    Notificaciones
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="divider" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1"></li>
+                    <li class="nav-header" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
+                        <span class="fui-user"></span>
+                        MENSAJES
+                    </li>
+                    <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
+                        <a href="javascript:;" ui-sref="messageList">
+                            Mensajes
+                            <span class="fui-arrow-right pull-right"></span>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="nav-header" ng-show="User.isAuthenticated">
+                        <span class="fui-user"></span>
+                        MI CUENTA
+                    </li>
+                    <li ui-sref-active="active" ng-show="User.isAuthenticated">
+                        <a ui-sref="changePassword">
+                            Cambiar Password
+                            <span class="fui-arrow-right pull-right"></span>
+                        </a>
+                    </li>
+                    <li ui-sref-active="active" ng-show="User.isAuthenticated">
+                        <a ui-sref="deleteAccount">
+                            Eliminar cuenta
+                            <span class="fui-arrow-right pull-right"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </wo-offcanvas-menu>
 
-            <wo-offcanvas-main>
+        <wo-offcanvas-main>
 
-                <div ui-view autoscroll="false"></div>
+            <div ui-view autoscroll="false"></div>
 
-            </wo-offcanvas-main>
+        </wo-offcanvas-main>
 
-            <wo-offcanvas-additional>
-                <div ng-Controller="DashboardAdditionalController">
+        <wo-offcanvas-additional>
+            <div ng-Controller="DashboardAdditionalController">
 
-                </div>
-            </wo-offcanvas-additional>
+            </div>
+        </wo-offcanvas-additional>
 
-        </wo-offcanvas>
+    </wo-offcanvas>
 
-        <div class="st-sticky-push"></div>
-    </div>
-
-    <footer class="st-sticky-footer">
+    <footer>
         <div class="bottom-menu bottom-menu-inverse">
             <div class="container">
                 <div class="row">
