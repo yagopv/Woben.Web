@@ -149,30 +149,30 @@
 @media all and (min-width: 978px) {
     
   .st-offcanvas .st-offcanvas-menu {
-    width: 15%;
+    width: 20%;
     margin-left: 0;
     float: left;
   }
   
   .st-offcanvas .st-offcanvas-main {
-    width: 70%;
+    width: 60%;
   }
   
   .st-offcanvas .st-offcanvas-additional {
-    width: 15%;
+    width: 20%;
     margin-right: 0;
     float: right;
   }
 
   .st-offcanvas.no-menu > .st-offcanvas-main {
-    width: 85%;
+    width: 80%;
   }
   
   .st-offcanvas.no-additional > .st-offcanvas-main {
-    width: 85%;
+    width: 80%;
   }
 
-    .st-offcanvas .buttonsContainer {
-        display : none;
-    }
+  .st-offcanvas .buttonsContainer {
+      display : none;
+  }
 }
