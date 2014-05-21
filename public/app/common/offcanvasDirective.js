@@ -70,8 +70,14 @@ WobenCommon.directive('woOffcanvasMenu', function() {
     return {
         restrict: 'E',
         replace : true,
+        require : "^woOffcanvas",
         transclude : true,
-        template: '<div class="st-offcanvas-menu" ng-transclude></div>'
+        template: '<div class="st-offcanvas-menu" ng-transclude></div>',
+        link : function($scope, element, attrs, offcanvas) {
+            $(element).on("click", function() {
+                offcanvas.toggleMenu();
+            });
+        }
     };
 });
 
