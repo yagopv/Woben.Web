@@ -20,22 +20,22 @@ WobenProducts.controller("NotificationListController", ["$scope", "notificationS
 		$scope.search = function() {
 			$scope.skip = 0;
 			$scope.top = 10;
-            if ($scope.query && $scope.query != "") {
-                $scope.odataString = "$skip=" + $scope.skip +
-                    "&$top=" + $scope.top  +
-                    "&$filter=CreatedBy eq '" + $scope.query +
-                    "' or PhoneNumber eq '"   + $scope.query +
-                    "' or Text eq '"          + $scope.query +
-                    "'&$expand=Product" +
-                    "&$orderby=CreatedDate desc";
+                        if ($scope.query && $scope.query != "") {
+                                $scope.odataString = "$skip=" + $scope.skip +
+                                        "&$top=" + $scope.top  +
+                                        "&$filter=substringof('" + $scope.query + "', CreatedBy)" +
+                                        "or substringof('" + $scope.query + "', PhoneNumber)" +
+                                        "or substringof('" + $scope.query + "', Text)" +                                        
+                                        "&$expand=Product" +
+                                        "&$orderby=CreatedDate desc";
 
-            } else {
-                $scope.odataString = "$skip=" + $scope.skip + "&$top=" + $scope.top + "&$expand=Product";
-            }
+                    } else {
+                            $scope.odataString = "$skip=" + $scope.skip + "&$top=" + $scope.top + "&$expand=Product";
+                    }
 
-			notificationService.getAll($scope.odataString).then(
-				function(data) {
-                    $scope.noMore = false;
+		    notificationService.getAll($scope.odataString).then(
+		              function(data) {
+                              $scope.noMore = false;
 					$scope.notifications = data;
 					$scope.skip = $scope.top;			
 				},

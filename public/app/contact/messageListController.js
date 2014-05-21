@@ -23,11 +23,11 @@ WobenContact.controller('MessageListController', ["$scope", "messageService", "e
             if ($scope.query && $scope.query != "") {
                 $scope.odataString = "$skip=" + $scope.skip +
                     "&$top=" + $scope.top  +
-                    "&$filter=CreatedBy eq '" + $scope.query +
-                    "' or PhoneNumber eq '"   + $scope.query +                    
-                    "' or Name eq '"          + $scope.query +
-                    "' or Email eq '"         + $scope.query +
-                    "' or Text eq '"          + $scope.query +
+                    "&$filter=substringof('" +  $scope.query + "',CreatedBy)" +
+                    " or substringof('"     +  $scope.query + "',PhoneNumber)" +             
+                    " or substringof('"     +  $scope.query + "',Name)" +
+                    " or substringof('"     +  $scope.query + "',Email)" +
+                    " or substringof('"     +  $scope.query + "',Text)" +
                     "&$orderby=CreatedDate desc";
 
             } else {
