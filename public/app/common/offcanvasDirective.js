@@ -1,4 +1,4 @@
-WobenCommon.directive('woOffcanvas', function($window) {
+WobenCommon.directive('woOffcanvas', ["$window", function($window) {
     return {
         restrict: 'E',
         replace : true,
@@ -64,7 +64,7 @@ WobenCommon.directive('woOffcanvas', function($window) {
             }
         }
     }
-});
+}]);
 
 WobenCommon.directive('woOffcanvasMenu', function() {
     return {
@@ -81,7 +81,7 @@ WobenCommon.directive('woOffcanvasMenu', function() {
     };
 });
 
-WobenCommon.directive('woOffcanvasMain', function($window) {
+WobenCommon.directive('woOffcanvasMain', ["$window", function($window) {
     return {
         restrict: 'E',
         replace : true,
@@ -141,7 +141,7 @@ WobenCommon.directive('woOffcanvasMain', function($window) {
             $scope.toggleAdditional = offcanvas.toggleAdditional;
         }
     };
-});
+}]);
 
 WobenCommon.directive('woOffcanvasAdditional', function() {
     return {

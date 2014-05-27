@@ -1,4 +1,6 @@
-WobenDashboard.controller("DashboardHeaderController", function($scope, accountService) {
+WobenDashboard.controller("DashboardHeaderController", ["$scope", "accountService", 
+
+function($scope, accountService) {
 
     $scope.$on("woben:authenticated", function() {
         $scope.User = accountService.User;
@@ -8,4 +10,4 @@ WobenDashboard.controller("DashboardHeaderController", function($scope, accountS
     $scope.logout = function() {
         accountService.logout();
     }
-});
+}]);

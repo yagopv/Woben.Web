@@ -1,4 +1,4 @@
-WobenCommon.directive("woLoader", function ($rootScope) {
+WobenCommon.directive("woLoader", ["$rootScope", function ($rootScope) {
         return {
             link : function($scope, element, attrs) {
                 $scope.$on("woben:loadershow", function () {
@@ -13,4 +13,4 @@ WobenCommon.directive("woLoader", function ($rootScope) {
             templateUrl: '/app/templates/common/loaderDirective.html'
         };
     }
-)
+]);

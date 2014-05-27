@@ -1,4 +1,4 @@
-WobenCommon.directive('woFileUpload', function(baseEndPoint, $window) {
+WobenCommon.directive('woFileUpload', ["baseEndPoint", "$window", function(baseEndPoint, $window) {
     return {
         link : function($scope, element, attrs) {
             if (attrs.maxFiles && parseInt(attrs.maxFiles) == 1) {
@@ -125,4 +125,4 @@ WobenCommon.directive('woFileUpload', function(baseEndPoint, $window) {
         },
         templateUrl: '/app/templates/common/fileUploadDirective.html'
     };
-});
+}]);

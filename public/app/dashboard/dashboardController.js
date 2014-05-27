@@ -1,3 +1,7 @@
-WobenDashboard.controller('DashboardController', function($scope, User) {
+WobenDashboard.controller('DashboardController', ["$scope", "User", 
+
+function($scope, User) {
+    
     $scope.User = User;
-});
+    
+}]);

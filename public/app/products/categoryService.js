@@ -1,4 +1,6 @@
-WobenProducts.factory('categoryService', function($http, $q, baseEndPoint) {
+WobenProducts.factory('categoryService', ["$http", "$q", "baseEndPoint", 
+
+function($http, $q, baseEndPoint) {
 
     return {
         getAll : function(query) {
@@ -44,4 +46,4 @@ WobenProducts.factory('categoryService', function($http, $q, baseEndPoint) {
             return deferred.promise;
         }
     }
-});
+}]);

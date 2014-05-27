@@ -1,6 +1,8 @@
 var Woben = angular.module('Woben',['WobenAccount', 'WobenCommon', 'WobenDashboard', 'WobenProducts', 'WobenContact', 'ui.router', 'ui.layout', 'ngAnimate']);
 
-Woben.config(function ($httpProvider) {
+Woben.config(["$httpProvider", 
+
+    function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
         $httpProvider.interceptors.push('oDataInterceptor');
         $httpProvider.interceptors.push('loaderInterceptor');
@@ -59,25 +61,29 @@ Woben.config(function ($httpProvider) {
 
             return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
         }];
-    })
-    .config(function($stateProvider, $urlRouterProvider, $locationProvider){
-        $stateProvider
-            .state('notfound', {
-                url: "/dashboard/404",
-                templateUrl: "app/templates/common/404.html"
+    }])
+    .config(["$stateProvider", "$urlRouterProvider", "$locationProvider", 
+    
+        function($stateProvider, $urlRouterProvider, $locationProvider){
+            $stateProvider
+                .state('notfound', {
+                    url: "/dashboard/404",
+                    templateUrl: "app/templates/common/404.html"
+                });
+    
+            $urlRouterProvider.otherwise("/404");
+    
+            $locationProvider.html5Mode(true);
+
+    }]).run(['accountService', '$rootScope', 
+    
+        function(accountService, $rootScope) {
+            accountService.initializeAuth();
+    	    marked.setOptions({
+    			sanitize: false,
+    			breaks : true
+    		});
+            $rootScope.$on('$stateChangeSuccess',function(){
+                $("html, body").animate({ scrollTop: 0 }, 200);
             });
-
-        $urlRouterProvider.otherwise("/404");
-
-        $locationProvider.html5Mode(true);
-
-    }).run(['accountService', '$rootScope', function(accountService, $rootScope) {
-        accountService.initializeAuth();
-	    marked.setOptions({
-			sanitize: false,
-			breaks : true
-		});
-        $rootScope.$on('$stateChangeSuccess',function(){
-            $("html, body").animate({ scrollTop: 0 }, 200);
-        });
-}]);
+    }]);

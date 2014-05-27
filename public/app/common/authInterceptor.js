@@ -1,4 +1,7 @@
-WobenCommon.factory('authInterceptor', function ($rootScope, $q, $window) {
+WobenCommon.factory('authInterceptor', ["$rootScope", "$q", "$window", 
+
+function ($rootScope, $q, $window) {
+        
         return {
             request: function (config) {
                 config.headers = config.headers || {};
@@ -15,4 +18,4 @@ WobenCommon.factory('authInterceptor', function ($rootScope, $q, $window) {
                 return response || $q.when(response);
             }
         };
-});
+}]);

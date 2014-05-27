@@ -1,4 +1,6 @@
-WobenProducts.factory('notificationService', function($http, $q, $cacheFactory, baseEndPoint, $window) {
+WobenProducts.factory('notificationService', ["$http", "$q", "$cacheFactory", "baseEndPoint", "$window", 
+
+function($http, $q, $cacheFactory, baseEndPoint, $window) {
 
     return {
         getAll : function(query) {
@@ -78,4 +80,4 @@ WobenProducts.factory('notificationService', function($http, $q, $cacheFactory, 
             return deferred.promise;
         }       
     }
-});
+}]);

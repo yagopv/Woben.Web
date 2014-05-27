@@ -1,4 +1,6 @@
-WobenProducts.controller('AddCategoryController', function($scope, categoryService, errorService) {
+WobenProducts.controller('AddCategoryController', ["$scope", "categoryService", "errorService", 
+
+function($scope, categoryService, errorService) {
 
     $scope.addCategory = function() {
         $scope.disabled = true;
@@ -17,4 +19,4 @@ WobenProducts.controller('AddCategoryController', function($scope, categoryServi
     }
 
     $scope.disabled = false;
-});
+}]);

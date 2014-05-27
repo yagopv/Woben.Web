@@ -1,4 +1,4 @@
-WobenCommon.factory('loaderInterceptor', function ($q, $rootScope, $log) {
+WobenCommon.factory('loaderInterceptor', ["$q", "$rootScope", "$log", function ($q, $rootScope, $log) {
 
     var numLoadings = 0;
 
@@ -32,4 +32,4 @@ WobenCommon.factory('loaderInterceptor', function ($q, $rootScope, $log) {
             return $q.reject(response);
         }
     };
-});
+}]);

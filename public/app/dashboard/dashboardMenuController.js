@@ -1,4 +1,6 @@
-WobenDashboard.controller("DashboardMenuController", ["$scope", "accountService", "ngDialog", function($scope, accountService, ngDialog) {
+WobenDashboard.controller("DashboardMenuController", ["$scope", "accountService", "ngDialog", 
+
+function($scope, accountService, ngDialog) {
 
     $scope.User = accountService.User;
 

@@ -1,4 +1,6 @@
-WobenProducts.controller('UpdateProductController', function($scope, productService, errorService, categoryService, ngDialog, $sce, $stateParams,$q, baseEndPoint, $timeout) {
+WobenProducts.controller('UpdateProductController', ["$scope", "productService", "errorService", "categoryService", "ngDialog", "$sce", "$stateParams","$q", "baseEndPoint", "$timeout",
+
+function($scope, productService, errorService, categoryService, ngDialog, $sce, $stateParams,$q, baseEndPoint, $timeout) {
 
     $scope.tags = "";
     
@@ -155,4 +157,4 @@ WobenProducts.controller('UpdateProductController', function($scope, productServ
         }
     }
 
-});
+}]);

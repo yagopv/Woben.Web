@@ -1,6 +1,6 @@
 var WobenContact = angular.module('WobenContact',['ui.router']);
 
-WobenContact.config(function($stateProvider) {
+WobenContact.config(["$stateProvider", function($stateProvider) {
         $stateProvider
             .state('contact', {
                 url: "/contact",
@@ -24,6 +24,6 @@ WobenContact.config(function($stateProvider) {
                     }
                 }
             });
-        });
+        }]);
 
 WobenContact.value("baseEndPoint", "https://woben.azurewebsites.net");

@@ -1,4 +1,4 @@
-WobenCommon.factory('oDataInterceptor', function ($q) {
+WobenCommon.factory('oDataInterceptor', ["$q", function ($q) {
     
     var camelcaseObject = function(data) {
         var oDataObject = {};
@@ -70,4 +70,4 @@ WobenCommon.factory('oDataInterceptor', function ($q) {
             return $q.reject(response);
         }
     };
-});
+}]);

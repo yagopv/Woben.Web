@@ -1,6 +1,6 @@
 var WobenProducts = angular.module('WobenProducts',['ui.router', 'ngDialog']);
 
-WobenProducts.config(function($stateProvider) {
+WobenProducts.config(["$stateProvider", function($stateProvider) {
         $stateProvider
             .state('productList', {
                 url: "/dashboard/product/index",
@@ -97,6 +97,6 @@ WobenProducts.config(function($stateProvider) {
                     }
                 }
             });                     
-        });
+        }]);
 
 WobenProducts.value("baseEndPoint", "https://woben.azurewebsites.net");

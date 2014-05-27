@@ -1,7 +1,9 @@
 var Woben = angular.module('Woben',['WobenAccount', 'WobenCommon', 'WobenProducts', 'WobenContact', 'WobenAbout', 'ui.router', 'ngAnimate']);
 
 Woben
-    .config(function ($httpProvider) {
+.config(["$httpProvider",
+    
+    function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
         $httpProvider.interceptors.push('oDataInterceptor');
         $httpProvider.interceptors.push('loaderInterceptor');
@@ -60,29 +62,31 @@ Woben
 
             return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
         }];
-    })
-    .config(function($stateProvider, $urlRouterProvider, $locationProvider){
-        $stateProvider
-            .state('home', {
-                url: "/",
-                templateUrl: "/app/templates/home/home.html",
-                controller : "HomeController"
-            })
-            .state('notfound', {
-                url: "/404",
-                templateUrl: "/app/templates/common/404.html"
+    }])
+    .config(["$stateProvider", "$urlRouterProvider", "$locationProvider", 
+        function($stateProvider, $urlRouterProvider, $locationProvider){
+            $stateProvider
+                .state('home', {
+                    url: "/",
+                    templateUrl: "/app/templates/home/home.html",
+                    controller : "HomeController"
+                })
+                .state('notfound', {
+                    url: "/404",
+                    templateUrl: "/app/templates/common/404.html"
+                });
+    
+            $urlRouterProvider.otherwise("/404");
+    
+            $locationProvider.html5Mode(true);
+    }])
+    .run(['accountService', '$rootScope', 
+        function(accountService, $rootScope) {
+            accountService.initializeAuth();
+    
+            $rootScope.$on('$stateChangeSuccess',function(){
+                $("html, body").animate({ scrollTop: 0 }, 200);
             });
-
-        $urlRouterProvider.otherwise("/404");
-
-        $locationProvider.html5Mode(true);
-    })
-    .run(function(accountService, $rootScope) {
-        accountService.initializeAuth();
-
-        $rootScope.$on('$stateChangeSuccess',function(){
-            $("html, body").animate({ scrollTop: 0 }, 200);
-        });
-    });
+    }]);
 
 
