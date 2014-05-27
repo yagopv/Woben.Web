@@ -1,6 +1,6 @@
 WobenAccount.controller('ChangePasswordController', ['$scope', 'accountService', '$state', 'errorService', 
 
-    function($scope, accountService, $state, errorService) {
+function($scope, accountService, $state, errorService) {
 
     $scope.disabled = false;
     
