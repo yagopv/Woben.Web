@@ -2,19 +2,23 @@ var shell = require('shelljs');
 
 module.exports = function (grunt) {
   grunt.initConfig ({     
-
+        
+        // Read package.json for being used in the tasks
         pkg: grunt.file.readJSON('package.json'),
     
+        // Prepare banner
         banner: '/*!\n' +
                   ' * Woben v<%= pkg.version %> by @yperezva\n' +
                   ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
                   ' * Licensed under <%= _.pluck(pkg.licenses, "url").join(", ") %>\n' +
-                  ' */\n',
-    
+                  ' */\n',    
+
+        //Clean build directories
         clean: {
           build: ['public/build/css', 'public/build/js']
         },
 
+        //Concat files in build directories
         concat: {
           options: {
             stripBanners: false
@@ -118,6 +122,7 @@ module.exports = function (grunt) {
           }
         },
 
+        // Compile less, minify and copy to build directories
         less: {
           production: {
             options: {
@@ -140,6 +145,7 @@ module.exports = function (grunt) {
           }        
         },
     
+        // Minify javascript files in build directories
         uglify: {
             WobenModules: {
               files: {
