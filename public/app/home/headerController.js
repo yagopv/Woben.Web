@@ -1,4 +1,4 @@
-Woben.controller("HeaderController", ["$scope", "accountService", "$timeout", "$state", "$window",
+WobenHome.controller("HeaderController", ["$scope", "accountService", "$timeout", "$state", "$window",
 
     function($scope, accountService, $timeout, $state, $window) {
 

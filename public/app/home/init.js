@@ -1,0 +1,1 @@
+var WobenHome = angular.module('WobenHome',['WobenAccount']);

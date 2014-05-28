@@ -1,4 +1,5 @@
-WobenContact.factory('messageService', function($http, $q, $cacheFactory, baseEndPoint, $window) {
+WobenContact.factory('messageService', ["$http", "$q", "$cacheFactory", "baseEndPoint", "$window",
+    function($http, $q, $cacheFactory, baseEndPoint, $window) {
 
     return {
         getAll : function(query) {
@@ -78,4 +79,4 @@ WobenContact.factory('messageService', function($http, $q, $cacheFactory, baseEn
             return deferred.promise;
         }       
     }
-});
+}]);

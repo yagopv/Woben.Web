@@ -1,4 +1,4 @@
-Woben.controller("HomeController", ["$scope", "$window",
+WobenHome.controller("HomeController", ["$scope", "$window",
 
 function($scope, $window) {
     

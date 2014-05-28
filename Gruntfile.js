@@ -12,16 +12,31 @@ module.exports = function (grunt) {
                   ' */\n',
     
         clean: {
-          build: ['public/build/css', 'public/build/scripts']
+          build: ['public/build/css', 'public/build/js']
         },
 
         concat: {
           options: {
             stripBanners: false
           },
-          wobenModules: {
-            src: [
-				        //Common
+          WobenProducts : {
+            src : [
+        				'public/app/products/init.js',	
+        				'public/app/products/addCategoryController.js',
+        				'public/app/products/addFeatureController.js',
+        				'public/app/products/addProductController.js',
+        				'public/app/products/categoryService.js',
+        				'public/app/products/notificationListController.js',
+        				'public/app/products/notificationService.js',
+        				'public/app/products/productListController.js',
+        				'public/app/products/publicProductController.js',
+        				'public/app/products/updateProductController.js',
+        				'public/app/products/viewPublicProductController.js'              
+            ],
+            dest : 'public/build/js/<%= pkg.name %>.Products.js'
+          },
+          WobenCommon : {
+            src : [
                 'public/app/common/init.js',
                 'public/app/common/checkboxDirective.js',
                 'public/app/common/radioDirective.js',
@@ -35,8 +50,12 @@ module.exports = function (grunt) {
                 'public/app/common/loaderDirective.js',
                 'public/app/common/loaderInterceptor.js',
                 'public/app/common/selectDirective.js',
-                'public/app/common/typeaheadDirective.js',
-				        //Account
+                'public/app/common/typeaheadDirective.js'              
+            ],
+            dest : 'public/build/js/<%= pkg.name %>.Common.js'
+          }, 
+         WobenAccount : {
+            src : [
                 'public/app/account/init.js',
                 'public/app/account/accountService.js',
                 'public/app/account/changePasswordController.js',
@@ -45,41 +64,56 @@ module.exports = function (grunt) {
                 'public/app/account/forgetPasswordController.js',
                 'public/app/account/loginController.js',
                 'public/app/account/registerController',
-                'public/app/account/resetPasswordController.js',
-				        //Products
-        				'public/app/products/init.js',	
-        				'public/app/products/addCategoryController.js',
-        				'public/app/products/addFeatureController.js',
-        				'public/app/products/addProductController.js',
-        				'public/app/products/categoryService.js',
-        				'public/app/products/notificationListController.js',
-        				'public/app/products/notificationService.js',
-        				'public/app/products/productListController.js',
-        				'public/app/products/publicProductController.js',
-        				'public/app/products/updateProductController.js',
-        				'public/app/products/viewPublicProductController.js',
-        				//Contact											
-        				'public/app/contact/init.js',
-        				'public/app/contact/contactController.js',
-        				'public/app/contact/messageListController.js',
-        				'public/app/contact/messageService.js',
-        				//About											
-        				'public/app/about/init.js',
-        				'public/app/about/aboutController.js',
-        				//Home
-                'public/app/index.js',
-        				'public/app/home/homeController.js',
-        				'public/app/home/headerController.js',
-        				'public/app/home/footerController.js',
-        				//Dashboard		
-                'public/app/dashboard.js',			
+                'public/app/account/resetPasswordController.js'              
+            ],
+            dest : 'public/build/js/<%= pkg.name %>.Account.js'
+          },  
+         WobenDashboard : {
+            src : [
         				'public/app/dashboard/init.js',																																											
         				'public/app/dashboard/dashboardAdditionalController.js',
         				'public/app/dashboard/dashboardController.js',
         				'public/app/dashboard/dashboardHeaderController.js',
-        				'public/app/dashboard/dashboardMenuController.js'
+        				'public/app/dashboard/dashboardMenuController.js'              
             ],
-            dest : 'public/build/js/<%= pkg.name %>.js'
+            dest : 'public/build/js/<%= pkg.name %>.Dashboard.js'
+          }, 
+         WobenContact : {
+            src : [
+        				'public/app/contact/init.js',
+        				'public/app/contact/messageService.js',                
+        				'public/app/contact/contactController.js',
+        				'public/app/contact/messageListController.js'              
+            ],
+            dest : 'public/build/js/<%= pkg.name %>.Contact.js'
+          },  
+         WobenAbout : {
+            src : [
+        				'public/app/about/init.js',
+        				'public/app/about/aboutController.js'              
+            ],
+            dest : 'public/build/js/<%= pkg.name %>.About.js'
+          }, 
+         WobenHome : {
+            src : [
+                'public/app/home/init.js',
+        				'public/app/home/homeController.js',
+        				'public/app/home/headerController.js',
+        				'public/app/home/footerController.js'              
+            ],
+            dest : 'public/build/js/<%= pkg.name %>.Home.js'
+          },
+         WobenIndexInitializer : {
+            src : [
+                'public/app/index.js'              
+            ],
+            dest : 'public/build/js/<%= pkg.name %>.HomeInitializer.js'
+          },    
+         WobenDashboardInitialize : {
+            src : [
+                'public/app/dashboard.js'              
+            ],
+            dest : 'public/build/js/<%= pkg.name %>.DashboardInitializer.js'
           }
         },
 
@@ -108,7 +142,16 @@ module.exports = function (grunt) {
         uglify: {
             WobenModules: {
               files: {
-                'public/build/js/<%= pkg.name %>.min.js': 'public/build/js/<%= pkg.name %>.js'
+                'public/build/js/<%= pkg.name %>.Products.min.js': 'public/build/js/<%= pkg.name %>.Products.js',
+                'public/build/js/<%= pkg.name %>.Common.min.js': 'public/build/js/<%= pkg.name %>.Common.js',
+                'public/build/js/<%= pkg.name %>.Account.min.js': 'public/build/js/<%= pkg.name %>.Account.js',
+                'public/build/js/<%= pkg.name %>.Dashboard.min.js': 'public/build/js/<%= pkg.name %>.Dashboard.js',
+                'public/build/js/<%= pkg.name %>.Home.min.js': 'public/build/js/<%= pkg.name %>.Home.js',
+                'public/build/js/<%= pkg.name %>.Contact.min.js': 'public/build/js/<%= pkg.name %>.Contact.js',
+                'public/build/js/<%= pkg.name %>.HomeInitializer.min.js': 'public/build/js/<%= pkg.name %>.HomeInitializer.js',
+                'public/build/js/<%= pkg.name %>.DashboardInitializer.min.js': 'public/build/js/<%= pkg.name %>.DashboardInitializer.js',
+                'public/build/js/<%= pkg.name %>.Contact.min.js': 'public/build/js/<%= pkg.name %>.Contact.js',
+                'public/build/js/<%= pkg.name %>.About.min.js': 'public/build/js/<%= pkg.name %>.About.js'
               }
             }
         },
@@ -197,7 +240,7 @@ module.exports = function (grunt) {
   //grunt.registerTask('copyfiles', ['copy']);
 
   // CSS and JS dist
-  grunt.registerTask('uglifyfiles', ['uglify:WobenModules']);
+  grunt.registerTask('uglifyfiles', ['uglify']);
   
   // Add banners
   //grunt.registerTask('banners', ['usebanner']);

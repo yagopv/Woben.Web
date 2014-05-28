@@ -1,3 +1,3 @@
-Woben.controller("FooterController", ["$scope", function($scope) {
+WobenHome.controller("FooterController", ["$scope", function($scope) {
 
 }]);
