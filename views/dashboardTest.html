@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html ng-app="Woben" lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Template CSS</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <link rel="stylesheet" href="/lib/flat-ui-pro/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/lib/flat-ui-pro/flat.css">
+
+    <link rel="stylesheet" href="/lib/offcanvas/offcanvas.css">
+    <link rel="stylesheet" href="/lib/sticky/sticky.css">
+    <link rel="stylesheet" href="/lib/angular-dialog/ngDialog.css">
+    <link rel="stylesheet" href="/lib/angular-dialog/ngDialog-default.css">
+    <link rel="stylesheet" href="/lib/angular-dialog/ngDialog-plain.css">
+    <link rel="stylesheet" href="/lib/angular-ui-layout/ui-layout.css">
+    <link rel="stylesheet" href="/common-files/dashboard.css">
+
+</head>
+
+<body>
+    <header ng-Controller="DashboardHeaderController">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <a class="navbar-brand" ui-sref="dashboard" ng-cloak>{{ userName }}</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-01">
+                <ul class="nav navbar-nav">
+                    <li><a href="/" target="_self">Ir al sitio</a></li>
+                    <li><a href="javascript:;" ng-click="logout()">Desconectar</a></li>
+                    <li ui-sref-active="active" ng-show="User.isAuthenticated && !User.emailConfirmed">
+                        <a href="javascript:;" ui-sref="confirmAccount">Confirmar cuenta<span class="navbar-new">1</span></a>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right" action="#" role="search">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn"><span class="fui-search"></span></button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </nav><!-- /navbar -->
+    </header>
+
+    <wo-offcanvas active-transitions="true" no-additional="true">
+
+        <wo-offcanvas-menu>
+            <div  ng-controller="DashboardMenuController">
+                <ul class="nav nav-list">
+                    <li class="nav-header" ng-show="User.isAuthenticated">
+                        <span class="fui-gear"></span>
+                        DASHBOARD
+                    </li>
+                    <li ui-sref-active="active" ng-show="User.isAuthenticated">
+                        <a ui-sref="dashboard">
+                            Inicio
+                            <span class="fui-arrow-right pull-right"></span>
+                        </a>
+                    </li>
+                    <li class="divider" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1"></li>
+                    <li class="nav-header" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
+                        <span class="fui-gear"></span>
+                        ADMIN
+                    </li>
+                    <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
+                        <a ui-sref="productList">
+                            Productos
+                            <span class="fui-arrow-right pull-right"></span>
+                        </a>
+                        <ul class="nav nav-list">
+                            <li ui-sref-active="active">
+                                <a href="javascript:;" ng-click="addProduct()">
+                                    <span class="fui-plus-inverted"></span>
+                                    Nuevo
+                                </a>
+                            </li>
+                            <li ui-sref-active="active">
+                                <a href="javascript:;" ui-sref="notificationList">
+                                    <span class="fui-plus-inverted"></span>
+                                    Notificaciones
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="divider" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1"></li>
+                    <li class="nav-header" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
+                        <span class="fui-user"></span>
+                        MENSAJES
+                    </li>
+                    <li ui-sref-active="active" ng-show="User.isAuthenticated && User.roles.indexOf('Administrator') != -1">
+                        <a href="javascript:;" ui-sref="messageList">
+                            Mensajes
+                            <span class="fui-arrow-right pull-right"></span>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="nav-header" ng-show="User.isAuthenticated">
+                        <span class="fui-user"></span>
+                        MI CUENTA
+                    </li>
+                    <li ui-sref-active="active" ng-show="User.isAuthenticated">
+                        <a ui-sref="changePassword">
+                            Cambiar Password
+                            <span class="fui-arrow-right pull-right"></span>
+                        </a>
+                    </li>
+                    <li ui-sref-active="active" ng-show="User.isAuthenticated">
+                        <a ui-sref="deleteAccount">
+                            Eliminar cuenta
+                            <span class="fui-arrow-right pull-right"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </wo-offcanvas-menu>
+
+        <wo-offcanvas-main>
+
+            <div ui-view autoscroll="false"></div>
+
+        </wo-offcanvas-main>
+
+        <wo-offcanvas-additional>
+            <div ng-Controller="DashboardAdditionalController">
+
+            </div>
+        </wo-offcanvas-additional>
+
+    </wo-offcanvas>
+
+    <footer>
+        <div class="bottom-menu bottom-menu-inverse">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 navbar-brand">
+                        <a ui-sref="dashboard">Woben</a>
+                    </div>
+
+                    <div class="col-md-8">
+                        <ul class="bottom-links">
+                            <li><a href="#fakelink">About Us</a></li>
+                            <li><a href="#fakelink">Store</a></li>
+                            <li class="active"><a href="#fakelink">Jobs</a></li>
+                            <li><a href="#fakelink">Privacy</a></li>
+                            <li><a href="#fakelink">Terms</a></li>
+                            <li><a href="#fakelink">Follow Us</a></li>
+                            <li><a href="#fakelink">Support</a></li>
+                            <li><a href="#fakelink">Links</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-2">
+                        <ul class="bottom-icons">
+                            <li><a href="#fakelink" class="fui-pinterest"></a></li>
+                            <li><a href="#fakelink" class="fui-facebook"></a></li>
+                            <li><a href="#fakelink" class="fui-twitter"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <wo-loader></wo-loader>
+
+    <!-- jQuery. Before angular for jQLite substitution -->
+    <script type="text/javascript" src="/lib/startup/flat-ui/js/jquery-1.8.3.min.js"></script>
+
+    <!-- Flat UI -->
+    <script type="text/javascript" src="/lib/flat-ui-pro/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="/lib/flat-ui-pro/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/lib/flat-ui-pro/js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="/lib/flat-ui-pro/js/bootstrap-switch.js"></script>
+    <script type="text/javascript" src="/lib/flat-ui-pro/js/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="/lib/flat-ui-pro/js/flatui-checkbox.js"></script>
+    <script type="text/javascript" src="/lib/flat-ui-pro/js/flatui-radio.js"></script>
+    <script type="text/javascript" src="/lib/flat-ui-pro/js/flatui-fileinput.js"></script>
+    <script type="text/javascript" src="/lib/flat-ui-pro/js/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="/lib/flat-ui-pro/js/jquery.placeholder.js"></script>
+
+    <!-- Angular -->
+    <script type="text/javascript" src="/lib/angular-file-upload/angular-file-upload-html5-shim.js"></script>
+    <script type="text/javascript" src="/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="/lib/angular/angular-sanitize.js"></script>
+    <script type="text/javascript" src="/lib/angular/angular-animate.js"></script>
+    <script type="text/javascript" src="/lib/angular-ui-router/angular-ui-router.js"></script>
+    <script type="text/javascript" src="/lib/angular-dialog/ngDialog.js"></script>
+    <script type="text/javascript" src="/lib/angular-file-upload/angular-file-upload.js"></script>
+    <script type="text/javascript" src="/lib/angular-ui-layout/ui-layout.js"></script>
+
+    <!-- Typeahead -->
+    <script type="text/javascript" src="/lib/typeahead/typeahead.bundle.js"></script>
+
+    <!-- Marked -->
+    <script type="text/javascript" src="/lib/marked/marked.js"></script>
+    
+    <!-- Common module -->
+    <script type="text/javascript" src="/app/common/init.js"></script>
+    <script type="text/javascript" src="/app/common/checkboxDirective.js"></script>
+    <script type="text/javascript" src="/app/common/errorDirective.js"></script>
+    <script type="text/javascript" src="/app/common/authInterceptor.js"></script>
+    <script type="text/javascript" src="/app/common/oDataInterceptor.js"></script>    
+    <script type="text/javascript" src="/app/common/errorService.js"></script>
+    <script type="text/javascript" src="/app/common/offcanvasDirective.js"></script>
+    <script type="text/javascript" src="/app/common/fileUploadDirective.js"></script>
+    <script type="text/javascript" src="/app/common/selectDirective.js"></script>
+    <script type="text/javascript" src="/app/common/loaderInterceptor.js"></script>
+    <script type="text/javascript" src="/app/common/loaderDirective.js"></script>
+    
+    <!-- Account module -->
+    <script type="text/javascript" src="/app/account/init.js"></script>
+    <script type="text/javascript" src="/app/account/accountService.js"></script>
+    <script type="text/javascript" src="/app/account/loginController.js"></script>
+    <script type="text/javascript" src="/app/account/changePasswordController.js"></script>
+    <script type="text/javascript" src="/app/account/deleteAccountController.js"></script>
+    <script type="text/javascript" src="/app/account/confirmAccountController.js"></script>
+
+    <!-- Dashboard module -->
+    <script type="text/javascript" src="/app/dashboard/init.js"></script>
+    <script type="text/javascript" src="/app/dashboard/dashboardController.js"></script>
+    <script type="text/javascript" src="/app/dashboard/dashboardMenuController.js"></script>
+    <script type="text/javascript" src="/app/dashboard/dashboardAdditionalController.js"></script>
+    <script type="text/javascript" src="/app/dashboard/dashboardHeaderController.js"></script>
+
+    <!-- Products module -->
+    <script type="text/javascript" src="/app/products/init.js"></script>
+    <script type="text/javascript" src="/app/products/productService.js"></script>
+    <script type="text/javascript" src="/app/products/categoryService.js"></script>
+    <script type="text/javascript" src="/app/products/notificationService.js"></script>
+    <script type="text/javascript" src="/app/products/productListController.js"></script>
+    <script type="text/javascript" src="/app/products/addProductController.js"></script>
+    <script type="text/javascript" src="/app/products/updateProductController.js"></script>    
+    <script type="text/javascript" src="/app/products/addCategoryController.js"></script>
+    <script type="text/javascript" src="/app/products/addFeatureController.js"></script>
+    <script type="text/javascript" src="/app/products/notificationListController.js"></script>
+
+    <!-- Contact module -->
+    <script type="text/javascript" src="/app/contact/init.js"></script>
+    <script type="text/javascript" src="/app/contact/contactController.js"></script>
+    <script type="text/javascript" src="/app/contact/messageService.js"></script>
+    <script type="text/javascript" src="/app/contact/messageListController.js"></script>        
+    
+    <!-- Angular components -->
+    <script type="text/javascript" src="/app/dashboard.js"></script>
+
+</body>
+
+</html>

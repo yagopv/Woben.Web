@@ -53,9 +53,9 @@ if (app.get('env') === 'production') {
 //*********//
 
 if ('development' == app.get('env')) {
-    app.get('/dashboard', routes.dashboard);
-    app.get('/dashboard/*', routes.dashboard);
-    app.get('*', routes.test);
+    app.get('/dashboard', routes.dashboardTest);
+    app.get('/dashboard/*', routes.dashboardTest);
+    app.get('*', routes.indexTest);
 } else {
     app.get('/dashboard', routes.dashboard);
     app.get('/dashboard/*', routes.dashboard);

@@ -7,12 +7,16 @@ var request = require('request');
 
 var app = express();
 
+exports.dashboardTest = function(req, res){
+    res.render('dashboardTest', { title: 'Woben - Dashboard' });
+}
+
 exports.dashboard = function(req, res){
     res.render('dashboard', { title: 'Woben - Dashboard' });
 }
 
-exports.test = function(req, res){
-    res.render('index', { title: 'Woben' });
+exports.indexTest = function(req, res){
+    res.render('indexTest', { title: 'Woben' });
 }
 
 exports.index = function(req, res){
