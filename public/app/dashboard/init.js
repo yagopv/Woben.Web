@@ -1,6 +1,6 @@
 var WobenDashboard = angular.module('WobenDashboard',['ui.router']);
 
-WobenDashboard.config(function($stateProvider){
+WobenDashboard.config(["$stateProvider", function($stateProvider){
         $stateProvider
             .state('dashboard', {
                 url: "/dashboard",
@@ -19,4 +19,4 @@ WobenDashboard.config(function($stateProvider){
                     }]
                 }
             });
-        });
+        }]);

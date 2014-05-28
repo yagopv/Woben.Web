@@ -1,4 +1,6 @@
-WobenCommon.factory('loaderInterceptor', ["$q", "$rootScope", "$log", function ($q, $rootScope, $log) {
+WobenCommon.factory('loaderInterceptor', ["$q", "$rootScope", "$log", 
+
+function ($q, $rootScope, $log) {
 
     var numLoadings = 0;
 

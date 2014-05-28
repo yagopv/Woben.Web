@@ -1,4 +1,6 @@
-WobenCommon.directive('woOffcanvas', ["$window", function($window) {
+WobenCommon.directive('woOffcanvas', ["$window", 
+
+function($window) {
     return {
         restrict: 'E',
         replace : true,
@@ -8,7 +10,7 @@ WobenCommon.directive('woOffcanvas', ["$window", function($window) {
           noAdditional : "@",
           noMenu : "@"
         },
-        controller : function($scope) {
+        controller : ["$scope", function($scope) {
             $scope.windowWidth = $window.innerWidth;
             $scope.activeMenu = false;
             $scope.activeAdditional = false;
@@ -48,7 +50,7 @@ WobenCommon.directive('woOffcanvas', ["$window", function($window) {
             window.onresize = function(){
                 $scope.$apply();
             }
-        },
+        }],
         template: '<div class="st-offcanvas" ng-class="{activemenu : activeMenu, activeadditional : activeAdditional }" ng-transclude></div>',
         link: function(scope, element, attrs, $window) {
             if (scope.activeTransitions == "true") {
@@ -94,7 +96,7 @@ WobenCommon.directive('woOffcanvasMain', ["$window", function($window) {
                         '</div>' +
                         '<div ng-transclude></div>' +
                   '</div>',
-        controller : function($scope) {
+        controller : ["$scope", function($scope) {
             $scope.windowWidth = $window.innerWidth;
 
             $scope.getWidth = function() {
@@ -135,7 +137,7 @@ WobenCommon.directive('woOffcanvasMain', ["$window", function($window) {
 
             calculateMinHeight();
             checkButtonsVisibility();
-        },
+        }],
         link: function($scope, element, attrs, offcanvas) {
             $scope.toggleMenu = offcanvas.toggleMenu;
             $scope.toggleAdditional = offcanvas.toggleAdditional;

@@ -18,7 +18,9 @@ WobenCommon.directive('woFileUpload', ["baseEndPoint", "$window", function(baseE
             uploadRightAway : "@",
             ngModel : "="
         },
-        controller : function($scope, $http, $timeout, $upload) {
+        controller : ["$scope", "$http", "$timeout", "$upload",
+            function($scope, $http, $timeout, $upload) {
+                
         	$scope.fileReaderSupported = window.FileReader != null;
         	$scope.changeAngularVersion = function() {
         		window.location.hash = $scope.angularVersion;
@@ -122,7 +124,7 @@ WobenCommon.directive('woFileUpload', ["baseEndPoint", "$window", function(baseE
         	        fileReader.readAsArrayBuffer($scope.selectedFiles[index]);
         		}
         	}
-        },
+        }],
         templateUrl: '/app/templates/common/fileUploadDirective.html'
     };
 }]);

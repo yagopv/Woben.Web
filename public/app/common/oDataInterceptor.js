@@ -1,4 +1,6 @@
-WobenCommon.factory('oDataInterceptor', ["$q", function ($q) {
+WobenCommon.factory('oDataInterceptor', ["$q", 
+
+function ($q) {
     
     var camelcaseObject = function(data) {
         var oDataObject = {};

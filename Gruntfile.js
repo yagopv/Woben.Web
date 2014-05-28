@@ -28,7 +28,7 @@ module.exports = function (grunt) {
         				'public/app/products/init.js',
                 'public/app/products/productService.js',	
                 'public/app/products/categoryService.js',
-                'public/app/products/notificationService.js',
+                'public/app/products/notificationService.js',                
         				'public/app/products/addCategoryController.js',
         				'public/app/products/addFeatureController.js',
         				'public/app/products/addProductController.js',        				
@@ -75,11 +75,11 @@ module.exports = function (grunt) {
           },  
          WobenDashboard : {
             src : [
-        				'public/app/dashboard/init.js',																																											
+        				'public/app/dashboard/init.js',													
+        				'public/app/dashboard/dashboardController.js',      
+        				'public/app/dashboard/dashboardMenuController.js',                          																														
         				'public/app/dashboard/dashboardAdditionalController.js',
-        				'public/app/dashboard/dashboardController.js',
-        				'public/app/dashboard/dashboardHeaderController.js',
-        				'public/app/dashboard/dashboardMenuController.js'              
+        				'public/app/dashboard/dashboardHeaderController.js'              
             ],
             dest : 'public/build/js/<%= pkg.name %>.Dashboard.js'
           }, 

@@ -1,4 +1,7 @@
-WobenCommon.directive("woLoader", ["$rootScope", function ($rootScope) {
+WobenCommon.directive("woLoader", ["$rootScope", 
+
+function ($rootScope) {
+    
         return {
             link : function($scope, element, attrs) {
                 $scope.$on("woben:loadershow", function () {
