@@ -18,7 +18,7 @@ WobenAccount.config(['$stateProvider', function($stateProvider) {
                 templateUrl: "/app/templates/account/changePassword.html",
                 controller:    'ChangePasswordController',
                 resolve: {
-                    User: function($state, $stateParams, $q, accountService) {
+                    User: ["$state", "accountService", function($state, accountService) {
                         return accountService.isUserInRole(["User", "Administrator"]).then(
                             function(data) {
                                 return data;
@@ -27,7 +27,7 @@ WobenAccount.config(['$stateProvider', function($stateProvider) {
                                 $state.go('signin');
                             }
                         );
-                    }
+                    }]
                 }
             })
             .state('forgetPassword', {
@@ -45,7 +45,7 @@ WobenAccount.config(['$stateProvider', function($stateProvider) {
                 templateUrl: "/app/templates/account/deleteAccount.html",
                 controller:    'DeleteAccountController',
                 resolve: {
-                    User: function($state, $stateParams, $q, accountService) {
+                    User: ["$state", "accountService", function($state, accountService) {
                         return accountService.isUserInRole(["User", "Administrator"]).then(
                             function(data) {
                                 return data;
@@ -54,7 +54,7 @@ WobenAccount.config(['$stateProvider', function($stateProvider) {
                                 $state.go('signin');
                             }
                         );
-                    }
+                    }]
                 }                
             })
             .state('confirmAccount', {
@@ -62,7 +62,7 @@ WobenAccount.config(['$stateProvider', function($stateProvider) {
                 templateUrl: "/app/templates/account/confirmAccount.html",
                 controller:    'ConfirmAccountController',
                 resolve: {
-                    User: function($state, $stateParams, $q, accountService) {
+                    User: ["$state", "accountService", function($state, accountService) {
                         return accountService.isUserInRole(["User"]).then(
                             function(data) {
                                 return data;
@@ -71,7 +71,7 @@ WobenAccount.config(['$stateProvider', function($stateProvider) {
                                 $state.go('signin');
                             }
                         );
-                    }
+                    }]
                 }
             })
             .state('registrationComplete', {

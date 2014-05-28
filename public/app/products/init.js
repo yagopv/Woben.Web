@@ -7,7 +7,7 @@ WobenProducts.config(["$stateProvider", function($stateProvider) {
                 controller:  "IndexController",
                 templateUrl: "/app/templates/products/productList.html",
                 resolve: {
-                    User: function($state, $stateParams, $q, accountService) {
+                    User: ["$state", "accountService", function($state, accountService) {
                         return accountService.isUserInRole(["Administrator"]).then(
                             function(data) {
                                 return data;
@@ -16,7 +16,7 @@ WobenProducts.config(["$stateProvider", function($stateProvider) {
                                 $state.go('signin');
                             }
                         );
-                    }
+                    }]
                 }
             })
             .state('updateProduct', {
@@ -24,7 +24,7 @@ WobenProducts.config(["$stateProvider", function($stateProvider) {
                 controller:  "UpdateProductController",
                 templateUrl: "/app/templates/products/updateProduct.html",
                 resolve: {
-                    User: function($state, $stateParams, $q, accountService) {
+                    User: ["$state", "accountService", function($state, accountService) {
                         return accountService.isUserInRole(["Administrator"]).then(
                             function(data) {
                                 return data;
@@ -33,7 +33,7 @@ WobenProducts.config(["$stateProvider", function($stateProvider) {
                                 $state.go('signin');
                             }
                         );
-                    }
+                    }]
                 }
             })
             .state('publicProducts', {
@@ -41,7 +41,7 @@ WobenProducts.config(["$stateProvider", function($stateProvider) {
                 controller:  "PublicProductController",
                 templateUrl: "/app/templates/products/publicProducts.html",
                 resolve: {
-                    User: function($state, $stateParams, $q, accountService) {
+                    User: ["$state", "accountService", function($state, accountService) {
                         return accountService.isUserInRole(["User", "Administrator"]).then(
                             function(data) {
                                 return data;
@@ -49,9 +49,9 @@ WobenProducts.config(["$stateProvider", function($stateProvider) {
                             function(error) {
                                 $state.go('login');
                             }
-                        );
-                    },
-                    TypeaheadData: function($state, productService) {
+                        );                        
+                    }],
+                    TypeaheadData: ["$state", "productService", function($state, productService) {
                         return productService.getAll("$select=Name,Description").then(
                             function(data) {
                                 return data;
@@ -60,7 +60,7 @@ WobenProducts.config(["$stateProvider", function($stateProvider) {
                                 $state.go('login');
                             }
                         );
-                    }          
+                    }]          
                 }
             })
             .state('viewPublicProduct', {
@@ -68,7 +68,7 @@ WobenProducts.config(["$stateProvider", function($stateProvider) {
                 controller:  "ViewPublicProductController",
                 templateUrl: "/app/templates/products/viewPublicProduct.html",
                 resolve: {
-                    User: function($state, $stateParams, $q, accountService) {
+                    User: ["$state", "accountService", function($state, accountService) {
                         return accountService.isUserInRole(["User", "Administrator"]).then(
                             function(data) {
                                 return data;
@@ -77,7 +77,7 @@ WobenProducts.config(["$stateProvider", function($stateProvider) {
                                 $state.go('login');
                             }
                         );
-                    }
+                    }]
                 }
             })
             .state('notificationList', {
@@ -85,7 +85,7 @@ WobenProducts.config(["$stateProvider", function($stateProvider) {
                 controller:  "NotificationListController",
                 templateUrl: "/app/templates/products/notificationList.html",
                 resolve: {
-                    User: function($state, $stateParams, $q, accountService) {
+                    User: ["$state", "accountService", function($state, accountService) {
                         return accountService.isUserInRole(["Administrator"]).then(
                             function(data) {
                                 return data;
@@ -94,7 +94,7 @@ WobenProducts.config(["$stateProvider", function($stateProvider) {
                                 $state.go('signin');
                             }
                         );
-                    }
+                    }]
                 }
             });                     
         }]);

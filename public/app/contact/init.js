@@ -12,7 +12,7 @@ WobenContact.config(["$stateProvider", function($stateProvider) {
                 controller:  "MessageListController",
                 templateUrl: "/app/templates/contact/messageList.html",
                 resolve: {
-                    User: function($state, $stateParams, $q, accountService) {
+                    User: ["$state", "accountService", function($state, accountService) {
                         return accountService.isUserInRole(["Administrator"]).then(
                             function(data) {
                                 return data;
@@ -21,7 +21,7 @@ WobenContact.config(["$stateProvider", function($stateProvider) {
                                 $state.go('signin');
                             }
                         );
-                    }
+                    }]
                 }
             });
         }]);
