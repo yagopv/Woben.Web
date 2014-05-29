@@ -114,10 +114,13 @@ WobenCommon.directive('woOffcanvasMain', ["$window", function($window) {
             };
 
             var calculateMinHeight = function() {
-                var minHeight = angular.element(window).height() -
+                var menuHeight =  angular.element(".st-offcanvas-menu").height(),
+                    minHeight = angular.element(window).height() -
                     angular.element("footer").height();
-                    angular.element(".st-offcanvas-main").css("min-height", minHeight + 50);
-                    console.log(minHeight);
+                    if (minHeight < menuHeight) {
+                        minHeight = menuHeight + 20;
+                    }
+                    angular.element(".st-offcanvas-main").css("min-height", minHeight);
             };
 
             var checkButtonsVisibility = function() {
@@ -135,7 +138,9 @@ WobenCommon.directive('woOffcanvasMain', ["$window", function($window) {
                 }
             };
 
-            calculateMinHeight();
+            $scope.$on("woben:loaderhide", function() {
+                calculateMinHeight();                                
+            });            
             checkButtonsVisibility();
         }],
         link: function($scope, element, attrs, offcanvas) {
