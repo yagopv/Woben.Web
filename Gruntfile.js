@@ -166,7 +166,7 @@ module.exports = function (grunt) {
         watch: {
           styles: {
             // Which files to watch (all .less files recursively in the less directory)
-            files: ['public/lib/flat-ui-pro/**/*.less'],
+            files: ['public/lib/flat-ui-pro/**/*.less', 'public/lib/startup/**/*.less'],
             tasks: ['less:development'],
             options: {
               nospawn: true
