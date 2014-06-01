@@ -7,6 +7,7 @@ function($scope, productService, errorService, categoryService, ngDialog, $sce, 
     $scope.updateProduct = function() {
         $scope.disabled = true;
         $scope.product.html = marked($scope.product.markdown ? $scope.product.markdown : "");
+        $scope.product.category = null;
         productService.update($scope.product).then(
             function(data) {
                 productService.getAll("$filter=ProductId eq " + $stateParams.productId + "&$expand=Tags,Features,Category").then(
