@@ -31,7 +31,7 @@
             <div class="member-wrapper" ng-click="navigateToDetail(product)" ng-repeat="product in productGroup" ng-style="{'visibility' : product.dummy ? 'collapse' : ''}">
                 <div class="member">
                     <div class="photo-wrapper">
-                        <div class="photo" ng-style="{ 'background-image': 'url(' + product.imageUrl + ')'}"></div>
+                        <div class="photo" ng-style="{ 'background-image': product.imageUrl ? 'url(' + $parent.baseEndPoint + product.imageUrl + ')' : ''}"></div>
                         <div class="name">{{ product.name }}</div>
                         <div class="position">{{ product.category.name }}</div>
                     </div>

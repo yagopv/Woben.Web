@@ -3,11 +3,18 @@
         <div class="col-sm-12">
             <div id="addProduct">
                 <wo-errors title="Se han producido errores en tu solicitud" errors="modelErrors"></wo-errors>
-                <wo-file-upload ng-model="uploadedFiles" mode="multipart" max-files="2" upload-right-away="false" select-text="Selecciona o arrastra" update-text="Modifica la imagen" delete-text="Borrar la imagen"></wo-file-upload>
+                <wo-file-upload ng-model="product.images" entity-id="product.productId" max-files="5" upload-right-away="false" select-text="Selecciona o arrastra" update-text="Modifica la imagen" delete-text="Borrar la imagen"></wo-file-upload>
+                <div class="row mtl">
+                  <div class="col-xs-6 col-md-3 scale-in-out" ng-repeat="image in product.images" ng-show="image.imageId >= 0" wo-hovered="hovered">
+                    <a href="#" class="thumbnail" ng-class="{ active : baseEndPoint + image.url == baseEndPoint + $parent.product.imageUrl }" ng-click="setFeaturedImage(image)">
+                      <img src="{{ baseEndPoint + image.url }}" alt="" />                                                                    
+                    </a>
+                    <span class="image-toolbar" ng-class="{ active : hovered }" ng-mouseenter="hovered = true" ng-mouseleave="hovered = false">
+                        <a class="btn btn-xs btn-danger" ng-click="removeImage(image, $index)"><i class="fui-trash"></i></a>                        
+                    </span>                      
+                  </div>
+                </div>
                 <form name="updateProductForm" ng-submit="updateProduct()" class="mtl" novalidate>
-                    <div ng-show="product.imageUrl">
-                        <img class="img-responsive img-thumbnail" ng-src="{{ product.imageUrl }}" />
-                    </div>
                     <div class="form-group" ng-class="{'has-error': updateProductForm.imageUrl.$invalid && updateProductForm.imageUrl.$dirty}">
                         <input name="imageUrl" type="hidden" class="form-control" placeholder="Imagen" ng-model="product.imageUrl" />
                     </div>

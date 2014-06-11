@@ -47,6 +47,7 @@ module.exports = function (grunt) {
                 'public/app/common/radioDirective.js',
                 'public/app/common/errorDirective.js',
                 'public/app/common/authInterceptor.js',
+                'public/app/common/hoveredDirective.js',
                 'public/app/common/oDataInterceptor.js',
                 'public/app/common/errorService.js',
                 'public/app/common/offcanvasDirective.js',

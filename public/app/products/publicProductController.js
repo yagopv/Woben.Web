@@ -5,7 +5,7 @@ WobenProducts.controller('PublicProductController', ["$scope", "categoryService"
 		$scope.skip = 0;
 		$scope.top = 6;
         $scope.noMore = false;
-
+        $scope.baseEndPoint = baseEndPoint;
         $scope.odataString = "$skip=" + $scope.skip + "&$top=" + $scope.top + "&$orderby=UpdatedDate desc&$expand=Category";
         $scope.searchModel = "";
 

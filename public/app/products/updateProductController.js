@@ -2,21 +2,20 @@ WobenProducts.controller('UpdateProductController', ["$scope", "productService",
 
 function($scope, productService, errorService, categoryService, ngDialog, $sce, $stateParams,$q, baseEndPoint, $timeout) {
 
-    $scope.tags = "";
-    
+    $scope.tags = "";    
     $scope.updateProduct = function() {
         $scope.disabled = true;
         $scope.product.html = marked($scope.product.markdown ? $scope.product.markdown : "");
         $scope.product.category = null;
         productService.update($scope.product).then(
             function(data) {
-                productService.getAll("$filter=ProductId eq " + $stateParams.productId + "&$expand=Tags,Features,Category").then(
+                productService.getAll("$filter=ProductId eq " + $stateParams.productId + "&$expand=Tags,Features,Category,Images").then(
                     function(data) {
                         $scope.disabled = false;
                         $scope.product = data[0];
                         var tags = [];
                         if (angular.isArray($scope.product.tags)) {
-                            angular.forEach($scope.product.tags, function(value, key) {
+                            angular.forEach($scope.product.tags, function(value, key) {                                
                                 tags.push($scope.product.tags[key.toString()].name);
                             });
                             $scope.tags = tags.toString();
@@ -26,7 +25,7 @@ function($scope, productService, errorService, categoryService, ngDialog, $sce, 
                         }
                         if (!$scope.tagMaxIndex) {
                             $scope.tagMaxIndex = "0";
-                        }
+                        }                        
                     },
                     function(error) {
                         $scope.modelErrors = errorService.handleODataErrors(error);
@@ -39,7 +38,7 @@ function($scope, productService, errorService, categoryService, ngDialog, $sce, 
             });
     };
 
-    $q.all([ productService.getAll("$filter=ProductId eq " + $stateParams.productId + "&$expand=Tags,Features,Category"), categoryService.getAll()])
+    $q.all([ productService.getAll("$filter=ProductId eq " + $stateParams.productId + "&$expand=Tags,Features,Category,Images"), categoryService.getAll()])
         .then(
             function(data) {
                 $scope.product = data[0][0];
@@ -56,7 +55,7 @@ function($scope, productService, errorService, categoryService, ngDialog, $sce, 
                 }
                 if (!$scope.tagMaxIndex) {
                     $scope.tagMaxIndex = "0";
-                }
+                }                
                 $timeout(function() {
                     _updateIframe($scope.product);
                 },5000);
@@ -77,17 +76,35 @@ function($scope, productService, errorService, categoryService, ngDialog, $sce, 
 
     $scope.previewHtml = false;
 
+    $scope.baseEndPoint = baseEndPoint;
+    
     $scope.uploadedFiles = [];
-
-    $scope.$watch("uploadedFiles", function(newValue, oldValue) {
-        if (newValue && newValue[0]) {
-            $scope.product.imageUrl = baseEndPoint + newValue[0].url;
-        }
-    });
 
     $scope.togglePreview = function() {
         $scope.trustedHtml = $sce.trustAsHtml(marked($scope.product.markdown ? $scope.product.markdown : ""));
         $scope.previewHtml = !$scope.previewHtml;
+    }
+
+    $scope.setFeaturedImage = function(image) {
+        if (image.url == $scope.product.imageUrl) {
+            $scope.product.imageUrl = null;
+        }  else {
+            $scope.product.imageUrl = image.url;    
+        }            
+    }
+
+    $scope.removeImage = function(image, index) {
+        if (image.imageId > 0) {
+            image.imageId = -1;    
+        }   
+        
+        if (image.imageId == 0) {
+            $scope.product.images.splice(index, 1);    
+        } 
+                
+        if (image.url == $scope.product.imageUrl) {
+            $scope.product.imageUrl = null;
+        }    
     }
 
     $scope.$watch("product", function(prod) {
